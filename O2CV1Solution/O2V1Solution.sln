@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O2V1DataAccess", "O2V1DataA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O2V1DataAccessTests", "O2V1DataAccessTests\O2V1DataAccessTests.csproj", "{DE5897A0-82D9-4E02-93EA-3718572580BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O2V1BusinesLayer", "O2V1BusinesLayer\O2V1BusinesLayer.csproj", "{4142D651-3AA3-433C-B301-750543A6781C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,22 @@ Global
 		{DE5897A0-82D9-4E02-93EA-3718572580BF}.ReleaseFull|Any CPU.Build.0 = Release|Any CPU
 		{DE5897A0-82D9-4E02-93EA-3718572580BF}.ReleaseFull|x64.ActiveCfg = Release|Any CPU
 		{DE5897A0-82D9-4E02-93EA-3718572580BF}.ReleaseFull|x64.Build.0 = Release|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.Debug|x64.Build.0 = Debug|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.Release|x64.ActiveCfg = Release|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.Release|x64.Build.0 = Release|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.ReleaseDemo|Any CPU.ActiveCfg = Release|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.ReleaseDemo|Any CPU.Build.0 = Release|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.ReleaseDemo|x64.ActiveCfg = Release|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.ReleaseDemo|x64.Build.0 = Release|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.ReleaseFull|Any CPU.ActiveCfg = Release|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.ReleaseFull|Any CPU.Build.0 = Release|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.ReleaseFull|x64.ActiveCfg = Release|Any CPU
+		{4142D651-3AA3-433C-B301-750543A6781C}.ReleaseFull|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

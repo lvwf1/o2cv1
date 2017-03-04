@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using O2V1DataAccess.SchemaModels;
 
 namespace O2.DataMart.Models.SchemaModels
 {

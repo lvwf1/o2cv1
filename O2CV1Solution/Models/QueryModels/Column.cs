@@ -9,6 +9,5 @@ namespace Korzh.EasyQuery.Mvc.Demo.EF.Models.QueryModels
         public int sortIndex { get; set; }
         public Expr expr { get; set; }
         public List<object> @params { get; set; }
-        public string blockId { get; set; }
     }
 }

@@ -636,8 +636,8 @@
     <Compile Include="Models\QueryModels\Rootobject.cs" />
     <Compile Include="Models\QueryModels\Root.cs" />
     <Compile Include="Models\TableFileModel.cs" />
-    <Compile Include="Models\ViewModels\SelectTables.cs" />
-    <Compile Include="Models\ViewModels\TablesDropDownModel.cs" />
+    <Compile Include="Models\ViewModels\TableDropDownItem.cs" />
+    <Compile Include="Models\ViewModels\TablesDropDownViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -661,12 +661,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="O2V1BusinesLayer\O2V1BusinesLayer.csproj">
+      <Project>{4142d651-3aa3-433c-b301-750543a6781c}</Project>
+      <Name>O2V1BusinesLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="O2V1DataAccess\O2V1DataAccess.csproj">
       <Project>{9e05c9eb-26eb-478f-b9a6-da34e266ffa5}</Project>
       <Name>O2V1DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

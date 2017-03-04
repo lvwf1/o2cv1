@@ -104,3 +104,5 @@ C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\Microsoft.Diagnostics.Tra
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\Ninject.xml
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\Ninject.Web.Common.xml
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\Ninject.Web.Mvc.xml
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\O2V1BusinesLayer.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\O2V1BusinesLayer.pdb

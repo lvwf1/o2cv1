@@ -1,30 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Globalization;
-using System.Linq;
-
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Script.Serialization;
-
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlServerCe;
-
-using Korzh.Utils.Db;
-using Korzh.EasyQuery.Db;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Korzh.EasyQuery.Mvc;
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.Services.Db;
-using Korzh.EasyQuery.EF;
+using Korzh.Utils.Db;
+using O2V1BusinesLayer;
 using O2V1DataAccess;
-using O2V1Web.Models;
 using O2V1Web.Models.EFModels;
 using O2V1Web.Models.ViewModels;
 
-namespace Korzh.EasyQuery.Mvc.Demo.EF {
+namespace O2V1Web.Controllers {
     public class HomeController : Controller {
         private EqServiceProviderDb eqService;
         private SchemaRepository schemaRepository;
@@ -87,22 +76,17 @@ namespace Korzh.EasyQuery.Mvc.Demo.EF {
         {
             List<string> tableNames = schemaRepository.GetSchemaTables();
 
-            SelectTables selectTables = new SelectTables();
+            TableDropDownItem tableDropDownItem = new TableDropDownItem();
 
-            List<SelectTables> temptablelist = tableNames.Select(name => new SelectTables
+ 
+            IEnumerable<TableDropDownItem> temptablelist = tableNames.Select(name => new TableDropDownItem
             {
                 TableNameDisplay = name,
                 TableNameValue = name
             }).OrderBy(x => x.TableNameDisplay).ToList();
 
+            var model = new TablesDropDownViewModel { _tables = GetSelectListItems(temptablelist)};
             ViewBag.temptablelist = temptablelist;
-
-
-            var model = new TablesDropDownModel
-            {
-                DropDownListTableNames = new SelectList(temptablelist, "TableNameValue", "TableNameDisplay")
-            };
-
 
             return View("Home",model);
             //return View("EasyQuery");
@@ -126,19 +110,32 @@ namespace Korzh.EasyQuery.Mvc.Demo.EF {
         /// It's called when it's necessary to synchronize query on client side with its server-side copy.
         /// Additionally this action can be used to return a generated SQL statement (or several statements) as JSON string
         /// </summary>
-        /// <param name="queryJson">The JSON representation of the query .</param>
-        /// <param name="optionsJson">The additional parameters which can be passed to this method to adjust query statement generation.</param>
+        /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult SyncQuery(string queryJson, string optionsJson) {
-            var query = eqService.SyncQueryDict(queryJson.ToDictionary());
+        public ActionResult SyncQuery(TablesDropDownViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
 
-           
 
-            var statement = eqService.BuildQuery(query, optionsJson.ToDictionary());
-            Dictionary<string, object> dict = new Dictionary<string, object>();
-            dict.Add("statement", statement);
-            return Json(dict);
+                var look = model.SelectedTable;
+            
+                ConvertModelToJson modelConverter = new ConvertModelToJson();
+                string queryJson = modelConverter.ConvertSimpleTableQuery(model.SelectedTable.ToString());
+
+                string optionsJson = modelConverter.ConvertOptionsToJson();
+
+                var query = eqService.SyncQueryDict(queryJson.ToDictionary());
+                var statement = eqService.BuildQuery(query, optionsJson.ToDictionary());
+                Dictionary<string, object> dict = new Dictionary<string, object>();
+                dict.Add("statement", statement);
+                return Json(dict);
+            }
+            else
+            {
+               return Redirect("Index");
+            }
         }
 
         /// <summary>
@@ -252,7 +249,28 @@ namespace Korzh.EasyQuery.Mvc.Demo.EF {
             return new EmptyResult();
         }
 
-       
+        private static List<TableDropDownItem> GetSelectListItems(IEnumerable<TableDropDownItem> elements)
+        {
+            // Create an empty list to hold result of the operation
+            var selectList = new List<TableDropDownItem>();
+
+            // For each string in the 'elements' variable, create a new SelectListItem object
+            // that has both its Value and Text properties set to a particular value.
+            // This will result in MVC rendering each item as:
+            //     <option value="State Name">State Name</option>
+            foreach (var element in elements)
+            {
+                selectList.Add(new TableDropDownItem()
+                {
+                    TableNameValue = element.TableNameValue,
+                    TableNameDisplay = element.TableNameDisplay
+                });
+            }
+
+            return selectList;
+        }
+
+
     }
 
 }

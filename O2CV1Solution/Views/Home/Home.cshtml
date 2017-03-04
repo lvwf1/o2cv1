@@ -1,57 +1,84 @@
-﻿@model O2V1Web.Models.ViewModels.TablesDropDownModel
+﻿@model O2V1Web.Models.ViewModels.TablesDropDownViewModel
 @{
     ViewBag.Title = "Home";
 }
 
 <h2>Home</h2>
-<div class="wrapper">
-    <div class="container">
 
-        <div class="central-block">
+@using (Html.BeginForm("SyncQuery", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="container">
+            <h4>Tables</h4>
+            <hr/>
+            @Html.ValidationSummary(true)
+            <div class="central-block">
 
-            <div class="control-group">
-                <label class="control-label" for="basicinput">Select Table 1</label>
-                <div class="controls">
-                    @Html.DropDownListFor(m => m.DropDownListTableNames,
-                        new SelectList(Model.DropDownListTableNames.Items, "TableNameValue",
-                            "TableNameValue"), "Select Table", new { @class = "span8" })
+                <div class="control-group">
+                    <div class="col-md-5">
+                        @Html.ValidationMessageFor(model => model.SelectedTable)
+                    </div>
+
+                    <label class="control-label" for="basicinput">Select Table </label>
+                    <div class="controls">
+                        @*@Html.DropDownListFor(m => m.DropDownListTableNames,
+                            new SelectList(Model.DropDownListTableNames.Items, "TableNameValue",
+                                "TableNameValue"), "Select Table", new {@class = "span8"})*@
+                        @Html.DropDownListFor(model => model.SelectedTable, // 1. Store selected value in Model.SelectedTable;
+                            // when page is rendered after postback,
+                            // take selected value from Model.SelectedTable.
+
+                            // 2. Take list of values from Model.States
+                            Model.SelectTables,
+
+                            // 3. Text for the first 'default' option
+                            "- Please select a table -",
+
+                            //4. A class name to assign to <select> tag
+                            new {@class = "form-control"})
+                    </div>
+
                 </div>
+               
+
             </div>
 
+            <div class="form-group pull-left">
+                <div class="col-md-10">
+                    <input type="submit" value="Post Back" class="btn btn-default"/>
+                </div>
+            </div>
+           
         </div>
 
 
-        <div class="central-block">
-            <button type="button" id="GetSql" value="" onclick="syncQuery();">GetSql</button>
-        </div>
     </div>
-</div>
 
+}
+    <script type="text/javascript">
+        var
+            jsonQuery =
+                "{\r\n   \"root\": {\r\n      \"linkType\": \"All\",\r\n      \"enabled\": true,\r\n      \"conditions\": [\r\n         {\r\n            \"justAdded\": false,\r\n            \"typeName\": \"SMPL\",\r\n            \"enabled\": true,\r\n            \"operatorID\": \"StartsWith\",\r\n            \"expressions\": [\r\n               {\r\n                  \"kind\": \"Attribute\",\r\n                  \"typeName\": \"ENTATTR\",\r\n                  \"id\": \"Customer.Contact.Name\"\r\n               },\r\n               {\r\n                  \"typeName\": \"CONST\",\r\n                  \"dataType\": \"String\",\r\n                  \"kind\": \"Scalar\",\r\n                  \"value\": \"Maria\",\r\n                  \"text\": \"Maria\"\r\n               }\r\n            ],\r\n            \"blockId\": \"QueryPanel-cond-1\"\r\n         },\r\n         {\r\n            \"justAdded\": false,\r\n            \"typeName\": \"SMPL\",\r\n            \"enabled\": true,\r\n            \"operatorID\": \"StartsWith\",\r\n            \"expressions\": [\r\n               {\r\n                  \"kind\": \"Attribute\",\r\n                  \"typeName\": \"ENTATTR\",\r\n                  \"id\": \"Customer.Address.Street\"\r\n               },\r\n               {\r\n                  \"typeName\": \"CONST\",\r\n                  \"dataType\": \"String\",\r\n                  \"kind\": \"Scalar\",\r\n                  \"value\": \"Obere\",\r\n                  \"text\": \"Obere\"\r\n               }\r\n            ],\r\n            \"blockId\": \"QueryPanel-cond-3\"\r\n         }\r\n      ]\r\n   },\r\n   \"columns\": [\r\n      {\r\n         \"caption\": \"Client Address Street\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.Street\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-1\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Address City\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.City\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-2\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Address Region\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.Region\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-3\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Address Postal Code\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.PostalCode\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-4\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Address Country\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.Country\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-5\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Contact Name\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Contact.Name\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-6\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Contact Title\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Contact.Title\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-7\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Contact Phone\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Contact.Phone\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-8\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Contact Fax\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Contact.Fax\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-9\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Id\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Id\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-10\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Company Name\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Name\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-11\"\r\n      }\r\n   ],\r\n   \"justsorted\": [],\r\n   \"modelId\": \"d7a2e9b3-541b-415e-863c-e8645d0c3585\",\r\n   \"modelName\": null\r\n}";
+        var optionsJson = "{}";
 
-<script type="text/javascript">
-    var
-        jsonQuery =
-            "{\r\n   \"root\": {\r\n      \"linkType\": \"All\",\r\n      \"enabled\": true,\r\n      \"conditions\": [\r\n         {\r\n            \"justAdded\": false,\r\n            \"typeName\": \"SMPL\",\r\n            \"enabled\": true,\r\n            \"operatorID\": \"StartsWith\",\r\n            \"expressions\": [\r\n               {\r\n                  \"kind\": \"Attribute\",\r\n                  \"typeName\": \"ENTATTR\",\r\n                  \"id\": \"Customer.Contact.Name\"\r\n               },\r\n               {\r\n                  \"typeName\": \"CONST\",\r\n                  \"dataType\": \"String\",\r\n                  \"kind\": \"Scalar\",\r\n                  \"value\": \"Maria\",\r\n                  \"text\": \"Maria\"\r\n               }\r\n            ],\r\n            \"blockId\": \"QueryPanel-cond-1\"\r\n         },\r\n         {\r\n            \"justAdded\": false,\r\n            \"typeName\": \"SMPL\",\r\n            \"enabled\": true,\r\n            \"operatorID\": \"StartsWith\",\r\n            \"expressions\": [\r\n               {\r\n                  \"kind\": \"Attribute\",\r\n                  \"typeName\": \"ENTATTR\",\r\n                  \"id\": \"Customer.Address.Street\"\r\n               },\r\n               {\r\n                  \"typeName\": \"CONST\",\r\n                  \"dataType\": \"String\",\r\n                  \"kind\": \"Scalar\",\r\n                  \"value\": \"Obere\",\r\n                  \"text\": \"Obere\"\r\n               }\r\n            ],\r\n            \"blockId\": \"QueryPanel-cond-3\"\r\n         }\r\n      ]\r\n   },\r\n   \"columns\": [\r\n      {\r\n         \"caption\": \"Client Address Street\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.Street\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-1\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Address City\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.City\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-2\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Address Region\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.Region\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-3\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Address Postal Code\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.PostalCode\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-4\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Address Country\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.Country\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-5\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Contact Name\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Contact.Name\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-6\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Contact Title\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Contact.Title\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-7\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Contact Phone\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Contact.Phone\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-8\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Contact Fax\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Contact.Fax\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-9\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Id\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Id\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-10\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Company Name\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Name\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-11\"\r\n      }\r\n   ],\r\n   \"justsorted\": [],\r\n   \"modelId\": \"d7a2e9b3-541b-415e-863c-e8645d0c3585\",\r\n   \"modelName\": null\r\n}";
-    var optionsJson = "{}";
+        function syncQuery() {
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                cache: false,
+                url: '/Proof/SyncQuery',
+                data: { queryJson: jsonQuery, optionsJson },
+                success: function(response, textStatus, jqXhr) {
+                    $("#DataSQL").html("");
 
-    function syncQuery() {
-        $.ajax({
-            type: 'post',
-            dataType: 'json',
-            cache: false,
-            url: '/Proof/SyncQuery',
-            data: { queryJson: jsonQuery, optionsJson },
-            success: function(response, textStatus, jqXhr) {
-                $("#DataSQL").html("");
+                    $("#DataSQL").append(response.statement + "<br/>");
 
-                $("#DataSQL").append(response.statement + "<br/>");
+                },
+                error: function(jqXhr, textStatus, errorThrown) {
+                    alert('Error - ' + errorThrown);
+                }
+            });
+        }
 
-            },
-            error: function(jqXhr, textStatus, errorThrown) {
-                alert('Error - ' + errorThrown);
-            }
-        });
-    }
-
-</script>
-
+    </script>

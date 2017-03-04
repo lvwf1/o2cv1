@@ -9,6 +9,10 @@
     <link href="~/Content/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="~/Content/css/vmenuModule.css" />
     <link rel="stylesheet" href="~/Content/css/pushy.css">
+    <link type="text/css" href="~/Content/Images1/icons/css/font-awesome.css" rel="stylesheet">
+
+    <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
+
 
     <link href="~/Content/easyui/easyui.css" rel="stylesheet" type="text/css" />
     @*<link href="~/Content/easyui/demo.css" rel="stylesheet" type="text/css" />
@@ -47,18 +51,6 @@
     <script src="~/Content/scripts/jquery.validate.unobtrusive.min.js"></script>
 
 
-    <script src="~/Content/lib/jquery-maskedinput/jquery.maskedinput.js"></script>
-    <script src="~/Content/lib/parsley/parsley.js"> </script>
-    @*<script src="~/Content/lib/uniform/js/jquery.uniform.js"></script>*@
-    <script src="~/Content/lib/select2.js"></script>
-    <script src="~/Content/lib/jquery.dataTables.min.js"></script>
-    <!--backbone and friends -->
-    <script src="~/Content/lib/backbone/underscore-min.js"></script>
-    <script src="~/Content/lib/backbone/backbone-min.js"></script>
-    <script src="~/Content/lib/backbone/backbone-pageable.js"></script>
-    <script src="~/Content/lib/backgrid/backgrid.js"></script>
-    <script src="~/Content/lib/backgrid/backgrid-paginator.js"></script>
-    <script src="~/Content/js/tables-dynamic.js"></script>
 
     @*<script type="text/javascript" src="https://www.google.com/jsapi"></script>*@
     @*<script src="~/Scripts/MicrosoftAjax.debug.js"></script>
@@ -109,7 +101,21 @@
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    @RenderSection("scripts", required: false)
+    
+
+    <script src="~/Content/lib/jquery-maskedinput/jquery.maskedinput.js"></script>
+    <script src="~/Content/lib/parsley/parsley.js"> </script>
+    @*<script src="~/Content/lib/uniform/js/jquery.uniform.js"></script>*@
+    <script src="~/Content/lib/select2.js"></script>
+    <script src="~/Content/lib/jquery.dataTables.min.js"></script>
+    <!--backbone and friends -->
+    <script src="~/Content/lib/backbone/underscore-min.js"></script>
+    <script src="~/Content/lib/backbone/backbone-min.js"></script>
+    <script src="~/Content/lib/backbone/backbone-pageable.js"></script>
+    <script src="~/Content/lib/backgrid/backgrid.js"></script>
+    <script src="~/Content/lib/backgrid/backgrid-paginator.js"></script>
+    <script src="~/Content/js/tables-dynamic.js"></script>
+@RenderSection("scripts", required: false)
 
 </body>
 </html>

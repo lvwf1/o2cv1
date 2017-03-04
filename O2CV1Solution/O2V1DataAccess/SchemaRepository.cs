@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using O2.DataMart.Models.SchemaModels;
+using O2V1DataAccess.SchemaModels;
 
 namespace O2V1DataAccess
 {

@@ -1,4 +1,4 @@
-﻿namespace O2.DataMart.Models.SchemaModels
+﻿namespace O2V1DataAccess.SchemaModels
 {
     public class TableMetaData
     {

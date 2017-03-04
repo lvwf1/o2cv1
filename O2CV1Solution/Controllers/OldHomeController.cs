@@ -14,9 +14,9 @@ namespace Korzh.EasyQuery.Mvc.Demo.EF.Controllers
         {
             //List<string> tableNames = schemaRepository.GetSchemaTables();
 
-            //SelectTables selectTables = new SelectTables();
+            //TableDropDownItem selectTables = new TableDropDownItem();
 
-            //List<SelectTables> temptablelist = tableNames.Select(name => new SelectTables
+            //List<TableDropDownItem> temptablelist = tableNames.Select(name => new TableDropDownItem
             //{
             //    TableNameDisplay = name,
             //    TableNameValue = name
@@ -25,7 +25,7 @@ namespace Korzh.EasyQuery.Mvc.Demo.EF.Controllers
             //ViewBag.temptablelist = temptablelist;
 
 
-            //TablesDropDownModel model = new TablesDropDownModel();
+            //TablesModel model = new TablesModel();
             //model.DropDownListTableNames = new SelectList(temptablelist, "TableNameValue", "TableNameDisplay");
 
             return View("Proof");

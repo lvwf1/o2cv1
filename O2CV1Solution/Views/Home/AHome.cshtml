@@ -1,4 +1,4 @@
-﻿@model O2V1Web.Models.ViewModels.TablesDropDownModel
+@model O2V1Web.Models.ViewModels.TablesModel
 @{
     ViewBag.Title = "My Counts 1";
 }
@@ -19,9 +19,7 @@
         </div>
 
 
-        <div class="central-block">
-            <button type="button" id="GetSql" value="" onclick="syncQuery();">GetSql</button>
-        </div>
+
     </div>
 </div>
 
@@ -37,7 +35,7 @@
             type: 'post',
             dataType: 'json',
             cache: false,
-            url: '/Proof/SyncQuery',
+            url: '/Home/SyncQuery',
             data: { queryJson: jsonQuery, optionsJson },
             success: function(response, textStatus, jqXhr) {
                 $("#DataSQL").html("");
