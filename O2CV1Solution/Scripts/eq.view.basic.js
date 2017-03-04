@@ -61,9 +61,6 @@
             var executeQueryButtonId = options.executeQueryButtonId || "ExecuteQueryButton";
             this._executeQueryButton = this._findControlById(executeQueryButtonId);
 
-            var resultCountSpanId = options.resultCountSpanId || "ResultCount";
-            this._resultCountSpan = this._findControlById(resultCountSpanId);
-
             var exportButtonsId = options.exportButtonsId || "ResultExportButtons";
             this._exportButtons = this._findControlById(exportButtonsId);
 
@@ -90,16 +87,12 @@
                     if (self._exportButtons) {
                         self._exportButtons.hide();
                     }
-                    if (self._resultCountSpan) {
-                        self._resultCountSpan.hide();
-                    }
                     self._clearSqlPanel();
                     EQ.client.clearQuery();
                 };
             }
 
 
-            //clear button
             if (this._clearQueryButton) {
                 this._clearQueryButton.off("click", this._funcs.clearButtonClick);
                 this._clearQueryButton.on("click", this._funcs.clearButtonClick);
@@ -122,7 +115,6 @@
                 };
             }
 
-            // load query button
             if (this._loadQueryButton) {
                 this._loadQueryButton.off("click", this._funcs.loadQueryButtonClick);
                 this._loadQueryButton.on("click", this._funcs.loadQueryButtonClick);
@@ -146,7 +138,6 @@
             }
 
 
-            // save query button
             if (this._saveQueryButton) {
                 this._saveQueryButton.off("click", this._funcs.saveQueryButtonClick);
                 this._saveQueryButton.on("click", this._funcs.saveQueryButtonClick);
@@ -214,9 +205,6 @@
                 this._exportButtons.hide();
             }
 
-            if (this._resultCountSpan) {
-                this._resultCountSpan.hide();
-            }
         },
 
         syncQuery: function () {
@@ -309,7 +297,6 @@
                 "query": query,
                 "options": {
                     //"formats": {bracketJoins: false},
-                    //"sqlOptions": {selectTop: "100"},
                     "page": options.page,
                     "resultFormat": 1
                 },
@@ -327,7 +314,7 @@
 
                         if (resultPanel) {
                             resultPanel.empty();
-                            if (result.resultSet && result.resultSet.cols.length > 0) {
+                            if (result.resultSet) {
 
                                 var grid;
                                 if (result.resultSet.table) {
@@ -337,18 +324,11 @@
                                 else {
                                     var DataTable = EQ.view.getDataTableClass();
 
-                                    //var DataTable1 = google.visualization.DataTable;
-
                                     // Create the data table.
-
-                                    var dataTable = new DataTable(result.resultSet); 
+                                    var dataTable = new DataTable(result.resultSet);
 
                                     if (self.showChart) {
-                                        var chartPanel = $("<div />")
-                                            .addClass("chart-panel")
-                                            //.css({ "float": "right", "width": "360px" })
-                                            .appendTo(resultPanel);
-
+                                        var chartPanel = $("<div />").addClass("chart-panel").css({ "float": "right" }).appendTo(resultPanel);
                                         EQ.view.drawChart(dataTable, chartPanel.get(0));
                                     }
 
@@ -383,12 +363,6 @@
                                 resultPanel.animate({ 'opacity': 1 }, 200);
                             }
                         }
-
-                        //result count
-                        if (result.resultCount) {
-                            self._resultCountSpan.text(result.resultCount);
-                            self._resultCountSpan.show();
-                        }
                     }
                     finally {
                         resultProgressIndicator.remove();
@@ -399,9 +373,8 @@
                     resultProgressIndicator.remove();
                     if (resultPanel) {
                         resultPanel.empty();
-                        resultPanel
-                            .append("<div></div>").addClass('error')
-                            .append('<div>Error during ' + operation + ' request:  <div>' + errorMessage + '</div></div>');
+                        resultPanel.animate({ 'opacity': 1 }, 200);
+                        resultPanel.addClass('error').append('<div>Error during ' + operation + ' request:  <div>' + errorMessage + '</div></div>');
                     }
                 }
             });

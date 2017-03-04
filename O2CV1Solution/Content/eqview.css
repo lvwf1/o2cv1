@@ -1,3 +1,13 @@
+/* load fonts */
+@font-face {
+	font-family: 'Conv_segoeuil';
+	src: url('fonts/segoeuil.eot');
+	src: local('â?º'), url('fonts/segoeuil.ttf') format('truetype'), url('fonts/segoeuil.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+/**/
+
 /*setting to all page */
 #main{
     width:1174px;
@@ -100,8 +110,8 @@
 .conditions-block{
     background: white;
     border: 1px solid silver;
-    height: 243px;
-    height: 230px !IE7;
+    height: 303px;
+    height: 310px !IE7;
     position: relative;
 }
 
@@ -150,8 +160,8 @@
 .columns-block{
     background: white;
     border: 1px solid silver;
-    height: 180px;
-    height: 190px !IE7;
+    height: 282px;
+    height: 292px !IE7;
     margin: 0 0 20px 0;
     margin: 0 0 10px 0 !IE7;
     position: relative;
@@ -183,7 +193,7 @@
 /* menu block */
 .menu-block{
     width: 17%;
-    float: right;
+    float: left;
     background: #fff;
     border: 1px solid silver;
 }
@@ -294,8 +304,8 @@
     background: white;
     position: relative;
     border: 1px solid #C1D5E4;
-    width: 73%;
-    float: right;
+    width: 76%;
+    float: left;
 }
 
 /* result panel - border top */
@@ -467,12 +477,12 @@
 
 /* content - block min height */
 .header-panel{
-    height: 443px;
-    height: 440px !IE7;
+    height: 603px;
+    height: 600px !IE7;
 }
 .header-panel > div{
-    height: 443px;
-    height: 432px !IE7;
+    height: 603px;
+    height: 602px !IE7;
     margin: 0 0 20px 0;
 }
 

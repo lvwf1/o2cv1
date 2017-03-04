@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Korzh.EasyQuery.Mvc.Demo.EF.MvcApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="O2V1Web.MvcApplication" Language="C#" %>

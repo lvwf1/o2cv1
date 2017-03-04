@@ -1,0 +1,13 @@
+[
+	{"title": "User-friendly ad-hoc query builder for your web-site"},
+	{"columns": "Columns"},
+	{"conditions": "Conditions"},
+	{"menu" : "Menu"},
+	{"result" : "Result"},
+	{"Execute" : "Execute"},
+	{"load" : "Load query"},
+	{"getModel" : "Get model"},
+	{"clear" : "Clear query"},
+	{"save" : "Save query"},
+	{"entities" : "Entities"}
+]

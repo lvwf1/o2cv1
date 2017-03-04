@@ -1,12 +1,31 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace Korzh.EasyQuery.Mvc.Demo.EF {
-    public class BundleConfig {
-        // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
-        public static void RegisterBundles(BundleCollection bundles) {
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+namespace O2V1Web
+{
+    public class BundleConfig
+    {
+        public static void RegisterBundles(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-ui-{version}.js",
+                        "~/Scripts/jquery.validate.js",
+                        "~/Scripts/jquery.validate.unobtrusive.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/common.js"));
+
+
+
+            bundles.Add(new StyleBundle("~/bundles/styles").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.css",
+                      "~/Content/validation.css",
+                      "~/Content/themes/base/*.css"));
+
+
+
+
+            BundleTable.EnableOptimizations = true;
         }
-
     }
 }

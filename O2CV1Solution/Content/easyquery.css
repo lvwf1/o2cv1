@@ -58,15 +58,14 @@
 }
 
 .eqjs-qc-header div {
-    font: bold 15px Calibri;
-    color: #666;
+    font: normal 15px Calibri;
     display: inline-block;
     *display: inline;
     float: left !IE7;
 }
 
-.eqjs-qc-header-expression {
-    margin-left: 28px;
+.eqjs-qc-header-expression{
+    margin-left: 38px;
     min-width: 300px;
     width: auto;
     *width: 300px;
@@ -95,7 +94,7 @@
     background: #F1F1F1;
 }
 
-.eqjs-qp-row.active, .eqjs-qc-row.active, .eqjs-cb-row.active, .ui-sortable-helper {
+.eqjs-qp-row.active, .eqjs-qc-row.active, .eqjs-cb-row.active{
     background: #F1F1F1;
 }
 
@@ -140,26 +139,6 @@
     min-width:300px;
     float: left !IE7;
     width: 300px !IE7;
-}
-
-.eqjs-qc-params-block, .eqjs-qc-params-block span {
-    display:inline-block;
-    float: left !IE7;
-    vertical-align: middle;
-    font-size: 14px;
-    font-weight: normal;
-}
-
-.eqjs-qc-params-block {
-    margin-right: 8px;
-}
-
-.eqjs-qc-params-block .eqjs-qp-valueelement {
-    margin-right: 0;
-}
-
-.eqjs-qc-params-block .eqjs-qp-valueelement input[type="text"] {
-    padding: 0;
 }
 
 .eqjs-qc-captionelement{
@@ -317,22 +296,6 @@
 .eqjs-qp-condition-button-enable.enabled:hover{
     background-position: -76px 0;
 }
-
-
-.eqjs-qp-condition-button-parameterization {
-    background: url('images/condbtn-param.png') no-repeat;
-    background-position: 0 0;
-}
-
-.eqjs-qp-condition-button-parameterization.turnedon{
-    background: url('images/condbtn-param.png') no-repeat;
-    background-position: -51px 0;
-}
-
-.eqjs-qp-condition-button-parameterization.turnedon:hover{
-    background-position: -76px 0;
-}
-
 
 .eqjs-qp-condition-button-delete, .eqjs-column-button-delete{
     background: url('images/condbtn-delete.png') no-repeat;
@@ -732,6 +695,10 @@
     cursor: pointer;
 }
 
+.ui-button-icon-primary{
+    display: none !important;
+}
+
 .eq-js-dialog .ui-dialog-titlebar-close:hover{
     color: #222;
 }
@@ -840,7 +807,7 @@
 .eqjs-qc-columns{
     overflow-y: auto;
     padding: 4px 0;
-#    position: relative;
+    position: relative;
     white-space: nowrap;
 }
 
@@ -891,7 +858,7 @@
 }
 
 .eqjs-fb-querypanel > .eqjs-qp-predicate-root > .eqjs-qp-conditions {
-    max-height: 200px !important;
+    max-height: 200px;
 }
 
 .eqjs-fb-querypanel .eqjs-qp-addrow {
@@ -1476,7 +1443,6 @@ animation-delay: 1.25s;
 }
 
 /* Columns bar END */
-
 
 
 /* jQuery UI timepicker */
