@@ -93,7 +93,7 @@ namespace Korzh.EasyQuery.Mvc.Demo.EF {
             {
                 TableNameDisplay = name,
                 TableNameValue = name
-            }).ToList();
+            }).OrderBy(x => x.TableNameDisplay).ToList();
 
             ViewBag.temptablelist = temptablelist;
 
@@ -206,7 +206,7 @@ namespace Korzh.EasyQuery.Mvc.Demo.EF {
                     Response.ContentType = "application/vnd.ms-excel";
                     Response.AddHeader("Content-Disposition",
                         string.Format("attachment; filename=\"{0}\"", HttpUtility.UrlEncode("report.xls")));
-                    DbExport.ExportToExcelHtml(dataset, Response.Output, HtmlFormats.Default);
+                    DbExport.ExportToExcelHtml(dataset, Response.Output, ExcelFormats.Default);
                 }
                 else
                     ErrorResponse("Empty dataset");
