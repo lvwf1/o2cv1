@@ -271,19 +271,53 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ProofController.cs" />
-    <Compile Include="Controllers\EasyQueryController.cs" />
+    <Compile Include="Context\CountsContext.cs" />
+    <Compile Include="Controllers\OldHomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CategoryParam .cs" />
+    <Compile Include="Models\CosUser.cs" />
+    <Compile Include="Models\CountModel.cs" />
+    <Compile Include="Models\CountTemplateModel.cs" />
+    <Compile Include="Models\CountUser.cs" />
+    <Compile Include="Models\EFModels\B2B1022.cs" />
+    <Compile Include="Models\EFModels\BackBone.cs" />
+    <Compile Include="Models\EFModels\City.cs" />
+    <Compile Include="Models\EFModels\County.cs" />
+    <Compile Include="Models\EFModels\Feed.cs" />
+    <Compile Include="Models\EFModels\FeedDetail.cs" />
+    <Compile Include="Models\EFModels\HomeValueRanges.cs" />
+    <Compile Include="Models\EFModels\InterestRateType.cs" />
+    <Compile Include="Models\EFModels\LoanAmountRanges.cs" />
+    <Compile Include="Models\EFModels\LoanToValueRanges.cs" />
+    <Compile Include="Models\EFModels\LoanType.cs" />
+    <Compile Include="Models\EFModels\Mortgage.cs" />
+    <Compile Include="Models\EFModels\MortgateType.cs" />
+    <Compile Include="Models\EFModels\O2DataMart.cs" />
+    <Compile Include="Models\EFModels\O2DataMartB2B.cs" />
+    <Compile Include="Models\EFModels\Person.cs" />
+    <Compile Include="Models\EFModels\Property.cs" />
+    <Compile Include="Models\EFModels\PropertyValueRanges.cs" />
+    <Compile Include="Models\EFModels\Query.cs" />
+    <Compile Include="Models\EFModels\State.cs" />
+    <Compile Include="Models\EFModels\StreetDirection.cs" />
+    <Compile Include="Models\Number.cs" />
+    <Compile Include="Models\O2V1DataMartContext\DataMartContext.cs" />
+    <Compile Include="Models\PageParam.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Queries.cs" />
     <Compile Include="Models\QueryModels\Column.cs" />
     <Compile Include="Models\QueryModels\Condition.cs" />
     <Compile Include="Models\QueryModels\Expr.cs" />
     <Compile Include="Models\QueryModels\Expression.cs" />
     <Compile Include="Models\QueryModels\Rootobject.cs" />
     <Compile Include="Models\QueryModels\Root.cs" />
-    <Compile Include="Models\TestContext.cs" />
+    <Compile Include="Models\TableFileModel.cs" />
+    <Compile Include="Models\ViewModels\SelectTables.cs" />
+    <Compile Include="Models\ViewModels\TablesDropDownModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -296,13 +330,19 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Views\Home\Proof.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="O2V1DataAccess\O2V1DataAccess.csproj">
+      <Project>{9e05c9eb-26eb-478f-b9a6-da34e266ffa5}</Project>
+      <Name>O2V1DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

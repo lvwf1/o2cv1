@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Xml.Linq;
+using Korzh.EasyQuery;
 
-namespace Korzh.EasyQuery.Mvc.Demo.Models {
+namespace O2V1Web.Models.O2V1DataMartContext {
 #region NorthWindContext
     [Table("Customers")]
     [DisplayColumn("Name")]
