@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15, 16.25" name="O2DataMartLinqToSql">
+  <DataContextMoniker Name="/O2DataMartLinqToSqlDataContext" />
+  <nestedChildShapes>
+    <classShape Id="45cdc905-5b76-4cfe-938e-1492c8c14891" absoluteBounds="3.75, 3.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/BackBone" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bff25fba-751e-4945-bdfd-1419b3102dba" absoluteBounds="3.765, 4.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8de67b41-5eac-4a32-9a37-8ce29f65dc1e" absoluteBounds="6.75, 0.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/Query" />
+      <nestedChildShapes>
+        <elementListCompartment Id="01443aa7-d7fa-4a71-a283-d2069ed7b391" absoluteBounds="6.765, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a812df88-19fa-4faf-95cd-d8a6e0c134a2" absoluteBounds="0.75, 6.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/City" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9a738a63-5e4e-4f60-b6db-62498f22da4f" absoluteBounds="0.765, 7.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3af3480d-dbf2-401f-955f-1aff55c18b0b" absoluteBounds="6.75, 3.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/CosUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ee781e69-de72-4538-a919-b189a3c8bada" absoluteBounds="6.765, 4.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a8353fad-a3dc-410d-924b-1c3e417e3a08" absoluteBounds="3.75, 6.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/County" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be46fd69-6ec5-4e84-bb95-2c422ee2125a" absoluteBounds="3.765, 7.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="58a1c5df-52a0-4099-96cc-cbc3ee88cc35" absoluteBounds="0.75, 0.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/Count" />
+      <nestedChildShapes>
+        <elementListCompartment Id="657d3726-8cf7-4680-852c-b92c61fdcaa1" absoluteBounds="0.765, 1.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="94d8fae3-573d-4677-8d3b-c73888460980" absoluteBounds="6.75, 6.75, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/CountsTemplate" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aeb3f7bd-474a-4875-ab19-73f758420e28" absoluteBounds="6.765, 7.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a16d8ca3-9869-4137-9200-bf052a0150e3" absoluteBounds="3.5, 1.125, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/CountsUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4e75ee89-5728-4780-9dce-69e640666293" absoluteBounds="3.515, 1.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4d6b4b6f-8f0c-461b-a3c2-39f2867d7f18" absoluteBounds="0.75, 8.75, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/HomeValueRange" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a7bb66e7-3915-41a0-8b0e-8de829641201" absoluteBounds="0.765, 9.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="38713eb1-db16-48a5-8156-a9b163271ae7" absoluteBounds="9.75, 0.75, 2, 1.0016910807291666">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/InterestRateType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f8c4ba6f-294b-4cad-8cd7-b063d4aee4b9" absoluteBounds="9.765, 1.21, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="34da614e-b259-42e1-913e-a44d2ece5915" absoluteBounds="9.75, 2.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/LoanAmountRange" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0da29163-ba88-421d-a869-2a18db5c0e8e" absoluteBounds="9.765, 3.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a176f40d-ed34-4f32-aada-b9261ec08795" absoluteBounds="3.75, 9.75, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/LoanToValueRange" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fc637cb2-3416-46b7-a213-53aeb04a892f" absoluteBounds="3.765, 10.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fc368388-100a-4106-a3d2-41b35ff30f4b" absoluteBounds="9.75, 5.75, 2, 1.0016910807291666">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/LoanType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b320db39-1f74-4a02-ba11-2c9f4fccccb5" absoluteBounds="9.765, 6.21, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d032287d-08a6-4a30-bac3-05af3999924e" absoluteBounds="6.75, 9.75, 2, 3.5016097005208309">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/Mortgage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="205cafc3-507b-49cd-a500-1afe4ce9b234" absoluteBounds="6.765, 10.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2351fe02-9c33-4a9f-ac1c-e4d1a4caae14" absoluteBounds="9.75, 7.75, 2, 1.0016910807291666">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/MortgateType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="35fdb3ab-f8d9-4fc5-bc4a-10ebca9c0771" absoluteBounds="9.765, 8.21, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="41617142-d0a1-4942-9d48-7d8c22d114ad" absoluteBounds="9.75, 9.75, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/Person" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6f4231ab-1f03-4a2f-9c23-6d1cc5456e0f" absoluteBounds="9.765, 10.21, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b2aec4aa-989e-41a2-b901-25d2124ac635" absoluteBounds="12.75, 0.75, 2, 5.0400211588541666">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/Property" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4237d831-df54-4bd9-838b-24e4ef9e3348" absoluteBounds="12.765, 1.21, 1.9700000000000002, 4.4800211588541661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4e4faefc-90bd-41b5-817b-0b02b7de2532" absoluteBounds="0.75, 12.75, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/PropertyValueRange" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b2bc271b-f654-4485-94a6-9f8821f4c29e" absoluteBounds="0.765, 13.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e9e7ca05-3e58-4a46-95b1-b0ab7efbb5e4" absoluteBounds="12.75, 6.75, 2, 1.0016910807291666">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/State" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1170246f-8d29-41c1-ab4b-68f2da720628" absoluteBounds="12.765, 7.21, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8b0e5db2-c82f-49f7-a8bf-1c4edc98cc90" absoluteBounds="12.75, 8.75, 2, 1.0016910807291666">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/StreetDirection" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9241ff82-83df-4f02-a7f7-b17179dfcc58" absoluteBounds="12.765, 9.21, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cc71d2a1-d8da-4da7-920a-a03855f8b026" absoluteBounds="12.75, 10.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/TableFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2e36870b-1de6-4a8c-ab7e-aa5d1ecaf378" absoluteBounds="12.765, 11.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="67f3d4ab-5e7a-4ed0-9ebb-d7d033cfa4de" absoluteBounds="12.75, 12.75, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/FeedDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bd0e4bb0-0c8c-4519-a1ed-d8c87c523562" absoluteBounds="12.765, 13.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a4122ff3-5156-4f1e-8956-a26124ad4b2e" absoluteBounds="3.75, 14.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/O2DataMartLinqToSqlDataContext/Feed" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4d17b7fa-1a57-422f-98ff-7927fddbc416" absoluteBounds="3.765, 15.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.01044840494792); (3.5 : 2.01044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/O2DataMartLinqToSqlDataContext/Count/Count_CountsUser" />
+      <nodes>
+        <classShapeMoniker Id="58a1c5df-52a0-4099-96cc-cbc3ee88cc35" />
+        <classShapeMoniker Id="a16d8ca3-9869-4137-9200-bf052a0150e3" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

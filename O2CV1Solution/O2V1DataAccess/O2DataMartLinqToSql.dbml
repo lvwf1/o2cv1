@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DataMart" Class="O2DataMartLinqToSqlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=69.61.83.205;Initial Catalog=DataMart;User ID=admin;MultipleActiveResultSets=True;Connect Timeout=60;Encrypt=True;TrustServerCertificate=True;Application Name=EntityFramework" SettingsObjectName="O2DataAccess.Properties.Settings" SettingsPropertyName="DataMartConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BackBone" Member="BackBones">
+    <Type Name="BackBone">
+      <Column Name="BackBoneId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FeedId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PersonId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PersonTrustPosition" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MortgageId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="MortgageTrustPosition" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="mgt.Queries" Member="Queries">
+    <Type Name="Query">
+      <Column Name="QueryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Text" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cities" Member="Cities">
+    <Type Name="City">
+      <Column Name="City" Member="City1" Type="System.String" DbType="NVarChar(80) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="County" Type="System.String" DbType="NVarChar(80) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CosUsers" Member="CosUsers">
+    <Type Name="CosUser">
+      <Column Name="CosUserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Usermail" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="UserPassword" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Counties" Member="Counties">
+    <Type Name="County">
+      <Column Name="County" Member="County1" Type="System.String" DbType="NVarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Counts" Member="Counts">
+    <Type Name="Count">
+      <Column Name="CountModelID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Customername" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CustomerTable" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="BaseTemplate" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="AssignTo" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="AccessLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountOwner" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Count_CountsUser" Member="CountsUsers" ThisKey="CountModelID" OtherKey="CountModel_CountModelID" Type="CountsUser" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CountsTemplates" Member="CountsTemplates">
+    <Type Name="CountsTemplate">
+      <Column Name="CountTemplateID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Templatename" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TableFileID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="CountUserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="accesstype" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CountsUsers" Member="CountsUsers">
+    <Type Name="CountsUser">
+      <Column Name="CountUserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Usermail" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="UserPassword" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="CountModel_CountModelID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Count_CountsUser" Member="Count" ThisKey="CountModel_CountModelID" OtherKey="CountModelID" Type="Count" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HomeValueRanges" Member="HomeValueRanges">
+    <Type Name="HomeValueRange">
+      <Column Name="Label" Type="System.String" DbType="NVarChar(80) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StartValue" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EndValue" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InterestRateTypes" Member="InterestRateTypes">
+    <Type Name="InterestRateType">
+      <Column Name="InterestRateType" Member="InterestRateType1" Type="System.String" DbType="NVarChar(80) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LoanAmountRanges" Member="LoanAmountRanges">
+    <Type Name="LoanAmountRange">
+      <Column Name="Label" Type="System.String" DbType="NVarChar(80) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StartValue" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EndValue" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LoanToValueRanges" Member="LoanToValueRanges">
+    <Type Name="LoanToValueRange">
+      <Column Name="Label" Type="System.String" DbType="NVarChar(80) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StartValue" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="EndValue" Type="System.Single" DbType="Real" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LoanTypes" Member="LoanTypes">
+    <Type Name="LoanType">
+      <Column Name="MortgageType" Type="System.String" DbType="NVarChar(80) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Mortgages" Member="Mortgages">
+    <Type Name="Mortgage">
+      <Column Name="MortgageId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LenderName" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="LoanAmount" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="LoanAmountRange" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="OriginationDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="RecordingDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MaturityDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MortgageTerm" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LoanType" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="MortgageType" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="InterestRate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="InterestRateType" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="LoanToValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LoanToValueRange" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MortgateTypes" Member="MortgateTypes">
+    <Type Name="MortgateType">
+      <Column Name="MortgageType" Type="System.String" DbType="NVarChar(80) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Persons" Member="Persons">
+    <Type Name="Person">
+      <Column Name="PersonId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="FullAddress" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="HouseNumber" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="StreetDirection" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Street" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Apartment" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="FullZip" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="RouteCode" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="HomeValue" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="HomeValueRange" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Property" Member="Properties">
+    <Type Name="Property">
+      <Column Name="PropertyId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FederalIPSCode" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="AcessorParcelNumber" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="County" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="LandUseCode" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="OwnerOccupant" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FullAddress" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="HouseNumber" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="StreetDirection" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Street" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Apartment" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="FullZip" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="CarrierRouteCode" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="SaleDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SaleRecordingDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SalePrice" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PropertyValue" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PropertyValueRange" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="CombinedLoanToValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PropertyValueRanges" Member="PropertyValueRanges">
+    <Type Name="PropertyValueRange">
+      <Column Name="Label" Type="System.String" DbType="NVarChar(80) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StartValue" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EndValue" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.States" Member="States">
+    <Type Name="State">
+      <Column Name="Name" Type="System.String" DbType="NVarChar(80) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StreetDirections" Member="StreetDirections">
+    <Type Name="StreetDirection">
+      <Column Name="Direction" Type="System.String" DbType="NVarChar(80) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TableFiles" Member="TableFiles">
+    <Type Name="TableFile">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="mgt.FeedDetails" Member="FeedDetails">
+    <Type Name="FeedDetail">
+      <Column Name="FeedId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FeedFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="mgt.Feeds" Member="Feeds">
+    <Type Name="Feed">
+      <Column Name="FeedId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BackBoneId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

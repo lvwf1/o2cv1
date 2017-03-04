@@ -1,0 +1,20 @@
+use [DataMart_FHA01] 
+drop table [DataMart_FHA01].dbo.BackBone
+drop table [DataMart_FHA01].dbo.Cities
+drop table [DataMart_FHA01].dbo.Counties
+drop table [DataMart_FHA01].dbo.HomeValueRanges
+drop table [DataMart_FHA01].dbo.InterestRateTypes
+drop table [DataMart_FHA01].dbo.LoanAmountRanges
+drop table [DataMart_FHA01].dbo.LoanTypes
+drop table [DataMart_FHA01].dbo.Mortgages
+drop table [DataMart_FHA01].dbo.MortgateTypes
+drop table [DataMart_FHA01].dbo.Persons
+drop table [DataMart_FHA01].dbo.Property
+drop table [DataMart_FHA01].dbo.PropertyValueRanges
+drop   table [DataMart_FHA01].dbo.States
+drop table [DataMart_FHA01].dbo.StreetDirections
+drop table [DataMart_FHA01].mgt.FeedDetails
+drop table [DataMart_FHA01].mgt.Feeds
+drop table [DataMart_FHA01].mgt.Queries
+drop table [DataMart_FHA01].dbo.__MigrationHistory
+drop table [DataMart_FHA01].dbo.LoanToValueRanges

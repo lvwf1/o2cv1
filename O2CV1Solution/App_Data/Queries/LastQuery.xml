@@ -1,0 +1,23 @@
+﻿<Query id="LastQuery" name="">
+  <Description />
+  <Columns>
+    <Column caption="Customer Name" sorting="None" sortIndex="-1">
+      <Expr class="ENTATTR" id="CustomersName" />
+    </Column>
+    <Column caption="Total Sum" sorting="None" sortIndex="-1">
+      <Expr class="AGGRFUNC" func="COUNT" distinct="False">
+        <argument class="ENTATTR" id="ProductsUnitPrice" />
+      </Expr>
+    </Column>
+  </Columns>
+  <JustSortedColumns />
+  <Conditions linking="All">
+    <Condition class="SMPL" enabled="True" readOnly="False">
+      <Operator id="Equal" />
+      <Expressions>
+        <Expr class="ENTATTR" id="CustomersCountry" />
+        <Expr class="CONST" type="String" kind="Scalar" value="USA" text="USA" />
+      </Expressions>
+    </Condition>
+  </Conditions>
+</Query>

@@ -1,0 +1,17 @@
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\obj\Debug\O2DataAccessTests.csprojResolveAssemblyReference.cache
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\O2DataAccessTests.dll.config
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\O2DataAccessTests.dll
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\O2DataAccessTests.pdb
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\O2.DataMart.dll
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\O2DataAccess.dll
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\O2.Common.dll
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\EntityFramework.dll
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\EntityFramework.BulkInsert.dll
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\O2.DataMart.pdb
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\O2DataAccess.pdb
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\O2.Common.pdb
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\EntityFramework.xml
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\bin\Debug\EntityFramework.BulkInsert.pdb
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\obj\Debug\O2DataAccessTests.dll
+C:\Cloud88Projects\Development\O2C\Code\O2DataAccessTests\obj\Debug\O2DataAccessTests.pdb

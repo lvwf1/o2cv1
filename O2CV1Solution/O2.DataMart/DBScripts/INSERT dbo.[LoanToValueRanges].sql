@@ -1,0 +1,15 @@
+use [Datamart-stg]
+Delete dbo.[LoanToValueRanges]
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'0% - 19.99%', 0, 19.99)
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'20% - 39.99%', 20, 39.99)
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'40% - 59.99%', 40, 59.99)
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'60% - 79.99%', 60, 79.99)
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'80% - 99.99%', 80, 99.99)
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'100% - 119.99%', 100, 119.99)
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'120% - 139.99%', 120, 139.99)
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'140% - 159.99%', 140, 159.99)
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'160% - 179.99%', 160, 179.99)
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'180% - 199.99%', 180, 199.99)
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'200% - 219.99%', 200, 219.99)
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'220% - 239.99%', 220, 239.99)
+INSERT [dbo].[LoanToValueRanges] ([Label], [StartValue], [EndValue]) VALUES (N'240% - 259.99%', 240, 259.99)

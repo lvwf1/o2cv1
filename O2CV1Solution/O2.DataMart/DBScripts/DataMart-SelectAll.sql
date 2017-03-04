@@ -1,0 +1,17 @@
+select top 1000 * from dbo.BackBone
+select top 1000 * from dbo.Cities
+select top 1000 * from dbo.Counties
+select top 1000 * from dbo.HomeValueRanges
+select top 1000 * from dbo.InterestRateTypes
+select top 1000 * from dbo.LoanAmountRanges
+select top 1000 * from dbo.LoanTypes
+select top 1000 * from dbo.Mortgages
+select top 1000 * from dbo.MortgateTypes
+select top 1000 * from dbo.Persons
+select top 1000 * from dbo.Property
+select top 1000 * from dbo.PropertyValueRanges
+select top 1000 * from dbo.States
+select top 1000 * from dbo.StreetDirections
+select top 1000 * from mgt.FeedDetails
+select top 1000 * from mgt.Feeds
+select top 1000 * from mgt.Queries
