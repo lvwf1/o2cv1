@@ -2,11 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
+using O2.Common.Interfaces;
 using O2V1Web.Models.O2V1DataMartContext;
 
 namespace O2V1Web.Models.ViewModels
 {
-    public class TablesDropDownViewModel
+    public class CountsQueryModel : ICountsQueryModel
     {
         public List<TableDropDownItem> _tables;
         [Display(Name = "Datamart Tables")]

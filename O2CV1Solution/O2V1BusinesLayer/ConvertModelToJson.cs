@@ -80,7 +80,6 @@ namespace O2V1BusinesLayer
             {
                 throw ex;
             }
-
         }
     }
 }

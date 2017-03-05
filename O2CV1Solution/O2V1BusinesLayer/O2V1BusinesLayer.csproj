@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParmsFromCountViewModel.cs" />
+    <Compile Include="QueryBuilderConvertModelToSql.cs" />
     <Compile Include="ConvertModelToJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryModels\Column.cs" />
@@ -54,13 +56,22 @@
     <Compile Include="QueryModels\Expr.cs" />
     <Compile Include="QueryModels\Expression.cs" />
     <Compile Include="QueryModels\Options.cs" />
+    <Compile Include="QueryModels\QueryBuilderModels\QueryBuilderParms.cs" />
     <Compile Include="QueryModels\Root.cs" />
     <Compile Include="QueryModels\Rootobject.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\O2.Common\O2.Common.csproj">
+      <Project>{7476e7c5-7d55-49f8-abf3-de3318d81a6f}</Project>
+      <Name>O2.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\O2V1DataAccess\O2V1DataAccess.csproj">
       <Project>{9e05c9eb-26eb-478f-b9a6-da34e266ffa5}</Project>
       <Name>O2V1DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QueryBuilder\O2QueryBuilder.csproj">
+      <Project>{9281d89a-c56f-4620-b036-1258cdb9b28e}</Project>
+      <Name>O2QueryBuilder</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
