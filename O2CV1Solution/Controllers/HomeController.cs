@@ -4,6 +4,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Korzh.EasyQuery;
+using Korzh.EasyQuery.Db;
 using Korzh.EasyQuery.Mvc;
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.Services.Db;
@@ -118,19 +120,26 @@ namespace O2V1Web.Controllers {
             if (ModelState.IsValid)
             {
 
+                string sqlReturned = AddColumnsConditionsByCode();
 
-                var look = model.SelectedTable;
-            
-                ConvertModelToJson modelConverter = new ConvertModelToJson();
-                string queryJson = modelConverter.ConvertSimpleTableQuery(model.SelectedTable.ToString());
-
-                string optionsJson = modelConverter.ConvertOptionsToJson();
-
-                var query = eqService.SyncQueryDict(queryJson.ToDictionary());
-                var statement = eqService.BuildQuery(query, optionsJson.ToDictionary());
                 Dictionary<string, object> dict = new Dictionary<string, object>();
-                dict.Add("statement", statement);
+                dict.Add("statement", sqlReturned);
                 return Json(dict);
+
+                //var look = model.SelectedTable;
+            
+                //ConvertModelToJson modelConverter = new ConvertModelToJson();
+                //string queryJson = modelConverter.ConvertSimpleTableQuery(model.SelectedTable.ToString());
+
+                //string optionsJson = modelConverter.ConvertOptionsToJson();
+
+                //var query = eqService.SyncQueryDict(queryJson.ToDictionary());
+
+
+                //var statement = eqService.BuildQuery(query, optionsJson.ToDictionary());
+                //Dictionary<string, object> dict = new Dictionary<string, object>();
+                //dict.Add("statement", statement);
+                //return Json(dict);
             }
             else
             {
@@ -268,6 +277,60 @@ namespace O2V1Web.Controllers {
             }
 
             return selectList;
+        }
+
+        private string AddColumnsConditionsByCode()
+        {
+     
+            DbModel dataModel1 = eqService.GetModel("County");
+            DbQuery query1 = eqService.GetQuery();
+            query1.Clear();
+            //create simple column
+            Column col = query1.CreateColumn("County.County1", "County1", SortDirection.Ascending);
+            query1.Columns.Add(col);
+           
+
+            //create aggregate column
+            //EntityAttr attr = dataModel1.EntityRoot.FindAttribute(EntityAttrProp.Expression, "Orders.Freight");
+            //col = new DbColumn("Total sum", SortDirection.None);
+            //col.Expr = new DbAggrFuncExpr(dataModel1, "SUM", new DbEntityAttrExpr(dataModel1, attr));
+            //query1.Columns.Add(col);
+
+            ////create conditions
+            ////here we create condition object
+            //SimpleCondition cond = new DbSimpleCondition(dataModel1);
+
+            ////then we search for an entity attribute which will be used in the left side of condition
+            //attr = dataModel1.EntityRoot.FindAttribute(EntityAttrProp.Expression, "Orders.OrderDate");
+
+            ////after that we add found entity attribute as first (left side) expression of our condition
+            //cond.BaseExpr = new DbEntityAttrExpr(dataModel1, attr);
+
+            ////here we set an operator used in condition. In our case it will be  "is less than" (< symbol in SQL syntax)
+            //cond.Operator = dataModel1.Operators.FindByID("LessThan");
+
+            ////finally we set the rigth side expression which is some constant value in our case.
+            //cond.SetValueExpr(1, new ConstExpr(DataType.Date, "2005-01-01"));
+            //cond.ReadOnly = true;
+
+            ////when all parts of our condition are ready - we add it to query
+            //query1.Root.Conditions.Add(cond);
+
+            ////here is more simple and quicker way to add a condition (same attribute, operator and value)
+            //query1.Root.AddSimpleCondition("Orders.OrderDate", "DateBeforePrecise", "2005-01-01");
+
+            ////here is one more example: how to add a group of conditions
+            //var predicate = query.AddPredicate(query1.Root, query1.Root.Conditions.Count);
+            //predicate.AddSimpleCondition("Customers.City", "Equal", "London");
+            //predicate.AddSimpleCondition("Customer.City", "Equal", "NewYork");
+
+
+            //generate SQL statement
+            EntitySqlQueryBuilder builder = new EntitySqlQueryBuilder(query1);
+            builder.BuildSQL();
+            string sql = builder.Result.SQL;
+            return sql;
+            
         }
 
 
