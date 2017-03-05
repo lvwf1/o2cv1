@@ -669,6 +669,10 @@
       <Project>{9e05c9eb-26eb-478f-b9a6-da34e266ffa5}</Project>
       <Name>O2V1DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="QueryBuilder\O2QueryBuilder.csproj">
+      <Project>{9281d89a-c56f-4620-b036-1258cdb9b28e}</Project>
+      <Name>O2QueryBuilder</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />

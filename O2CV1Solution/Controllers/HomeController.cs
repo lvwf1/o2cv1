@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CodeEngine.Framework.QueryBuilder;
+using CodeEngine.Framework.QueryBuilder.Enums;
 using Korzh.EasyQuery;
 using Korzh.EasyQuery.Db;
 using Korzh.EasyQuery.Mvc;
@@ -120,14 +124,14 @@ namespace O2V1Web.Controllers {
             if (ModelState.IsValid)
             {
 
-                string sqlReturned = AddColumnsConditionsByCode();
+                string sqlReturned = queryBuilderWithJoin();
 
-                Dictionary<string, object> dict = new Dictionary<string, object>();
-                dict.Add("statement", sqlReturned);
-                return Json(dict);
+                //Dictionary<string, object> dict = new Dictionary<string, object>();
+                //dict.Add("statement", sqlReturned);
+                return Content(sqlReturned);
 
                 //var look = model.SelectedTable;
-            
+
                 //ConvertModelToJson modelConverter = new ConvertModelToJson();
                 //string queryJson = modelConverter.ConvertSimpleTableQuery(model.SelectedTable.ToString());
 
@@ -278,7 +282,58 @@ namespace O2V1Web.Controllers {
 
             return selectList;
         }
+        private string queryBuilderWithJoin()
+        {
+            SelectQueryBuilder query = new SelectQueryBuilder();
+            query.SelectFromTable("Property");
 
+            query.AddJoin(JoinType.InnerJoin,
+                          "Persons", "State",
+                          Comparison.Equals,
+                          "Property", "State");
+
+            query.AddWhere("Property.OwnerOccupant", Comparison.Equals, 1);
+            query.SelectAllColumns();
+            return query.BuildQuery();
+
+            //// or, have a DbCommand object built for even more safety against SQL Injection attacks:
+            //query.SetDbProviderFactory(DbProviderFactories.GetFactory("System.Data.SqlClient"));
+            //DbCommand command = query.BuildCommand();
+
+            //statement = string.Format(
+            //    "Query built by BuildCommand (not showing parameter values):\n\n{0}",
+            //    command.CommandText);
+
+        }
+        private string queryBuilderSingleTableAllColumnsWhere()
+        {
+            int maxRecords = 10;
+            SelectQueryBuilder query = new SelectQueryBuilder();
+            query.SelectFromTable("Counties");
+            query.SelectAllColumns();
+           // query.TopRecords = maxRecords;
+
+         
+                query.AddWhere("State", Comparison.Like, "w%");
+
+        
+                query.AddWhere("County", Comparison.Like, "Ad%");
+ 
+            string statement = string.Format(
+                "Query built by BuildQuery:\n\n{0}",
+                query.BuildQuery());
+
+            return statement;
+
+            //// or, have a DbCommand object built for even more safety against SQL Injection attacks:
+            //query.SetDbProviderFactory(DbProviderFactories.GetFactory("System.Data.SqlClient"));
+            //DbCommand command = query.BuildCommand();
+
+            //statement = string.Format(
+            //    "Query built by BuildCommand (not showing parameter values):\n\n{0}",
+            //    command.CommandText);
+
+        }
         private string AddColumnsConditionsByCode()
         {
      

@@ -1,0 +1,5 @@
+C:\Cloud88Projects\code project code\QueryBuilder\bin\Debug\CodeEngine.Framework.QueryBuilder.dll
+C:\Cloud88Projects\code project code\QueryBuilder\bin\Debug\CodeEngine.Framework.QueryBuilder.pdb
+C:\Cloud88Projects\code project code\QueryBuilder\obj\Debug\CodeEngine.Framework.QueryBuilder.csprojResolveAssemblyReference.cache
+C:\Cloud88Projects\code project code\QueryBuilder\obj\Debug\CodeEngine.Framework.QueryBuilder.dll
+C:\Cloud88Projects\code project code\QueryBuilder\obj\Debug\CodeEngine.Framework.QueryBuilder.pdb
