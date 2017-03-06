@@ -36,6 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -60,6 +62,10 @@
     <ProjectReference Include="..\O2CV1Solution\O2V1BusinesLayer\O2V1BusinesLayer.csproj">
       <Project>{4142D651-3AA3-433C-B301-750543A6781C}</Project>
       <Name>O2V1BusinesLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\O2CV1Solution\O2V1DataAccess\O2V1DataAccess.csproj">
+      <Project>{9e05c9eb-26eb-478f-b9a6-da34e266ffa5}</Project>
+      <Name>O2V1DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\O2CV1Solution\QueryBuilder\O2QueryBuilder.csproj">
       <Project>{9281d89a-c56f-4620-b036-1258cdb9b28e}</Project>

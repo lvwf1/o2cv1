@@ -64,7 +64,6 @@ namespace O2V1BusinesLayer
             var sb = new StringBuilder();
             foreach (var column in includeColumns)
             {
-                string tempColumn;
                 if (column.TableName == null)
                 {
                     sb.Append(" " + primaryTable + "." + column.ColumnName + ", ");
