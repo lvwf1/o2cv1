@@ -67,14 +67,15 @@ namespace O2V1BusinessLayerTests
             var queryBuilderParms = new QueryBuilderParms
             {
                 PrimaryTable = "Mortgages",
-                WhereConditions = new List<WhereConditions>
+                WhereConditionsList = new List<WhereConditions>
                 {
                     new WhereConditions
                     {
                         WhereLeftColumn = "LenderName",
                         WhereLeftTable = "Mortgages",
                         WhereOperator = Comparison.Equals,
-                        WhereLiteral = "WELLS FARGO BK NA"
+                        WhereLiteral = "WELLS FARGO BK NA",
+                        SubClauses = new List<WhereSubConditions>()
 
                     },
                                         new WhereConditions
@@ -101,16 +102,18 @@ namespace O2V1BusinessLayerTests
             var queryBuilderParms = new QueryBuilderParms
             {
                 PrimaryTable = "Mortgages",
-                WhereConditions = new List<WhereConditions>
+                WhereConditionsList = new List<WhereConditions>
                 {
                     new WhereConditions
                     {
                         WhereLeftColumn = "LenderName",
                         WhereLeftTable = "Mortgages",
                         WhereOperator = Comparison.Equals,
-                        WhereLiteral = "TD BK NA"
+                        WhereLiteral = "TD BK NA",
+                        SubClauses = new List<WhereSubConditions>()
                         
-                    }
+                    },
+                    
                 }
                 
             };
@@ -124,14 +127,15 @@ namespace O2V1BusinessLayerTests
             var queryBuilderParms = new QueryBuilderParms
             {
                 PrimaryTable = "Mortgages",
-                WhereConditions = new List<WhereConditions>
+                WhereConditionsList = new List<WhereConditions>
                 {
                     new WhereConditions
                     {
                         WhereLeftColumn = "LenderName",
                         WhereLeftTable = "Mortgages",
                         WhereOperator = Comparison.Equals,
-                        WhereLiteral = "TD BK NA"
+                        WhereLiteral = "TD BK NA",
+                        SubClauses = new List<WhereSubConditions>()
 
                     }
                 },
