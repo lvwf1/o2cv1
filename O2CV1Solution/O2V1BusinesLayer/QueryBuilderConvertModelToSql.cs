@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Text;
 using CodeEngine.Framework.QueryBuilder;
-using Newtonsoft.Json;
-using O2V1BusinesLayer.QueryModels;
+using CodeEngine.Framework.QueryBuilder.Enums;
 using O2V1BusinesLayer.QueryModels.QueryBuilderModels;
 using O2V1DataAccess;
 
@@ -27,23 +27,31 @@ namespace O2V1BusinesLayer
                 var query = new SelectQueryBuilder();
                 query.SelectFromTable(queryBuilderParms.PrimaryTable);
                 if (queryBuilderParms.IncludeColumns.Count < 1)
+                {
                     query.SelectAllColumns();
+                }
+                else
+                {
+                    if (queryBuilderParms.IncludeColumns.Count > 0)
+                        IncludeColumns(queryBuilderParms.IncludeColumns, query, queryBuilderParms.PrimaryTable);
+                }
 
                 if (queryBuilderParms.MaxRowsToReturn > 0)
                     query.TopRecords = queryBuilderParms.MaxRowsToReturn;
 
-                if (queryBuilderParms.JoinConditions.Count > 0)
-                    AddJoinsClauses(queryBuilderParms.JoinConditions, query);
+                if (queryBuilderParms.JoinConditionsList.Count > 0)
+                    AddJoinsClauses(queryBuilderParms.JoinConditionsList, query);
 
-                if (queryBuilderParms.WhereConditions.Count > 0)
-                    AddWhereClauses(queryBuilderParms.WhereConditions, query);
+                if (queryBuilderParms.WhereConditionsList.Count > 0)
+                    AddWhereClauses(queryBuilderParms.WhereConditionsList, query);
 
                 if (queryBuilderParms.ColumnSortAscDesc.Count > 0)
                     AddOrderByClause(queryBuilderParms.ColumnSortAscDesc, query);
 
-                string statement = $"Query built by BuildQuery:  {query.BuildQuery()}";
+                string statement = $"{query.BuildQuery()}";
 
-                return statement;
+                var finalStatement = PostProcessStatement(statement, queryBuilderParms);
+                return finalStatement;
             }
             catch (Exception ex)
             {
@@ -51,12 +59,30 @@ namespace O2V1BusinesLayer
             }
         }
 
+        private static string PostProcessStatement(string statement, QueryBuilderParms queryBuilderParms)
+        {
+            return statement;
+        }
+
+        private void IncludeColumns(List<QueryBuilderColumnsToInclude> includeColumns, SelectQueryBuilder query,
+            string primaryTable)
+        {
+            var sb = new StringBuilder();
+            foreach (var column in includeColumns)
+            {
+                if (column.TableName == null)
+                    sb.Append(" " + primaryTable + "." + column.ColumnName + ", ");
+                else
+                    sb.Append(" " + column.TableName + "." + column.ColumnName + ", ");
+                if (sb.Length <= 3) continue;
+                query.SelectColumns(sb.ToString().Remove(sb.Length - 2));
+            }
+        }
+
         private static void AddOrderByClause(IEnumerable<QueryBuilderOrderByClause> orderBys, SelectQueryBuilder query)
         {
             foreach (var clause in orderBys)
-            {
                 query.AddOrderBy(clause.ColumnName, clause.ColumnOrderbyDirection);
-            }
         }
 
         private static void AddJoinsClauses(IEnumerable<JoinCondition> joins, SelectQueryBuilder query)
@@ -70,9 +96,19 @@ namespace O2V1BusinesLayer
 
         private static void AddWhereClauses(IEnumerable<WhereConditions> whereConditions, SelectQueryBuilder query)
         {
+
+            //WhereClause myWhereClause = new WhereClause("UserID", Comparison.Equals, 1);
+            //myWhereClause.AddClause(LogicOperator.Or, Comparison.Equals, 2);
+            //myWhereClause.AddClause(LogicOperator.Or, Comparison.GreaterThan, 100);
+            //query.AddWhere(myWhereClause);
+
             foreach (var clause in whereConditions)
+            {
+             
+                 
                 query.AddWhere($"{clause.WhereLeftTable}.{clause.WhereLeftColumn}", clause.WhereOperator,
                     clause.WhereLiteral ?? clause.WhereRightColumn);
+            }
         }
     }
 }
