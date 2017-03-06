@@ -121,6 +121,43 @@ namespace O2V1BusinessLayerTests
             var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
             Assert.IsTrue(sqlFromQueryBuilder.Contains(@"SELECT Mortgages.* FROM Mortgages  WHERE  (Mortgages.LenderName = 'TD BK NA')"));
         }
+
+        [TestMethod]
+        public void SingleTableOneWhereWithSubClauseUsingOrCondition()
+        {
+            var queryBuilderParms = new QueryBuilderParms
+            {
+                PrimaryTable = "Mortgages",
+                WhereConditionsList = new List<WhereConditions>
+                {
+                    new WhereConditions
+                    {
+                        WhereLeftColumn = "LenderName",
+                        WhereLeftTable = "Mortgages",
+                        WhereOperator = Comparison.Equals,
+                        WhereRightColumn = "TD BK NA",
+                        SubClauses = new List<WhereSubConditions>
+                        {
+                            new WhereSubConditions
+                            {
+                                Connector = LogicOperator.Or,
+                                WhereLeftColumn = "LoanType",
+                                WhereLeftTable = "Mortgages",
+                                CompareOperator = Comparison.Equals,
+                                WhereRightColumn = "SE"
+                            }
+                        }
+                    }
+                } 
+
+            };
+            var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
+            var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
+            Assert.AreEqual(@"SELECT Mortgages.* FROM Mortgages  WHERE  (LenderName = 'TD BK NA' OR LenderName = 'SE')  ", sqlFromQueryBuilder);
+            Assert.IsTrue(ExecuteQuery(sqlFromQueryBuilder));
+
+        }
+
         [TestMethod]
         public void SingleTableOneWhereClauseOrderByOneValue()
         {

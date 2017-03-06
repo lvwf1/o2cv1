@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
 using CodeEngine.Framework.QueryBuilder;
+using CodeEngine.Framework.QueryBuilder.Clauses;
 using CodeEngine.Framework.QueryBuilder.Enums;
 using O2V1BusinesLayer.QueryModels.QueryBuilderModels;
 using O2V1DataAccess;
@@ -96,18 +97,27 @@ namespace O2V1BusinesLayer
 
         private static void AddWhereClauses(IEnumerable<WhereConditions> whereConditions, SelectQueryBuilder query)
         {
-
-            //WhereClause myWhereClause = new WhereClause("UserID", Comparison.Equals, 1);
-            //myWhereClause.AddClause(LogicOperator.Or, Comparison.Equals, 2);
-            //myWhereClause.AddClause(LogicOperator.Or, Comparison.GreaterThan, 100);
-            //query.AddWhere(myWhereClause);
-
+       
             foreach (var clause in whereConditions)
             {
-             
-                 
-                query.AddWhere($"{clause.WhereLeftTable}.{clause.WhereLeftColumn}", clause.WhereOperator,
-                    clause.WhereLiteral ?? clause.WhereRightColumn);
+                var myWhereClause = new WhereClause(clause.WhereLeftColumn, clause.WhereOperator, clause.WhereRightColumn);
+
+                if (clause.SubClauses?.Count > 0)
+                {
+                    foreach (var subClause in clause.SubClauses)
+                    {
+                        myWhereClause.AddClause(subClause.Connector, subClause.CompareOperator, subClause.WhereRightColumn);
+                    }
+
+                    query.AddWhere(myWhereClause);
+
+                }
+                else
+                {
+                    query.AddWhere($"{clause.WhereLeftTable}.{clause.WhereLeftColumn}", clause.WhereOperator,
+                        clause.WhereLiteral ?? clause.WhereRightColumn);
+                }
+
             }
         }
     }

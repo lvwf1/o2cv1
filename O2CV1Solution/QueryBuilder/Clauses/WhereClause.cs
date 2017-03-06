@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using CodeEngine.Framework.QueryBuilder.Enums;
 
 //
@@ -11,7 +9,7 @@ using CodeEngine.Framework.QueryBuilder.Enums;
 // This class is part of the CodeEngine Framework.
 // You can download the framework DLL at http://www.code-engine.com/
 //
-namespace CodeEngine.Framework.QueryBuilder
+namespace CodeEngine.Framework.QueryBuilder.Clauses
 {
     /// <summary>
     /// Represents a WHERE clause on 1 database column, containing 1 or more comparisons on 

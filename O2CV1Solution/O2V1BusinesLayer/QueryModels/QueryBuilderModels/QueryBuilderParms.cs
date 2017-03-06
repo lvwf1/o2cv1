@@ -51,12 +51,12 @@ namespace O2V1BusinesLayer.QueryModels.QueryBuilderModels
     public struct WhereSubConditions
     {
         public string WhereLeftTable { get; set; }
-        public Comparison WhereOperator { get; set; }
+        public Comparison CompareOperator { get; set; }
         public string WhereRightTable { get; set; }
         public string WhereRightColumn { get; set; }
         public string WhereLeftColumn { get; set; }
         public string WhereLiteral { get; set; }
-        public Comparison Connector { get; set; }
+        public LogicOperator Connector { get; set; }
 
 
     }
