@@ -31,7 +31,7 @@ namespace O2V1BusinesLayer.QueryModels.QueryBuilderModels
 
     public struct QueryBuilderColumnsToInclude
     {
-        public string TableNme { get; set; }
+        public string TableName { get; set; }
         public string ColumnName { get; set; }
     }
 

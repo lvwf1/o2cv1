@@ -12,13 +12,38 @@ namespace O2V1BusinessLayerTests
     public class SingleTableQueryTests
     {
         [TestMethod]
-        public void SingleTableSimpleTest()
+        public void SingleTableSimpleTestAllColumns()
         {
             var queryBuilderParms = new QueryBuilderParms();
             queryBuilderParms.PrimaryTable = "Mortgages";
             var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
             var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
             Assert.IsTrue(sqlFromQueryBuilder.Contains("SELECT Mortgages.* FROM Mortgages"));
+        }
+
+        [TestMethod]
+        public void SingleTableSimpleTestSpecificColumns()
+        {
+            var queryBuilderParms = new QueryBuilderParms
+            {
+                PrimaryTable = "Mortgages",
+                IncludeColumns = new List<QueryBuilderColumnsToInclude>
+                {
+                    new QueryBuilderColumnsToInclude
+                    {
+                        ColumnName = "MortgageId"
+                        
+                    },
+                    new QueryBuilderColumnsToInclude
+                    {
+                        ColumnName = "LenderName"
+                    }
+                }
+                
+            };
+            var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
+            var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
+            Assert.AreEqual("SELECT  Mortgages.MortgageId,  Mortgages.LenderName  FROM Mortgages ", sqlFromQueryBuilder);
         }
 
         [TestMethod]
@@ -74,7 +99,7 @@ namespace O2V1BusinessLayerTests
             };
             var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
             var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
-            Assert.IsTrue(sqlFromQueryBuilder.Contains(@"SELECT Mortgages.* FROM Mortgages  WHERE  (Mortgages.LenderName = 'TD BK NA')   ORDER BY LoanAmountRange DESC"));
+            Assert.AreEqual(@"SELECT Mortgages.* FROM Mortgages  WHERE  (Mortgages.LenderName = 'TD BK NA')   ORDER BY LoanAmountRange DESC ", sqlFromQueryBuilder);
         }
     }
 }

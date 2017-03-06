@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Text;
 using CodeEngine.Framework.QueryBuilder;
 using Newtonsoft.Json;
 using O2V1BusinesLayer.QueryModels;
@@ -27,7 +28,14 @@ namespace O2V1BusinesLayer
                 var query = new SelectQueryBuilder();
                 query.SelectFromTable(queryBuilderParms.PrimaryTable);
                 if (queryBuilderParms.IncludeColumns.Count < 1)
+                {
                     query.SelectAllColumns();
+                }
+                else
+                {
+                    if (queryBuilderParms.IncludeColumns.Count > 0)
+                        IncludeColumns(queryBuilderParms.IncludeColumns, query, queryBuilderParms.PrimaryTable);
+                }
 
                 if (queryBuilderParms.MaxRowsToReturn > 0)
                     query.TopRecords = queryBuilderParms.MaxRowsToReturn;
@@ -41,7 +49,7 @@ namespace O2V1BusinesLayer
                 if (queryBuilderParms.ColumnSortAscDesc.Count > 0)
                     AddOrderByClause(queryBuilderParms.ColumnSortAscDesc, query);
 
-                string statement = $"Query built by BuildQuery:  {query.BuildQuery()}";
+                string statement = $"{query.BuildQuery()}";
 
                 return statement;
             }
@@ -49,6 +57,27 @@ namespace O2V1BusinesLayer
             {
                 throw ex;
             }
+        }
+
+        private void IncludeColumns(List<QueryBuilderColumnsToInclude> includeColumns, SelectQueryBuilder query, string primaryTable)
+        {
+            var sb = new StringBuilder();
+            foreach (var column in includeColumns)
+            {
+                string tempColumn;
+                if (column.TableName == null)
+                {
+                    sb.Append(" " + primaryTable + "." + column.ColumnName + ", ");
+
+                }
+                else
+                {
+
+                    sb.Append(" " + column.TableName + "." + column.ColumnName + ", ");
+                }
+                if (sb.Length <= 3) continue;
+                query.SelectColumns(sb.ToString().Remove(sb.Length - 2));
+             }
         }
 
         private static void AddOrderByClause(IEnumerable<QueryBuilderOrderByClause> orderBys, SelectQueryBuilder query)
