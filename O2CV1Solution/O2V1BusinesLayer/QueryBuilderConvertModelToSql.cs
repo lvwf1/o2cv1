@@ -38,6 +38,9 @@ namespace O2V1BusinesLayer
                 if (queryBuilderParms.WhereConditions.Count > 0)
                     AddWhereClauses(queryBuilderParms.WhereConditions, query);
 
+                if (queryBuilderParms.ColumnSortAscDesc.Count > 0)
+                    AddOrderByClause(queryBuilderParms.ColumnSortAscDesc, query);
+
                 string statement = $"Query built by BuildQuery:  {query.BuildQuery()}";
 
                 return statement;
@@ -48,7 +51,15 @@ namespace O2V1BusinesLayer
             }
         }
 
-        private static void AddJoinsClauses(List<JoinCondition> joins, SelectQueryBuilder query)
+        private static void AddOrderByClause(IEnumerable<QueryBuilderOrderByClause> orderBys, SelectQueryBuilder query)
+        {
+            foreach (var clause in orderBys)
+            {
+                query.AddOrderBy(clause.ColumnName, clause.ColumnOrderbyDirection);
+            }
+        }
+
+        private static void AddJoinsClauses(IEnumerable<JoinCondition> joins, SelectQueryBuilder query)
         {
             foreach (var clause in joins)
                 query.AddJoin(clause.TypeOfJoin,
@@ -57,7 +68,7 @@ namespace O2V1BusinesLayer
                     $"{clause.JoinRightTable}", $"{clause.JoinOnRightColumn}");
         }
 
-        private static void AddWhereClauses(List<WhereConditions> whereConditions, SelectQueryBuilder query)
+        private static void AddWhereClauses(IEnumerable<WhereConditions> whereConditions, SelectQueryBuilder query)
         {
             foreach (var clause in whereConditions)
                 query.AddWhere($"{clause.WhereLeftTable}.{clause.WhereLeftColumn}", clause.WhereOperator,

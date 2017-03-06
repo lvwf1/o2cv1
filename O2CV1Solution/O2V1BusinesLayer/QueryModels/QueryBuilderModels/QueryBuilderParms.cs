@@ -5,7 +5,7 @@ namespace O2V1BusinesLayer.QueryModels.QueryBuilderModels
 {
     public class QueryBuilderParms
     {
-        public List<QueryBuilderSortByAndDirection> ColumnSortAscDesc;
+        public List<QueryBuilderOrderByClause> ColumnSortAscDesc;
         public List<QueryBuilderColumnsToInclude> IncludeColumns;
         public List<JoinCondition> JoinConditions;
         public List<WhereConditions> WhereConditions;
@@ -13,7 +13,7 @@ namespace O2V1BusinesLayer.QueryModels.QueryBuilderModels
 
         public QueryBuilderParms()
         {
-            ColumnSortAscDesc = new List<QueryBuilderSortByAndDirection>();
+            ColumnSortAscDesc = new List<QueryBuilderOrderByClause>();
             WhereConditions = new List<WhereConditions>();
             JoinConditions = new List<JoinCondition>();
             IncludeColumns = new List<QueryBuilderColumnsToInclude>();
@@ -23,10 +23,10 @@ namespace O2V1BusinesLayer.QueryModels.QueryBuilderModels
         public int MaxRowsToReturn { get; set; }
     }
 
-    public struct QueryBuilderSortByAndDirection
+    public struct QueryBuilderOrderByClause
     {
         public string ColumnName { get; set; }
-        public string ColumnOrderbyDirection { get; set; }
+        public Sorting ColumnOrderbyDirection { get; set; }
     }
 
     public struct QueryBuilderColumnsToInclude
