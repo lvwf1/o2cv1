@@ -41,7 +41,7 @@ namespace O2V1BusinesLayer
                     query.TopRecords = queryBuilderParms.MaxRowsToReturn;
 
                 if (queryBuilderParms.JoinConditionsList.Count > 0)
-                    AddJoinsClauses(queryBuilderParms.JoinConditionsList, query);
+                    AddJoinsClauses(queryBuilderParms.JoinConditionsList, query, queryBuilderParms.PrimaryTable);
 
                 if (queryBuilderParms.WhereConditionsList.Count > 0)
                     AddWhereClauses(queryBuilderParms.WhereConditionsList, query);
@@ -86,13 +86,17 @@ namespace O2V1BusinesLayer
                 query.AddOrderBy(clause.ColumnName, clause.ColumnOrderbyDirection);
         }
 
-        private static void AddJoinsClauses(IEnumerable<JoinCondition> joins, SelectQueryBuilder query)
+        private static void AddJoinsClauses(IEnumerable<JoinCondition> joins, SelectQueryBuilder query, string primaryTable)
         {
+
             foreach (var clause in joins)
+            {
+                var leftTable = clause.JoinLeftTable ?? primaryTable;
                 query.AddJoin(clause.TypeOfJoin,
-                    $"{clause.JoinLeftTable}", $"{clause.JoinOnLeftColumn}",
+                    $"{clause.JoinRightTable}", $"{clause.JoinOnRightColumn}",
                     clause.JoinCompareType,
-                    $"{clause.JoinRightTable}", $"{clause.JoinOnRightColumn}");
+                    $"{leftTable}", $"{clause.JoinOnLeftColumn}");
+            }
         }
 
         private static void AddWhereClauses(IEnumerable<WhereConditions> whereConditions, SelectQueryBuilder query)
