@@ -1,0 +1,17 @@
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\obj\Debug\OC2V1BusinessLayer_Tests.csprojResolveAssemblyReference.cache
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\OC2V1BusinessLayer_Tests.dll.config
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\OC2V1BusinessLayer_Tests.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\OC2V1BusinessLayer_Tests.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\CodeEngine.Framework.QueryBuilder.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\O2V1BusinesLayer.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\O2V1DataAccess.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\O2.Common.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\O2V1BusinesLayer.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\O2V1DataAccess.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\CodeEngine.Framework.QueryBuilder.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\O2.Common.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\obj\Debug\OC2V1BusinessLayer_Tests.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\OC2V1BusinessLayer_Tests\obj\Debug\OC2V1BusinessLayer_Tests.pdb
