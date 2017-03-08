@@ -1,10 +1,10 @@
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\bin\Debug\O2V1DataAccess.dll.config
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\bin\Debug\O2V1DataAccess.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\bin\Debug\O2V1DataAccess.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\obj\Debug\O2V1DataAccess.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\obj\Debug\O2V1DataAccess.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\obj\Debug\O2V1DataAccess.csprojResolveAssemblyReference.cache
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\bin\Debug\EntityFramework.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\bin\Debug\EntityFramework.SqlServer.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\bin\Debug\EntityFramework.xml
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\bin\Debug\EntityFramework.SqlServer.xml
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\obj\Debug\O2V1DataAccess.dll
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\obj\Debug\O2V1DataAccess.pdb
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\obj\Debug\O2V1DataAccess.csprojResolveAssemblyReference.cache

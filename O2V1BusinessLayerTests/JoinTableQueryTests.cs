@@ -89,40 +89,52 @@ namespace O2V1BusinessLayerTests
             Assert.IsTrue(ExecuteQuery(sqlFromQueryBuilder));
         }
 
-        //[TestMethod]
-        //[TestCategory("Where clause")]
-        //public void SingleTableTwoWhereClauses()
-        //{
-        //    var queryBuilderParms = new QueryBuilderParms
-        //    {
-        //        PrimaryTable = "Mortgages",
-        //        WhereConditionsList = new List<WhereConditions>
-        //        {
-        //            new WhereConditions
-        //            {
-        //                WhereLeftColumn = "LenderName",
-        //                WhereLeftTable = "Mortgages",
-        //                WhereOperator = Comparison.Equals,
-        //                WhereLiteral = "WELLS FARGO BK NA",
-        //                SubClauses = new List<WhereSubConditions>()
+        [TestMethod]
+        [TestCategory("Where clause")]
+        public void JoinTwoTablesWithWhereClauses()
+        {
+            var queryBuilderParms = new QueryBuilderParms
+            {
+                PrimaryTable = "Mortgages",
+                JoinConditionsList = new List<JoinCondition>
+                {
+                    new JoinCondition
+                    {
+                        JoinCompareType = Comparison.Equals,
+                        JoinRightTable = "MortgateTypes",
+                        JoinOnLeftColumn = "MortgageType",
+                        JoinOnRightColumn = "MortgageType",
+                        TypeOfJoin = JoinType.InnerJoin
 
-        //            },
-        //                                new WhereConditions
-        //            {
-        //                WhereLeftColumn = "LoanType",
-        //                WhereLeftTable = "Mortgages",
-        //                WhereOperator = Comparison.Equals,
-        //                WhereLiteral = "SE"
+                    }
+                },
+                WhereConditionsList = new List<WhereConditions>
+                {
+                    new WhereConditions
+                    {
+                        WhereLeftColumn = "LenderName",
+                        WhereLeftTable = "Mortgages",
+                        WhereOperator = Comparison.Equals,
+                        WhereLiteral = "WELLS FARGO BK NA",
+                        SubClauses = new List<WhereSubConditions>()
 
-        //            }
-        //        }
+                    },
+                                        new WhereConditions
+                    {
+                        WhereLeftColumn = "LoanType",
+                        WhereLeftTable = "Mortgages",
+                        WhereOperator = Comparison.Equals,
+                        WhereLiteral = "SE"
 
-        //    };
-        //    var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
-        //    var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
-        //    Assert.IsTrue(sqlFromQueryBuilder.Contains(@"SELECT Mortgages.* FROM Mortgages  WHERE  ((Mortgages.LenderName = 'WELLS FARGO BK NA') AND (Mortgages.LoanType = 'SE'))"));
-        //    Assert.IsTrue(ExecuteQuery(sqlFromQueryBuilder));
-        //}
+                    }
+                }
+
+            };
+            var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
+            var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
+            Assert.IsTrue(sqlFromQueryBuilder.Contains(@"SELECT Mortgages.* FROM Mortgages  WHERE  ((Mortgages.LenderName = 'WELLS FARGO BK NA') AND (Mortgages.LoanType = 'SE'))"));
+            Assert.IsTrue(ExecuteQuery(sqlFromQueryBuilder));
+        }
 
         //[TestMethod]
         //[TestCategory("Where clause")]
