@@ -104,7 +104,7 @@ namespace O2V1BusinesLayer
        
             foreach (var clause in whereConditions)
             {
-                var myWhereClause = new WhereClause(clause.WhereLeftColumn, clause.WhereOperator, clause.WhereRightColumn);
+                var myWhereClause = new WhereClause($"{clause.WhereLeftTable}.{clause.WhereLeftColumn}", clause.WhereOperator, $"{clause.WhereRightTable}.{clause.WhereRightColumn}");
 
                 if (clause.SubClauses?.Count > 0)
                 {
