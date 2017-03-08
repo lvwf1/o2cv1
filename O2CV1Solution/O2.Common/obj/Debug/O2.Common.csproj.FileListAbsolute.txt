@@ -57,3 +57,4 @@ D:\Bruce\o2cv1\O2CV1Solution\O2.Common\bin\Debug\O2.Common.dll
 D:\Bruce\o2cv1\O2CV1Solution\O2.Common\bin\Debug\O2.Common.pdb
 D:\Bruce\o2cv1\O2CV1Solution\O2.Common\obj\Debug\O2.Common.dll
 D:\Bruce\o2cv1\O2CV1Solution\O2.Common\obj\Debug\O2.Common.pdb
+D:\Bruce\o2cv1\O2CV1Solution\O2.Common\obj\Debug\O2.Common.csprojResolveAssemblyReference.cache

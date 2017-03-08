@@ -231,10 +231,12 @@
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\jquery-ui.css" />
     <Content Include="Content\css\menustyles.css" />
     <Content Include="Content\css\menu_sideslide.css" />
     <Content Include="Content\css\pushy.css" />
+    <Content Include="Content\css\signin.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\theme.css" />
     <Content Include="Content\css\vmenuModule.css" />
@@ -358,6 +360,7 @@
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\classie.js" />
     <Content Include="Content\js\dataTables.bootstrap.js" />
+    <Content Include="Content\js\ie-emulation-modes-warning.js" />
     <Content Include="Content\js\jquery-latest.min.js" />
     <Content Include="Content\js\jquery.dataTables.js" />
     <Content Include="Content\js\jquery.dataTables.min.js" />
@@ -404,6 +407,9 @@
     <Content Include="Content\Languages\Ru\main.lng" />
     <Content Include="Content\Languages\Ru\querypanel.lng" />
     <Content Include="Content\lib\examples\pageable-territories.json" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Counts.cshtml" />
+    <Content Include="Views\Home\Criteria.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -587,6 +593,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\CountsContext.cs" />
+    <Compile Include="Controllers\AccessController.cs" />
     <Compile Include="Controllers\OldHomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -631,6 +638,7 @@
     <Compile Include="Models\QueryModels\Rootobject.cs" />
     <Compile Include="Models\QueryModels\Root.cs" />
     <Compile Include="Models\TableFileModel.cs" />
+    <Compile Include="Models\ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ViewModels\TableDropDownItem.cs" />
     <Compile Include="Models\ViewModels\CountsQueryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -671,6 +679,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
+    <Folder Include="Views\Access\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

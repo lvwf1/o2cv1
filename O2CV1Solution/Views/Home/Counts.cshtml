@@ -1,0 +1,304 @@
+﻿@*@model O2V1Web.Models.ViewModels.CountsQueryModel*@
+   
+    @{
+        ViewBag.Title = "Counts";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <div class="wrapper">
+        <!-- Header Section Starts -->
+        <div class="headercontainer">
+            <div class="row">
+                <div class="col-md-4"> <div class="menu-btn"></div>  </div>
+                <div class="col-md-4 text-center hedertext"> Count & Order</div>
+                <div class="col-md-4">
+                    <div class="pull-right menupaddingright">
+                        <div class="pull-left dropdownmenusize1"> <img src="~/Content/Images/user.jpg" width="31" height="31" alt="" class=" img-circle imgmargintop"></div>
+                        <div class="pull-left dropdownmenusize2">
+                            <nav id="primary_nav_wrap">
+                                <ul>
+                                    <li>
+                                        @*<a href="#">John Doe<b class="caret"></b></a>*@
+                                        <a href="#">@Session["LogedCosUserFullname"]<b class="caret"></b></a>
+                                        <ul>
+                                            @*<li><a href="index01.html">Signout</a></li>*@
+                                            <li><a href="@Url.Action("SignOut", "Access")">Signout </a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header Section Ends -->
+        <!-- Accordian Section Starts-->
+        <div class="accordiancontainer">
+            <div class="col-md-12">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                            <div class="panel-heading">
+                                <h4 class="panel-title acoordiancenter"> <i class="fa fa-bar-chart accoicon" aria-hidden="true"></i>Count</h4>
+                            </div>
+                        </a>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <!-- Section Content Starts-->
+                                    <div class="accoinnerconatiner">
+                                        <!-- Count Section Starts -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!--  Section 1 Starts -->
+                                                <div class="countsubconatiner">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <form class="form-inline">
+                                                                <div class="col-md-8">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleDateFrom" class="labelwidth">Date from:</label>
+                                                                        <input type="email" class="form-control" id="datepicker1" placeholder="Date">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleDateTo" class="labelwidth">to:</label>
+                                                                        <input type="email" class="form-control" id="datepicker2" placeholder="Date">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="example" class="labelwidth"></label>
+                                                                        <input type="Search" placeholder="Search..." class="form-control">
+                                                                        <button type="button" class="btn btn-default">
+                                                                            <span class="glyphicon glyphicon-search"></span> Search
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--  Section 1 Ends -->
+                                                <!--  Section 2 Starts -->
+                                                <div class="tabletopsection">
+                                                    <div class="row">
+                                                        <div class="col-md-6 text-left"><span class="tableheadtext">Count List</span></div>
+                                                        <div class="col-md-6 text-right buttonmargintop"><a href="#" class="tableinbutton">Create a New Query</a></div>
+                                                    </div>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped tableborder ">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Query Name</th>
+                                                                <th>Description</th>
+                                                                <th>Total</th>
+                                                                <th>Copy</th>
+                                                                <th>View</th>
+                                                                <th>Edit</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">1</th>
+                                                                <td>Query1</td>
+                                                                <td>Description1</td>
+                                                                <td>22000</td>
+                                                                <td><input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('copy')"  ></td>
+                                                                <td><input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="javascript:top.location='/Home/Criteria';"></td>
+                                                                <td><input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('edit')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('delete')"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">2</th>
+                                                                <td>Query2</td>
+                                                                <td>Description2</td>
+                                                                <td>33000</td>
+                                                                <td><input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('copy')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="javascript:top.location='/Home/Criteria';"></td>
+                                                                <td><input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('edit')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('delete')"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">3</th>
+                                                                <td>Query3</td>
+                                                                <td>Description3</td>
+                                                                <td>44000</td>
+                                                                <td><input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('copy')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="javascript:top.location='/Home/Criteria';"></td>
+                                                                <td><input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('edit')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('delete')"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="countnumberconatiner text-right"><a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>..... <a href="#">13</a></div>
+                                                <!--  Section 2 Ends -->
+
+                                            </div>
+                                        </div>
+                                        <!-- Right Section Ends -->
+                                    </div>
+                                    <!-- Section Content Ends-->
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default ">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                            <div class="panel-heading">
+                                <h4 class="panel-title acoordiancenter"> <i class="fa fa-list accoicon" aria-hidden="true"></i>Order </h4>
+                            </div>
+                        </a>
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <!-- Section Content Starts-->
+                                <div class="accoinnerconatiner">
+                                    <!-- Count Section Starts -->
+                                    <div class="row row-content">
+
+                                        <!-- Left Section Starts -->
+                                        <div class="col-md-4">
+
+                                            <!--  Section 2 Starts -->
+                                            <div class="tabletopsection">
+                                                <div class="row">
+                                                    <div class="col-md-12 text-left"><strong>General Information</strong></div>
+                                                </div>
+                                            </div>
+                                            <div class="countsubconatiner">
+                                                <div class="row">
+                                                    <div class="form-group col-md-12 orderpadding">PO Number: <input type="email" class="form-control" id="exampleInput" placeholder=""></div>
+                                                    <div class="form-group col-md-12 orderpadding">Description:<textarea class="form-control" rows="8" id="comment"></textarea></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--  Left Section Ends -->
+                                        <!--  Right Section Starts -->
+                                        <div class="col-md-8">
+                                            <div class="tabletopsection">
+                                                <div class="row">
+                                                    <div class="col-md-12 text-left"><strong>Output Settings</strong></div>
+                                                </div>
+                                            </div>
+                                            <div class="newordercontainer">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="col-sm-12 col-md-3">
+                                                            <label>Select Query:</label>
+                                                            <div class="dropdown">
+                                                                <select class="selectpicker" id="selectquery">
+                                                                    <option disabled selected>Select Value</option>
+                                                                    <option value="1">Query1</option>
+                                                                    <option value="2">Query2</option>
+                                                                    <option value="3">Query3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 col-md-4">
+                                                            <label>Select Table:</label>
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    <input type="checkbox" id="selectmortgage">
+                                                                    Mortgage
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    <input type="checkbox" id="selectperson">
+                                                                    Person
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    <input type="checkbox" id="selectproperty">
+                                                                    Property
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 col-md-5">
+                                                            <label>Select Fields:</label>
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    <input type="checkbox" id="mortgagetype">
+                                                                    MortgageType
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    <input type="checkbox" id="fullname">
+                                                                    FullName
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    <input type="checkbox" id="selectproperty">
+                                                                    PropertyValue
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--  Button Section Strats -->
+                                            <div class="col-md-12">
+                                                <div class="buttonsspace01"><a data-toggle="collapse" data-target="#collapse3" class="topbutton01">PLACE ORDER</a></div>
+                                            </div>
+                                            <!--  Button Section Ends -->
+                                        </div>
+                                        <!--  Right Section Ends -->
+                                    </div>
+                                </div>
+                                <!-- Section Content Ends-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                            <div class="panel-heading">
+                                <h4 class="panel-title acoordiancenter"> <i class="fa fa-file-text-o accoicon" aria-hidden="true"></i>Files&nbsp;&nbsp; </h4>
+                            </div>
+                        </a>
+                        <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <div class="accoinnerconatiner">
+                                        <!-- Section Content Starts-->
+                                        <div class="row">
+                                            <!-- Section Content Starts-->
+                                            <div class="tabletopsection">
+                                                <div class="row">
+                                                    <div class="col-md-12 text-left"><strong>Download Your Files</strong></div>
+                                                </div>
+                                            </div>
+                                            <div class="countsubconatiner">
+                                                <a class="fa fa-file-excel-o" aria-hidden="true" style="font-size:28px" onclick="msg('download file.cvs')"> File.cvs</a>
+                                            </div>
+                                            <!-- Section Content Ends-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Accordian Section Ends -->
+        <!-- Footer Section Starts-->
+        <div class="clearfix"></div>
+        <div class="footercontainer"> </div>
+        <!-- Footer Section Ends -->
+        <script src="~/Content/js/classie.js"></script>
+        <script src="~/Content/js/main.js"></script>
+        <script src="~/Content/js/pushy.min.js"></script>
+

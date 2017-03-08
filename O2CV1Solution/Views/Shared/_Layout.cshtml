@@ -1,10 +1,12 @@
-﻿!DOCTYPE html>
+﻿
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link href="~/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/signin.css" rel="stylesheet">
     <link href="~/Content/css/style.css" rel="stylesheet">
     <link href="~/Content/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="~/Content/css/vmenuModule.css" />
@@ -68,8 +70,8 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/ie-emulation-modes-warning.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/ie-emulation-modes-warning.js"></script>
     <script type="text/javascript">
         $("#accordion > li > span").click(function () {
             console.log("#accordion > li > span click");
@@ -77,8 +79,8 @@
             $(this).toggleClass("active").next('div').slideToggle(250);
         });
     </script>
-    <link rel="stylesheet" href="jqueryui/jquery-ui.css">
-    <script src="jqueryui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="~/Content/jqueryui/jquery-ui.css">
+    <script src="~/Content/jqueryui/jquery-ui.min.js"></script>
     <script>
         $(function () {
             $('#accordion').collapse('show').height('auto');
@@ -90,7 +92,7 @@
             });
         });
     </script>
-    <script type="text/javascript" src="js/vmenuModule.js"></script>
+    <script type="text/javascript" src="~/Content/js/vmenuModule.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".u-vmenu").vmenuModule({
@@ -131,316 +133,10 @@
         }
     </script>
 
-    <script src="js/jquery.nice-select.js"></script>
+    <script src="~/Content/js/jquery.nice-select.js"></script>
 </head>
 
 <body>
-    <div class="wrapper">
-        <!-- Header Section Starts -->
-        <div class="headercontainer">
-            <div class="row">
-                <div class="col-md-4"> <div class="menu-btn"></div>  </div>
-                <div class="col-md-4 text-center hedertext"> Count & Order</div>
-                <div class="col-md-4">
-                    <div class="pull-right menupaddingright">
-                        <div class="pull-left dropdownmenusize1"> <img src="images/user.jpg" width="31" height="31" alt="" class=" img-circle imgmargintop"></div>
-                        <div class="pull-left dropdownmenusize2">
-                            <nav id="primary_nav_wrap">
-                                <ul>
-                                    <li>
-                                        <a href="#">John Doe<b class="caret"></b></a>
-                                        <ul>
-                                            <li><a href="index01.html">Signout</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Header Section Ends -->
-        <!-- Accordian Section Starts-->
-        <div class="accordiancontainer">
-            <div class="col-md-12">
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                            <div class="panel-heading">
-                                <h4 class="panel-title acoordiancenter"> <i class="fa fa-bar-chart accoicon" aria-hidden="true"></i>Count</h4>
-                            </div>
-                        </a>
-                        <div id="collapse1" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                <div class="col-md-12">
-                                    <!-- Section Content Starts-->
-                                    <div class="accoinnerconatiner">
-                                        <!-- Count Section Starts -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <!--  Section 1 Starts -->
-                                                <div class="tabletopsection">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 text-left"><span class="tableheadtext">Enter Criteria</span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="newordercontainer">
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="container body-content">
-                                                                @RenderBody()
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Right Section Ends -->
-                                        </div>
-                                        <!-- Section Content Ends-->
-                                    </div>
-                                    <div class="accoinnerconatiner">
-                                        <!-- Count Section Starts -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <!--  Section 1 Starts -->
-                                                <div class="tabletopsection">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 text-left"><span class="tableheadtext">Select Criteria</span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="newordercontainer">
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="col-xs-12 col-sm-4">
-                                                                <label>Select criteria where all of the following apply</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="table-responsive">
-                                                        <table class="table table-striped tableborder ">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>#</th>
-                                                                    <th>Criteria</th>
-                                                                    <th>Change</th>
-                                                                    <th>Add</th>
-                                                                    <th>Remove</th>
-                                                                    <th>Disable</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Criteria1</td>
-                                                                    <td><input type="image" src="images/icon01.png" width="22" height="22" alt="" onclick="msg('change')"></td>
-                                                                    <td><input type="image" src="images/icon03.png" width="20" height="20" alt="" onclick="msg('add')"></td>
-                                                                    <td><input type="image" src="images/icon02.png" width="17" height="17" alt="" onclick="msg('remove')"></td>
-                                                                    <td><input type="image" src="images/icon04.png" width="19" height="19" alt="" onclick="msg('disable')"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">2</th>
-                                                                    <td>Criteria2</td>
-                                                                    <td><input type="image" src="images/icon01.png" width="22" height="22" alt="" onclick="msg('change')"></td>
-                                                                    <td><input type="image" src="images/icon03.png" width="20" height="20" alt="" onclick="msg('add')"></td>
-                                                                    <td><input type="image" src="images/icon02.png" width="17" height="17" alt="" onclick="msg('remove')"></td>
-                                                                    <td><input type="image" src="images/icon04.png" width="19" height="19" alt="" onclick="msg('disable')"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">3</th>
-                                                                    <td>Criteria3</td>
-                                                                    <td><input type="image" src="images/icon01.png" width="22" height="22" alt="" onclick="msg('change')"></td>
-                                                                    <td><input type="image" src="images/icon03.png" width="20" height="20" alt="" onclick="msg('add')"></td>
-                                                                    <td><input type="image" src="images/icon02.png" width="17" height="17" alt="" onclick="msg('remove')"></td>
-                                                                    <td><input type="image" src="images/icon04.png" width="19" height="19" alt="" onclick="msg('disable')"></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div class="tabletopsection">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 text-left"><span class="tableheadtext">Result</span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="newordercontainer">
-                                                    <div class="row">
-                                                        <div class="col-xs-12 col-sm-6">
-                                                            <label>Breakdown is under process, please wait</label>
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
-                                                                    <span class="sr-only">80% Complete(danger)</span>
-                                                                    80%
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-6">
-                                                            <div class="buttonsspace01"><a data-toggle="collapse" data-target="#collapse2" class="topbutton01">Order Data</a></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Right Section Ends -->
-                                        </div>
-                                        <!-- Section Content Ends-->
-                                    </div>
-                                    <br />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default ">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                            <div class="panel-heading">
-                                <h4 class="panel-title acoordiancenter"> <i class="fa fa-list accoicon" aria-hidden="true"></i>Order </h4>
-                            </div>
-                        </a>
-                        <div id="collapse2" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <!-- Section Content Starts-->
-                                <div class="accoinnerconatiner">
-                                    <!-- Count Section Starts -->
-                                    <div class="row row-content">
-
-                                        <!-- Left Section Starts -->
-                                        <div class="col-md-4">
-
-                                            <!--  Section 2 Starts -->
-                                            <div class="tabletopsection">
-                                                <div class="row">
-                                                    <div class="col-md-12 text-left"><strong>General Information</strong></div>
-                                                </div>
-                                            </div>
-                                            <div class="countsubconatiner">
-                                                <div class="row">
-                                                    <div class="form-group col-md-12 orderpadding">PO Number: <input type="email" class="form-control" id="exampleInput" placeholder=""></div>
-                                                    <div class="form-group col-md-12 orderpadding">Description:<textarea class="form-control" rows="8" id="comment"></textarea></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!--  Left Section Ends -->
-                                        <!--  Right Section Starts -->
-                                        <div class="col-md-8">
-                                            <div class="tabletopsection">
-                                                <div class="row">
-                                                    <div class="col-md-12 text-left"><strong>Output Settings</strong></div>
-                                                </div>
-                                            </div>
-                                            <div class="newordercontainer">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="col-sm-12 col-md-3">
-                                                            <label>Select Query:</label>
-                                                            <div class="dropdown">
-                                                                <select class="selectpicker" id="selectquery">
-                                                                    <option disabled selected>Select Value</option>
-                                                                    <option value="1">Query1</option>
-                                                                    <option value="2">Query2</option>
-                                                                    <option value="3">Query3</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-4">
-                                                            <label>Select Table:</label>
-                                                            <div class="form-group">
-                                                                <label>
-                                                                    <input type="checkbox" id="selectmortgage">
-                                                                    Mortgage
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>
-                                                                    <input type="checkbox" id="selectperson">
-                                                                    Person
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>
-                                                                    <input type="checkbox" id="selectproperty">
-                                                                    Property
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-5">
-                                                            <label>Select Fields:</label>
-                                                            <div class="form-group">
-                                                                <label>
-                                                                    <input type="checkbox" id="mortgagetype">
-                                                                    MortgageType
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>
-                                                                    <input type="checkbox" id="fullname">
-                                                                    FullName
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>
-                                                                    <input type="checkbox" id="selectproperty">
-                                                                    PropertyValue
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--  Button Section Strats -->
-                                            <div class="col-md-12">
-                                                <div class="buttonsspace01"><a data-toggle="collapse" data-target="#collapse3" class="topbutton01">PLACE ORDER</a></div>
-                                            </div>
-                                            <!--  Button Section Ends -->
-                                        </div>
-                                        <!--  Right Section Ends -->
-                                    </div>
-                                </div>
-                                <!-- Section Content Ends-->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                            <div class="panel-heading">
-                                <h4 class="panel-title acoordiancenter"> <i class="fa fa-file-text-o accoicon" aria-hidden="true"></i>Files&nbsp;&nbsp; </h4>
-                            </div>
-                        </a>
-                        <div id="collapse3" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <div class="col-md-12">
-                                    <div class="accoinnerconatiner">
-                                        <!-- Section Content Starts-->
-                                        <div class="row">
-                                            <!-- Section Content Starts-->
-                                            <div class="tabletopsection">
-                                                <div class="row">
-                                                    <div class="col-md-12 text-left"><strong>Download Your Files</strong></div>
-                                                </div>
-                                            </div>
-                                            <div class="countsubconatiner">
-                                                <a class="fa fa-file-excel-o" aria-hidden="true" style="font-size:28px" onclick="msg('download file.cvs')"> File.cvs</a>
-                                            </div>
-                                            <!-- Section Content Ends-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Accordian Section Ends -->
-        <!-- Footer Section Starts-->
-        <div class="clearfix"></div>
-        <div class="footercontainer"> </div>
-        <!-- Footer Section Ends -->
-    </div>
-    <script src="js/classie.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/pushy.min.js"></script>
+    @RenderBody()
 </body>
 </html>
