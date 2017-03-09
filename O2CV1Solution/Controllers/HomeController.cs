@@ -165,6 +165,34 @@ namespace O2V1Web.Controllers
 
         public ActionResult Index()
         {
+            //var tableNames = schemaRepository.GetSchemaTables();
+
+            //var tableDropDownItem = new TableDropDownItem();
+
+
+            //IEnumerable<TableDropDownItem> temptablelist = tableNames.Select(name => new TableDropDownItem
+            //{
+            //    TableNameDisplay = name,
+            //    TableNameValue = name
+            //}).OrderBy(x => x.TableNameDisplay).ToList();
+
+            //var model = new CountsQueryModel {_tables = GetSelectListItems(temptablelist)};
+            //ViewBag.temptablelist = temptablelist;
+
+            //return View("Home", model);
+            //return View("EasyQuery");
+            var loginViewModel = new O2V1Web.Models.ViewModels.LoginViewModel();
+            return View("Login", loginViewModel);
+        }
+
+        public ActionResult Counts()
+        {
+
+            return View();
+        }
+
+        public ActionResult Criteria()
+        {
             var tableNames = schemaRepository.GetSchemaTables();
 
             var tableDropDownItem = new TableDropDownItem();
@@ -176,11 +204,12 @@ namespace O2V1Web.Controllers
                 TableNameValue = name
             }).OrderBy(x => x.TableNameDisplay).ToList();
 
-            var model = new CountsQueryModel {_tables = GetSelectListItems(temptablelist)};
+            var model = new CountsQueryModel { _tables = GetSelectListItems(temptablelist) };
             ViewBag.temptablelist = temptablelist;
 
-            return View("Home", model);
-            //return View("EasyQuery");
+
+
+            return View(model);
         }
 
         /// <summary>

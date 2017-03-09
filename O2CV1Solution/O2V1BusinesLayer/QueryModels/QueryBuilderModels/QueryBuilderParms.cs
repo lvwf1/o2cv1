@@ -1,37 +1,41 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using CodeEngine.Framework.QueryBuilder.Enums;
 
 namespace O2V1BusinesLayer.QueryModels.QueryBuilderModels
 {
     public class QueryBuilderParms
     {
-        public List<QueryBuilderSortByAndDirection> ColumnSortAscDesc;
+        public List<QueryBuilderOrderByClause> ColumnSortAscDesc;
         public List<QueryBuilderColumnsToInclude> IncludeColumns;
-        public List<JoinCondition> JoinConditions;
-        public List<WhereConditions> WhereConditions;
+        public List<JoinCondition> JoinConditionsList;
+        public List<WhereConditions> WhereConditionsList;
+ 
 
 
         public QueryBuilderParms()
         {
-            ColumnSortAscDesc = new List<QueryBuilderSortByAndDirection>();
-            WhereConditions = new List<WhereConditions>();
-            JoinConditions = new List<JoinCondition>();
+            ColumnSortAscDesc = new List<QueryBuilderOrderByClause>();
+            WhereConditionsList = new List<WhereConditions>();
+            JoinConditionsList = new List<JoinCondition>();
             IncludeColumns = new List<QueryBuilderColumnsToInclude>();
+            
+            
         }
 
         public string PrimaryTable { get; set; }
         public int MaxRowsToReturn { get; set; }
     }
 
-    public struct QueryBuilderSortByAndDirection
+    public struct QueryBuilderOrderByClause
     {
         public string ColumnName { get; set; }
-        public string ColumnOrderbyDirection { get; set; }
+        public Sorting ColumnOrderbyDirection { get; set; }
     }
 
     public struct QueryBuilderColumnsToInclude
     {
-        public string TableNme { get; set; }
+        public string TableName { get; set; }
         public string ColumnName { get; set; }
     }
 
@@ -44,7 +48,18 @@ namespace O2V1BusinesLayer.QueryModels.QueryBuilderModels
         public JoinType TypeOfJoin { get; set; }
         public Comparison JoinCompareType { get; set; }
     }
+    public struct WhereSubConditions
+    {
+        public string WhereLeftTable { get; set; }
+        public Comparison CompareOperator { get; set; }
+        public string WhereRightTable { get; set; }
+        public string WhereRightColumn { get; set; }
+        public string WhereLeftColumn { get; set; }
+        public string WhereLiteral { get; set; }
+        public LogicOperator Connector { get; set; }
 
+
+    }
     public struct WhereConditions
     {
         public string WhereLeftTable { get; set; }
@@ -53,5 +68,7 @@ namespace O2V1BusinesLayer.QueryModels.QueryBuilderModels
         public string WhereRightColumn { get; set; }
         public string WhereLeftColumn { get; set; }
         public string WhereLiteral { get; set; }
+        public List<WhereSubConditions> SubClauses { get; set; }
+
     }
 }

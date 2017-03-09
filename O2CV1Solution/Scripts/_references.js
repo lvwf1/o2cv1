@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="../Content/ajax/libs/jquery/1.12.4/jquery.min.js" />
 /// <reference path="../content/bootstrap/js/bootstrap.min - copy.js" />
 /// <reference path="../content/bootstrap/js/bootstrap.min.js" />
 /// <reference path="../content/easyui/datagrid-detailview.js" />
@@ -12,6 +13,7 @@
 /// <reference path="../content/js/bootstrap-datetimepicker.min.js" />
 /// <reference path="../content/js/classie.js" />
 /// <reference path="../content/js/datatables.bootstrap.js" />
+/// <reference path="../content/js/ie-emulation-modes-warning.js" />
 /// <reference path="../content/js/jquery.datatables.js" />
 /// <reference path="../content/js/jquery.nice-select.js" />
 /// <reference path="../content/js/jquery-latest.min.js" />

@@ -11,3 +11,16 @@ C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\Co
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\O2.Common.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\O2.Common.pdb
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\CodeEngine.Framework.QueryBuilder.pdb
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\O2V1BusinesLayer.dll
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\O2V1BusinesLayer.pdb
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\CodeEngine.Framework.QueryBuilder.dll
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\Newtonsoft.Json.dll
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\O2.Common.dll
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\O2V1DataAccess.dll
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\O2.Common.pdb
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\O2V1DataAccess.pdb
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\CodeEngine.Framework.QueryBuilder.pdb
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\Newtonsoft.Json.xml
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\obj\Debug\O2V1BusinesLayer.csprojResolveAssemblyReference.cache
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\obj\Debug\O2V1BusinesLayer.dll
+D:\Bruce\o2cv1\O2CV1Solution\O2V1BusinesLayer\obj\Debug\O2V1BusinesLayer.pdb

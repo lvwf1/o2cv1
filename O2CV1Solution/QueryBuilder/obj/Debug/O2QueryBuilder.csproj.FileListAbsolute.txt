@@ -4,6 +4,11 @@ C:\Cloud88Projects\code project code\QueryBuilder\obj\Debug\CodeEngine.Framework
 C:\Cloud88Projects\code project code\QueryBuilder\obj\Debug\CodeEngine.Framework.QueryBuilder.pdb
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\QueryBuilder\bin\Debug\CodeEngine.Framework.QueryBuilder.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\QueryBuilder\bin\Debug\CodeEngine.Framework.QueryBuilder.pdb
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\QueryBuilder\obj\Debug\O2QueryBuilder.csprojResolveAssemblyReference.cache
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\QueryBuilder\obj\Debug\CodeEngine.Framework.QueryBuilder.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\QueryBuilder\obj\Debug\CodeEngine.Framework.QueryBuilder.pdb
+D:\Bruce\o2cv1\O2CV1Solution\QueryBuilder\bin\Debug\CodeEngine.Framework.QueryBuilder.dll
+D:\Bruce\o2cv1\O2CV1Solution\QueryBuilder\bin\Debug\CodeEngine.Framework.QueryBuilder.pdb
+D:\Bruce\o2cv1\O2CV1Solution\QueryBuilder\obj\Debug\CodeEngine.Framework.QueryBuilder.dll
+D:\Bruce\o2cv1\O2CV1Solution\QueryBuilder\obj\Debug\CodeEngine.Framework.QueryBuilder.pdb
+D:\Bruce\o2cv1\O2CV1Solution\QueryBuilder\obj\Debug\O2QueryBuilder.csprojResolveAssemblyReference.cache
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\QueryBuilder\obj\Debug\O2QueryBuilder.csprojResolveAssemblyReference.cache

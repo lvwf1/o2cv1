@@ -1,0 +1,131 @@
+﻿@model O2V1Web.Models.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Home";
+}
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper">
+    <!-- Header Section Starts -->
+    <div class="headercontainer">
+        <div class="row">
+            <div class="col-md-12 text-center hedertext"> Count & Order</div>
+        </div>
+    </div>
+    <!-- Header Section Ends -->
+    <!-- Center Section Starts-->
+
+</div>
+<!-- Center Section Ends -->
+
+<div class="container">
+@using (Html.BeginForm("LoginCos", "Access", FormMethod.Post,new { @class= "form-signin" }))
+{
+    @Html.AntiForgeryToken()          // this is for prevent CSRF attack
+                                    @Html.ValidationSummary(true)
+    if (@ViewBag.LoginError != null)
+    {
+        <div>
+            <h2 style="color:red">  @ViewBag.LoginError</h2>
+        </div>
+    }
+    @*<form class="form-signin">*@
+        <h2 class="form-signin-heading">Count & Order</h2>
+        <label for="inputUsername" class="sr-only">Username</label>
+        @*<input type="email" id="inputUsername" class="form-control" placeholder="Username" required autofocus onclick="stophighlight()">*@
+    @Html.TextBoxFor(a => a.Username, new {@id= "inputUsername", @class = "form-control", @placeholder = "Username" })
+    @Html.ValidationMessageFor(a => a.Username, "", new { @class = "ValidationMessageFor" })
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        @*<input type="password" id="inputPassword" class="form-control" placeholder="Password" required onclick="stophighlight()">*@
+
+    @Html.TextBoxFor(a => a.Password, new { @id = "inputPassword", @class = "form-control", @placeholder = "Password" })
+    @Html.ValidationMessageFor(a => a.Password, "", new { @class = "ValidationMessageFor" })
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    @*</form>*@
+}
+
+</div> <!-- /container -->
+<!-- Accordian Section Starts-->
+<div class="accordiancontainer">
+    <div class="col-md-12">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                    <div class="panel-heading">
+                        <h4 class="panel-title acoordiancenter"> <i class="fa fa-bar-chart accoicon" aria-hidden="true"></i>Count</h4>
+                    </div>
+                </a>
+                <div id="collapse1" class="panel-collapse collapse ">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <!-- Section Content Starts-->
+                            <h2 class="text-center">
+                                Please <a onclick="highlight()">Sign In</a> Your Account
+                            </h2>
+                        </div>
+                        <!-- Section Content Ends-->
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default ">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                    <div class="panel-heading">
+                        <h4 class="panel-title acoordiancenter"> <i class="fa fa-list accoicon" aria-hidden="true"></i>Order </h4>
+                    </div>
+                </a>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <!-- Section Content Starts-->
+                            <h2 class="text-center">
+                                Please <a onclick="highlight()">Sign In</a> Your Account
+                            </h2>
+                        </div>
+                        <!-- Section Content Ends-->
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default ">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                    <div class="panel-heading">
+                        <h4 class="panel-title acoordiancenter"> <i class="fa fa-list accoicon" aria-hidden="true"></i>File </h4>
+                    </div>
+                </a>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <!-- Section Content Starts-->
+                            <h2 class="text-center">
+                                Please <a onclick="highlight()">Sign In</a> Your Account
+                            </h2>
+                        </div>
+                        <!-- Section Content Ends-->
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Accordian Section Ends -->
+<!-- Footer Section Starts-->
+<div class="clearfix"></div>
+<div class="footercontainer"> </div>
+<!-- Footer Section Ends -->
+<script src="~/Content/js/classie.js"></script>
+<script src="~/Content/js/main.js"></script>
+<script src="~/Content/js/pushy.min.js"></script>
+

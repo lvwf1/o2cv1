@@ -16,6 +16,7 @@ namespace O2.Web.Context
             : base("name=O2DataMart")
         {
             //Database.SetInitializer<CountsContext>(new DropCreateDatabaseAlways<CountsContext>());
+            Database.SetInitializer<CountsContext>(null);
         }
         public virtual DbSet<CountModel> Countmodels { get; set; }
         public virtual DbSet<CountUser> CountUsers { get; set; }

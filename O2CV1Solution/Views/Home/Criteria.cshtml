@@ -1,0 +1,402 @@
+﻿@model O2V1Web.Models.ViewModels.CountsQueryModel
+@{
+    ViewBag.Title = "Criteria";
+}
+
+<div class="wrapper">
+    <!-- Header Section Starts -->
+    <div class="headercontainer">
+        <div class="row">
+            <div class="col-md-4"> <div class="menu-btn"></div>  </div>
+            <div class="col-md-4 text-center hedertext"> Count & Order</div>
+            <div class="col-md-4">
+                <div class="pull-right menupaddingright">
+                    <div class="pull-left dropdownmenusize1"> <img src="~/Content/images/user.jpg" width="31" height="31" alt="" class=" img-circle imgmargintop"></div>
+                    <div class="pull-left dropdownmenusize2">
+                        <nav id="primary_nav_wrap">
+                            <ul>
+                                <li>
+                                    @*<a href="#">John Doe<b class="caret"></b></a>*@
+                                    <a href="#">@Session["LogedCosUserFullname"]<b class="caret"></b></a>
+                                    <ul>
+                                        @*<li><a href="index01.html">Signout</a></li>*@
+                                        <li><a href="@Url.Action("SignOut", "Access")">Signout </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Section Ends -->
+    <!-- Accordian Section Starts-->
+    <div class="accordiancontainer">
+        <div class="col-md-12">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                        <div class="panel-heading">
+                            <h4 class="panel-title acoordiancenter"> <i class="fa fa-bar-chart accoicon" aria-hidden="true"></i>Count</h4>
+                        </div>
+                    </a>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <!-- Section Content Starts-->
+                                <div class="accoinnerconatiner">
+                                    <!-- Count Section Starts -->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!--  Section 1 Starts -->
+                                            <div class="tabletopsection">
+                                                <div class="row">
+                                                    <div class="col-sm-6 text-left"><span class="tableheadtext">Enter Criteria</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="newordercontainer">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="container body-content">
+                                                            @using (Html.BeginForm("SyncQuery", "Home", FormMethod.Post))
+                                                            {
+                                                                @Html.AntiForgeryToken()
+                                                                <div class="form-horizontal">
+                                                                    <div class="container">
+                                                                        @Html.ValidationMessageFor(model => model.SelectedTable)
+                                                                        <div class="grid">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-3">
+                                                                                    <div>
+
+                                                                                        <label class="control-label" for="basicinput">Select Table </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-3">
+                                                                                    <div>
+
+                                                                                        @Html.DropDownListFor(model => model.SelectedTable, // 1. Store selected value in Model.SelectedTable;
+                                                                                                                                        // when page is rendered after postback,
+                                                                                                                                        // take selected value from Model.SelectedTable.
+
+                                // 2. Take list of values from Model.States
+                                Model.SelectTables,
+
+                                // 3. Text for the first 'default' option
+                                "- Please select a table -",
+
+                                //4. A class name to assign to <select> tag
+                                new { @class = "form-control" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-sm-3">
+                                                                                    <div class="col-md-3 form-group pull-left">
+                                                                                        <input type="submit" value="Post Back" class="btn btn-default" />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        @Html.ValidationSummary(true)
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            }
+                                                            <script type="text/javascript">
+                                                                var
+                                                                    jsonQuery =
+                                                                        "{\r\n   \"root\": {\r\n      \"linkType\": \"All\",\r\n      \"enabled\": true,\r\n      \"conditions\": [\r\n         {\r\n            \"justAdded\": false,\r\n            \"typeName\": \"SMPL\",\r\n            \"enabled\": true,\r\n            \"operatorID\": \"StartsWith\",\r\n            \"expressions\": [\r\n               {\r\n                  \"kind\": \"Attribute\",\r\n                  \"typeName\": \"ENTATTR\",\r\n                  \"id\": \"Customer.Contact.Name\"\r\n               },\r\n               {\r\n                  \"typeName\": \"CONST\",\r\n                  \"dataType\": \"String\",\r\n                  \"kind\": \"Scalar\",\r\n                  \"value\": \"Maria\",\r\n                  \"text\": \"Maria\"\r\n               }\r\n            ],\r\n            \"blockId\": \"QueryPanel-cond-1\"\r\n         },\r\n         {\r\n            \"justAdded\": false,\r\n            \"typeName\": \"SMPL\",\r\n            \"enabled\": true,\r\n            \"operatorID\": \"StartsWith\",\r\n            \"expressions\": [\r\n               {\r\n                  \"kind\": \"Attribute\",\r\n                  \"typeName\": \"ENTATTR\",\r\n                  \"id\": \"Customer.Address.Street\"\r\n               },\r\n               {\r\n                  \"typeName\": \"CONST\",\r\n                  \"dataType\": \"String\",\r\n                  \"kind\": \"Scalar\",\r\n                  \"value\": \"Obere\",\r\n                  \"text\": \"Obere\"\r\n               }\r\n            ],\r\n            \"blockId\": \"QueryPanel-cond-3\"\r\n         }\r\n      ]\r\n   },\r\n   \"columns\": [\r\n      {\r\n         \"caption\": \"Client Address Street\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.Street\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-1\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Address City\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.City\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-2\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Address Region\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.Region\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-3\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Address Postal Code\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.PostalCode\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-4\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Address Country\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Address.Country\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-5\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Contact Name\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Contact.Name\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-6\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Contact Title\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Contact.Title\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-7\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Contact Phone\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Contact.Phone\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-8\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Contact Fax\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Contact.Fax\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-9\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Id\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Id\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-10\"\r\n      },\r\n      {\r\n         \"caption\": \"Client Company Name\",\r\n         \"sorting\": \"None\",\r\n         \"sortIndex\": -1,\r\n         \"expr\": {\r\n            \"typeName\": \"ENTATTR\",\r\n            \"id\": \"Customer.Name\"\r\n         },\r\n         \"params\": [],\r\n         \"blockId\": \"ColumnsPanel-col-11\"\r\n      }\r\n   ],\r\n   \"justsorted\": [],\r\n   \"modelId\": \"d7a2e9b3-541b-415e-863c-e8645d0c3585\",\r\n   \"modelName\": null\r\n}";
+                                                                var optionsJson = "{}";
+
+                                                                function syncQuery() {
+                                                                    $.ajax({
+                                                                        type: 'post',
+                                                                        dataType: 'json',
+                                                                        cache: false,
+                                                                        url: '/Proof/SyncQuery',
+                                                                        data: { queryJson: jsonQuery, optionsJson },
+                                                                        success: function (response, textStatus, jqXhr) {
+                                                                            $("#DataSQL").html("");
+
+                                                                            $("#DataSQL").append(response.statement + "<br/>");
+
+                                                                        },
+                                                                        error: function (jqXhr, textStatus, errorThrown) {
+                                                                            alert('Error - ' + errorThrown);
+                                                                        }
+                                                                    });
+                                                                }
+
+                                                            </script>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Right Section Ends -->
+                                    </div>
+                                    <!-- Section Content Ends-->
+                                </div>
+                                <div class="accoinnerconatiner">
+                                    <!-- Count Section Starts -->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!--  Section 1 Starts -->
+                                            <div class="tabletopsection">
+                                                <div class="row">
+                                                    <div class="col-sm-6 text-left"><span class="tableheadtext">Select Criteria</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="newordercontainer">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <label>Select criteria where all of the following apply</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped tableborder ">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Criteria</th>
+                                                                <th>Change</th>
+                                                                <th>Add</th>
+                                                                <th>Remove</th>
+                                                                <th>Disable</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">1</th>
+                                                                <td>Criteria1</td>
+                                                                <td><input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('change')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="msg('add')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('remove')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('disable')"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">2</th>
+                                                                <td>Criteria2</td>
+                                                                <td><input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('change')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="msg('add')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('remove')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('disable')"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">3</th>
+                                                                <td>Criteria3</td>
+                                                                <td><input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('change')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="msg('add')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('remove')"></td>
+                                                                <td><input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('disable')"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="tabletopsection">
+                                                <div class="row">
+                                                    <div class="col-sm-6 text-left"><span class="tableheadtext">Result</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="newordercontainer">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        <label>Breakdown is under process, please wait</label>
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                                                                <span class="sr-only">80% Complete(danger)</span>
+                                                                80%
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        <div class="buttonsspace01"><a data-toggle="collapse" data-target="#collapse2" class="topbutton01">Order Data</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Right Section Ends -->
+                                    </div>
+                                    <!-- Section Content Ends-->
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                        <div class="panel-heading">
+                            <h4 class="panel-title acoordiancenter"> <i class="fa fa-list accoicon" aria-hidden="true"></i>Order </h4>
+                        </div>
+                    </a>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <!-- Section Content Starts-->
+                            <div class="accoinnerconatiner">
+                                <!-- Count Section Starts -->
+                                <div class="row row-content">
+
+                                    <!-- Left Section Starts -->
+                                    <div class="col-md-4">
+
+                                        <!--  Section 2 Starts -->
+                                        <div class="tabletopsection">
+                                            <div class="row">
+                                                <div class="col-md-12 text-left"><strong>General Information</strong></div>
+                                            </div>
+                                        </div>
+                                        <div class="countsubconatiner">
+                                            <div class="row">
+                                                <div class="form-group col-md-12 orderpadding">PO Number: <input type="email" class="form-control" id="exampleInput" placeholder=""></div>
+                                                <div class="form-group col-md-12 orderpadding">Description:<textarea class="form-control" rows="8" id="comment"></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--  Left Section Ends -->
+                                    <!--  Right Section Starts -->
+                                    <div class="col-md-8">
+                                        <div class="tabletopsection">
+                                            <div class="row">
+                                                <div class="col-md-12 text-left"><strong>Output Settings</strong></div>
+                                            </div>
+                                        </div>
+                                        <div class="newordercontainer">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-sm-12 col-md-3">
+                                                        <label>Select Query:</label>
+                                                        <div class="dropdown">
+                                                            <select class="selectpicker" id="selectquery">
+                                                                <option disabled selected>Select Value</option>
+                                                                <option value="1">Query1</option>
+                                                                <option value="2">Query2</option>
+                                                                <option value="3">Query3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <label>Select Table:</label>
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <input type="checkbox" id="selectmortgage">
+                                                                Mortgage
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <input type="checkbox" id="selectperson">
+                                                                Person
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <input type="checkbox" id="selectproperty">
+                                                                Property
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <label>Select Fields:</label>
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <input type="checkbox" id="mortgagetype">
+                                                                MortgageType
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <input type="checkbox" id="fullname">
+                                                                FullName
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <input type="checkbox" id="selectproperty">
+                                                                PropertyValue
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--  Button Section Strats -->
+                                        <div class="col-md-12">
+                                            <div class="buttonsspace01"><a data-toggle="collapse" data-target="#collapse3" class="topbutton01">PLACE ORDER</a></div>
+                                        </div>
+                                        <!--  Button Section Ends -->
+                                    </div>
+                                    <!--  Right Section Ends -->
+                                </div>
+                            </div>
+                            <!-- Section Content Ends-->
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                        <div class="panel-heading">
+                            <h4 class="panel-title acoordiancenter"> <i class="fa fa-file-text-o accoicon" aria-hidden="true"></i>Files&nbsp;&nbsp; </h4>
+                        </div>
+                    </a>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <div class="accoinnerconatiner">
+                                    <!-- Section Content Starts-->
+                                    <div class="row">
+                                        <!-- Section Content Starts-->
+                                        <div class="tabletopsection">
+                                            <div class="row">
+                                                <div class="col-md-12 text-left"><strong>Download Your Files</strong></div>
+                                            </div>
+                                        </div>
+                                        <div class="countsubconatiner">
+                                            <a class="fa fa-file-excel-o" aria-hidden="true" style="font-size:28px" onclick="msg('download file.cvs')"> File.cvs</a>
+                                        </div>
+                                        <!-- Section Content Ends-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Accordian Section Ends -->
+    <!-- Footer Section Starts-->
+    <div class="clearfix"></div>
+    <div class="footercontainer"> </div>
+    <!-- Footer Section Ends -->
+    <script src="~/Content/js/classie.js"></script>
+    <script src="~/Content/js/main.js"></script>
+    <script src="~/Content/js/pushy.min.js"></script>
+</div>
+
