@@ -1,12 +1,3 @@
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccessTests.dll.config
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccessTests.dll
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccessTests.pdb
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccess.dll
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccess.pdb
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\obj\Debug\O2V1DataAccessTests.csprojResolveAssemblyReference.cache
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\obj\Debug\O2V1DataAccessTests.dll
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\obj\Debug\O2V1DataAccessTests.pdb
 D:\Bruce\o2cv1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccessTests.dll.config
 D:\Bruce\o2cv1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccessTests.dll
 D:\Bruce\o2cv1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccessTests.pdb
@@ -16,3 +7,12 @@ D:\Bruce\o2cv1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccess.pdb
 D:\Bruce\o2cv1\O2CV1Solution\O2V1DataAccessTests\obj\Debug\O2V1DataAccessTests.csprojResolveAssemblyReference.cache
 D:\Bruce\o2cv1\O2CV1Solution\O2V1DataAccessTests\obj\Debug\O2V1DataAccessTests.dll
 D:\Bruce\o2cv1\O2CV1Solution\O2V1DataAccessTests\obj\Debug\O2V1DataAccessTests.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccessTests.dll.config
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccessTests.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccessTests.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccess.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2V1DataAccess.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\obj\Debug\O2V1DataAccessTests.csprojResolveAssemblyReference.cache
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\obj\Debug\O2V1DataAccessTests.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\obj\Debug\O2V1DataAccessTests.pdb
