@@ -194,6 +194,7 @@ namespace O2V1Web.Controllers
         public ActionResult Criteria()
         {
             var tableNames = schemaRepository.GetSchemaTables();
+            
 
             var tableDropDownItem = new TableDropDownItem();
 
@@ -205,11 +206,41 @@ namespace O2V1Web.Controllers
             }).OrderBy(x => x.TableNameDisplay).ToList();
 
             var model = new CountsQueryModel { _tables = GetSelectListItems(temptablelist) };
+            model.CriteriaModel._criteria = BuildModelCriteria();
             ViewBag.temptablelist = temptablelist;
 
 
 
             return View(model);
+        }
+
+        private List<CriteraDropDownItem> BuildModelCriteria()
+        {
+            List<CriteraDropDownItem> criteraDropDownItems = new List<CriteraDropDownItem>
+            {
+                new CriteraDropDownItem
+                {
+                    CriteraNameDisplay = "EqualTo",
+                    CriteraNameValue = " = "
+                },
+                new CriteraDropDownItem
+                {
+                    CriteraNameDisplay = "NotEqualTo",
+                    CriteraNameValue = " != "
+                },
+                new CriteraDropDownItem
+                {
+                    CriteraNameDisplay = "In List",
+                    CriteraNameValue = " in "
+                },
+                new CriteraDropDownItem
+                {
+                    CriteraNameDisplay = "Not In List",
+                    CriteraNameValue = " not in "
+                },
+
+            };
+            return criteraDropDownItems;
         }
 
         /// <summary>

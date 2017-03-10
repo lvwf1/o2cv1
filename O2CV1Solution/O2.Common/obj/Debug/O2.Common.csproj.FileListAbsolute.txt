@@ -57,3 +57,4 @@ C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2.Common\bin\Debug\O2.Common
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2.Common\bin\Debug\O2.Common.pdb
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2.Common\obj\Debug\O2.Common.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2.Common\obj\Debug\O2.Common.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2.Common\obj\Debug\O2.Common.csprojResolveAssemblyReference.cache

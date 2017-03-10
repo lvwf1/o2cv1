@@ -13,4 +13,15 @@ namespace O2V1Web.Models.ViewModels
         public string TableNameDisplay { get; set; }
         public string TableNameValue { get; set; }
     }
+    public class ColumnDropDownItem
+    {
+        public string ColumnNameDisplay { get; set; }
+        public string ColumnNameValue { get; set; }
+    }
+
+    public class CriteraDropDownItem
+    {
+        public string CriteraNameDisplay { get; set; }
+        public string CriteraNameValue { get; set; }
+    }
 }
