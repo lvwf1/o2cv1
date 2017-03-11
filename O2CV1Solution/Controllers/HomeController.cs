@@ -201,7 +201,7 @@ namespace O2V1Web.Controllers
             IEnumerable<DropDownItem> tempColumnList = tableSchemaModels.MetaData.Select(col =>  new DropDownItem
             {
                 DropDownDisplay = col.Name,
-                DropDownValue = $"{col.DbType}|{tableName}"  
+                DropDownValue = $"{tableName}.{col.Name}"  
             }).OrderBy(x => x.DropDownDisplay).ToList();
 
             columnsForTable = GetSelectListItems(tempColumnList).ToList();

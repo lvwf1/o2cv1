@@ -23,6 +23,10 @@ namespace O2V1Web.Models.ViewModels
         [Required]
         public string SelectedTable { get; set; }
 
+        [Display(Name = "Column")]
+        [Required]
+        public string SelectedColumn { get; set; }
+
         public IEnumerable<SelectListItem> SelectTables
         {
             get

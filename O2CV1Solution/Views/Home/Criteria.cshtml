@@ -80,6 +80,7 @@
                                 <div class="form-horizontal">
                                     <div class="container">
                                         @Html.ValidationMessageFor(model => model.SelectedTable)
+                                        @Html.ValidationMessageFor(model => model.SelectedColumn)
                                         <div class="grid">
 
                                             <div class="row">
@@ -125,7 +126,7 @@
                                                     <div>
 
 
-                                                        @Html.DropDownListFor(model => model.SelectColumns, // 1. Store selected value in Model.SelectedTable;
+                                                        @Html.DropDownListFor(model => model.SelectedColumn, // 1. Store selected value in Model.SelectedTable;
                                                                                                             // when page is rendered after postback,
                                                                                                             // take selected value from Model.SelectedTable.
 
@@ -141,7 +142,7 @@
                                                     <span id="columns-loading-progress" style="display: none;">Please wait..</span>
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    @Html.ValueFor(model => model.CriteriaModel.SelectedCriteria)
+                                                    @Html.TextAreaFor(m => m.CriteriaModel.SelectedCriteria, new { @readonly = "readonly", id = "txtCriteriaSelected" })
                                                 </div>
                                                 <div class="col-sm-2">
                                                     <div>
@@ -169,7 +170,7 @@
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     <div class="col-md-3 form-group pull-left">
-                                                        <input type="submit" value="Post Back" class="btn btn-default" />
+                                                        <input type="submit" value="Add Criteria" class="btn btn-default" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -474,16 +475,18 @@
 <script src="~/Content/js/pushy.min.js"></script>
 @section Scripts {
     <script type="text/javascript">
-        
-        $(function () {
-            alert('');
+
+        $(function() {
+            $("#SelectedColumn").change(function () {
+                var selectedColumnName = $(this).val();
+                $("#txtCriteriaSelected").val(selectedColumnName);
+            });
         });
 
-
-        $(function () {
-            $("#SelectedTable").change(function () {
+        $(function() {
+            $("#SelectedTable").change(function() {
                 var selectedItem = $(this).val();
-                var ddlColumns = $("#SelectColumns");
+                var ddlColumn = $("#SelectedColumn");
                 var columnLoadProgress = $("#columns-loading-progress");
                 columnLoadProgress.show();
                 $.ajax({
@@ -491,14 +494,19 @@
                     type: "GET",
                     url: "@(Url.RouteUrl("GetTableColumns"))",
                     data: { "tableName": selectedItem },
-                    success: function (data) {
-                        ddlColumns.html('');
-                        $.each(data, function (id, option) {
-                            ddlColumns.append($('<option></option>').val(option.DropDownValue).html(option.DropDownDisplay));
-                        });
+                    success: function(data) {
+                        ddlColumn.html('');
+                        ddlColumn.append($('<option></option>').val("").html("Select Column..."));
+
+                        $.each(data,
+                            function (id, option) {
+                            
+                                ddlColumn.append($('<option></option>').val(option.DropDownValue)
+                                    .html(option.DropDownDisplay));
+                            });
                         columnLoadProgress.hide();
                     },
-                    error: function (xhr, ajaxOptions, thrownError) {
+                    error: function(xhr, ajaxOptions, thrownError) {
                         alert('Failed to retrieve columns for the table.');
                         columnLoadProgress.hide();
                     }
