@@ -69,6 +69,7 @@ namespace O2V1BusinesLayer.QueryModels.QueryBuilderModels
         public string WhereLeftColumn { get; set; }
         public string WhereLiteral { get; set; }
         public List<WhereSubConditions> SubClauses { get; set; }
+        public LogicOperator WhereAndOr { get; set; }
 
     }
 }

@@ -74,8 +74,8 @@ namespace CodeEngine.Framework.QueryBuilder.Clauses
         }
         public void AddClause(LogicOperator logic, Comparison compareOperator, object compareValue)
         {
-            SubClause NewSubClause = new SubClause(logic, compareOperator, compareValue);
-            SubClauses.Add(NewSubClause);
+            SubClause newSubClause = new SubClause(logic, compareOperator, compareValue);
+            SubClauses.Add(newSubClause);
         }
     }
 

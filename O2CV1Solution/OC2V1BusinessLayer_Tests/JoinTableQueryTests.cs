@@ -23,6 +23,224 @@ namespace OC2V1BusinessLayer_Tests
         }
 
         [TestMethod]
+        public void InnerJoinPropertyAndPersonsAndMorgageOredWheres()
+        {
+            var queryBuilderParms = new QueryBuilderParms
+            {
+                PrimaryTable = "Mortgages",
+                JoinConditionsList = new List<JoinCondition>
+                {
+                    new JoinCondition
+                    {
+                        JoinLeftTable = "BackBone",
+                        JoinCompareType = Comparison.Equals,
+                        JoinRightTable = "BackBone",
+                        JoinOnLeftColumn = "MortgageId",
+                        JoinOnRightColumn = "MortgageId",
+                        TypeOfJoin = JoinType.InnerJoin
+                        
+
+                    },
+                     new JoinCondition
+                    {
+                        JoinLeftTable = "BackBone",
+                        JoinCompareType = Comparison.Equals,
+                        JoinRightTable = "Property",
+                        JoinOnLeftColumn = "PropertyId",
+                        JoinOnRightColumn = "PropertyId",
+                        TypeOfJoin = JoinType.InnerJoin
+
+                    },
+                       new JoinCondition
+                    {
+                         JoinLeftTable = "BackBone",
+                        JoinCompareType = Comparison.Equals,
+                        JoinRightTable = "Persons",
+                        JoinOnLeftColumn = "PersonId",
+                        JoinOnRightColumn = "PersonId",
+                        TypeOfJoin = JoinType.InnerJoin
+                    }
+
+
+                },
+                IncludeColumns = new List<QueryBuilderColumnsToInclude>
+                {
+                    new QueryBuilderColumnsToInclude
+                    {
+                        TableName = "Mortgages",
+                        ColumnName = "MortgageId"
+
+
+                    },
+                    new QueryBuilderColumnsToInclude
+                    {
+                         TableName = "Mortgages",
+                        ColumnName = "LenderName"
+                    },
+                     new QueryBuilderColumnsToInclude
+                    {
+                        TableName = "Mortgages",
+                        ColumnName = "MortgageId"
+
+
+                    },
+                    new QueryBuilderColumnsToInclude
+                    {
+                         TableName = "Property",
+                        ColumnName = "State"
+                    },
+                     new QueryBuilderColumnsToInclude
+                    {
+                         TableName = "Persons",
+                        ColumnName = "LastName"
+                    }
+                },
+                WhereConditionsList = new List<WhereConditions>
+                {
+                    new WhereConditions
+                    {
+                        WhereLeftColumn = "State",
+                        WhereLeftTable = "Persons",
+                        WhereOperator = Comparison.Equals,
+                        WhereRightColumn = "WA",
+                        WhereAndOr = LogicOperator.Or
+                        
+
+                    },
+                    new WhereConditions
+                    {
+                        WhereLeftColumn = "State",
+                        WhereLeftTable = "Property",
+                        WhereOperator = Comparison.Like,
+                        WhereRightColumn = "%a%",
+                        WhereAndOr = LogicOperator.Or
+                    },
+                      new WhereConditions
+                    {
+                        WhereLeftColumn = "LoanToValueRange",
+                        WhereLeftTable = "Mortgages",
+                        WhereOperator = Comparison.Equals,
+                        WhereRightColumn = "100% - 119.99%",
+                    }
+
+                }
+            };
+
+            var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
+            var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
+            Assert.IsTrue(sqlFromQueryBuilder.Contains(@"SELECT  Mortgages.MortgageId,  Mortgages.LenderName,  Mortgages.MortgageId,  Property.State,  Persons.LastName  FROM Mortgages INNER JOIN BackBone ON BackBone.MortgageId = BackBone.MortgageId INNER JOIN Property ON BackBone.PropertyId = Property.PropertyId INNER JOIN Persons ON BackBone.PersonId = Persons.PersonId  WHERE  ((Persons.State = 'WA') AND (Property.State LIKE '%a%') AND (Mortgages.LoanToValueRange = '100% - 119.99%'))"));
+            Assert.IsTrue(ExecuteQuery(sqlFromQueryBuilder));
+
+        }
+
+        [TestMethod]
+        public void InnerJoinPropertyAndPersonsAndMorgageAndedWheres()
+        {
+            var queryBuilderParms = new QueryBuilderParms
+            {
+                PrimaryTable = "Mortgages",
+                JoinConditionsList = new List<JoinCondition>
+                {
+                    new JoinCondition
+                    {
+                        JoinLeftTable = "BackBone",
+                        JoinCompareType = Comparison.Equals,
+                        JoinRightTable = "BackBone",
+                        JoinOnLeftColumn = "MortgageId",
+                        JoinOnRightColumn = "MortgageId",
+                        TypeOfJoin = JoinType.InnerJoin
+
+                    },
+                     new JoinCondition
+                    {
+                        JoinLeftTable = "BackBone",
+                        JoinCompareType = Comparison.Equals,
+                        JoinRightTable = "Property",
+                        JoinOnLeftColumn = "PropertyId",
+                        JoinOnRightColumn = "PropertyId",
+                        TypeOfJoin = JoinType.InnerJoin
+
+                    },
+                       new JoinCondition
+                    {
+                         JoinLeftTable = "BackBone",
+                        JoinCompareType = Comparison.Equals,
+                        JoinRightTable = "Persons",
+                        JoinOnLeftColumn = "PersonId",
+                        JoinOnRightColumn = "PersonId",
+                        TypeOfJoin = JoinType.InnerJoin
+                    }
+
+
+                },
+                IncludeColumns = new List<QueryBuilderColumnsToInclude>
+                {
+                    new QueryBuilderColumnsToInclude
+                    {
+                        TableName = "Mortgages",
+                        ColumnName = "MortgageId"
+                         
+
+                    },
+                    new QueryBuilderColumnsToInclude
+                    {
+                         TableName = "Mortgages",
+                        ColumnName = "LenderName"
+                    },
+                     new QueryBuilderColumnsToInclude
+                    {
+                        TableName = "Mortgages",
+                        ColumnName = "MortgageId"
+
+
+                    },
+                    new QueryBuilderColumnsToInclude
+                    {
+                         TableName = "Property",
+                        ColumnName = "State"
+                    },
+                     new QueryBuilderColumnsToInclude
+                    {
+                         TableName = "Persons",
+                        ColumnName = "LastName"
+                    }
+                },
+                WhereConditionsList = new List<WhereConditions>
+                {
+                    new WhereConditions
+                    {
+                        WhereLeftColumn = "State",
+                        WhereLeftTable = "Persons",
+                        WhereOperator = Comparison.Equals,
+                        WhereRightColumn = "WA",
+         
+                    },
+                    new WhereConditions
+                    {
+                        WhereLeftColumn = "State",
+                        WhereLeftTable = "Property",
+                        WhereOperator = Comparison.Like,
+                        WhereRightColumn = "%a%",
+                    },
+                      new WhereConditions
+                    {
+                        WhereLeftColumn = "LoanToValueRange",
+                        WhereLeftTable = "Mortgages",
+                        WhereOperator = Comparison.Equals,
+                        WhereRightColumn = "100% - 119.99%",
+                    }
+
+                }
+            };
+
+            var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
+            var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
+            Assert.IsTrue(sqlFromQueryBuilder.Contains(@"SELECT  Mortgages.MortgageId,  Mortgages.LenderName,  Mortgages.MortgageId,  Property.State,  Persons.LastName  FROM Mortgages INNER JOIN BackBone ON BackBone.MortgageId = BackBone.MortgageId INNER JOIN Property ON BackBone.PropertyId = Property.PropertyId INNER JOIN Persons ON BackBone.PersonId = Persons.PersonId  WHERE  ((Persons.State = 'WA') AND (Property.State LIKE '%a%') AND (Mortgages.LoanToValueRange = '100% - 119.99%'))"));
+            Assert.IsTrue(ExecuteQuery(sqlFromQueryBuilder));
+
+        }
+
+        [TestMethod]
         public void InnerJoinTwoTablesGetAllColumnsFromOneTable()
         {
             var queryBuilderParms = new QueryBuilderParms
@@ -206,10 +424,10 @@ namespace OC2V1BusinessLayer_Tests
                             new WhereSubConditions
                             {
                                 Connector = LogicOperator.Or,
-                                WhereLeftColumn = "LoanType",
+                                WhereLeftColumn = "LenderName",
                                 WhereLeftTable = "Mortgages",
                                 CompareOperator = Comparison.Equals,
-                                WhereRightColumn = "SE"
+                                WhereRightColumn = "FROST BK"
                             }
                         }
                     }
@@ -218,7 +436,7 @@ namespace OC2V1BusinessLayer_Tests
             };
             var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
             var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
-            Assert.AreEqual(@"SELECT Mortgages.* FROM Mortgages INNER JOIN MortgateTypes ON Mortgages.MortgageType = MortgateTypes.MortgageType  WHERE  (Mortgages.LenderName = '.TD BK NA' OR Mortgages.LenderName = 'SE'", sqlFromQueryBuilder.Trim());
+            Assert.AreEqual(@"SELECT Mortgages.* FROM Mortgages INNER JOIN MortgateTypes ON Mortgages.MortgageType = MortgateTypes.MortgageType  WHERE  (Mortgages.LenderName = '.TD BK NA' OR Mortgages.LenderName = 'FROST BK')", sqlFromQueryBuilder.Trim());
             Assert.IsTrue(ExecuteQuery(sqlFromQueryBuilder));
         }
 

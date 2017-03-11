@@ -47,9 +47,9 @@ namespace CodeEngine.Framework.QueryBuilder
         public WhereClause Add(Enum field, Comparison @operator, object compareValue) { return this.Add(field.ToString(), @operator, compareValue, 1); }
         public WhereClause Add(string field, Comparison @operator, object compareValue, int level)
         {
-            WhereClause NewWhereClause = new WhereClause(field, @operator, compareValue);
-            this.AddWhereClauseToLevel(NewWhereClause, level);
-            return NewWhereClause;
+            WhereClause newWhereClause = new WhereClause(field, @operator, compareValue);
+            this.AddWhereClauseToLevel(newWhereClause, level);
+            return newWhereClause;
         }
 
         private void AddWhereClause(WhereClause clause)
