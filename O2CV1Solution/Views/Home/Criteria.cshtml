@@ -1,5 +1,8 @@
 ﻿@model O2V1Web.Models.ViewModels.CountsQueryModel
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
     ViewBag.Title = "Criteria";
 }
 
@@ -472,15 +475,17 @@
 @section Scripts {
     <script type="text/javascript">
         
-    
+        $(function () {
+            alert('');
+        });
 
 
         $(function () {
             $("#SelectedTable").change(function () {
                 var selectedItem = $(this).val();
-                var ddlColumns = $("#frmCriteria input[name=SelectColumns]");
-                var statesProgress = $("#columns-loading-progress");
-                statesProgress.show();
+                var ddlColumns = $("#SelectColumns");
+                var columnLoadProgress = $("#columns-loading-progress");
+                columnLoadProgress.show();
                 $.ajax({
                     cache: false,
                     type: "GET",
@@ -489,13 +494,13 @@
                     success: function (data) {
                         ddlColumns.html('');
                         $.each(data, function (id, option) {
-                            ddlColumns.append($('<option></option>').val(option.id).html(option.name));
+                            ddlColumns.append($('<option></option>').val(option.DropDownValue).html(option.DropDownDisplay));
                         });
-                        statesProgress.hide();
+                        columnLoadProgress.hide();
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         alert('Failed to retrieve columns for the table.');
-                        statesProgress.hide();
+                        columnLoadProgress.hide();
                     }
                 });
             });
