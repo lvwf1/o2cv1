@@ -20,15 +20,15 @@ namespace O2DataAccessTests
         [TestMethod]
         public void SchemaRepositoryReturnTableColumnInformationCities()
         {
-            var result = schemaRepository.GetSchemaTableAndColumns("Cities");
-            Assert.AreEqual(2,result.metaData.Count);
+            var result = schemaRepository.GetSchemaTableColumns("Cities");
+            Assert.AreEqual(2,result.MetaData.Count);
         }
 
         [TestMethod]
         public void SchemaRepositoryReturnTableColumnInformationMortgages()
         {
-            var result = schemaRepository.GetSchemaTableAndColumns("Mortgages");
-            Assert.AreEqual(14, result.metaData.Count);
+            var result = schemaRepository.GetSchemaTableColumns("Mortgages");
+            Assert.AreEqual(14, result.MetaData.Count);
         }
 
         [TestMethod]

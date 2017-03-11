@@ -11,9 +11,9 @@ namespace O2.DataMart.Models.SchemaModels
     {
         public TableSchemaModel()
         {
-            metaData = new List<TableMetaData>();
+            MetaData = new List<TableMetaData>();
         }
-        public List<TableMetaData> metaData { get; set; }
+        public List<TableMetaData> MetaData { get; set; }
         public string TableName { get; set; }
     }
 }

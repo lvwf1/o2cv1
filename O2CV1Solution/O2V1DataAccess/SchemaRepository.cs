@@ -21,7 +21,7 @@ namespace O2V1DataAccess
             _context = new O2DataMartLinqToSqlDataContext();
         }
 
-        public TableSchemaModel GetSchemaTableAndColumns(string tableName)
+        public TableSchemaModel GetSchemaTableColumns(string tableName)
         {
             var tableSchemaModel = new TableSchemaModel();
 
@@ -43,7 +43,7 @@ namespace O2V1DataAccess
                         IsPrimeKey = false,
                         DbType = colinfo[_colType].ToString()
                     };
-                    tableSchemaModel.metaData.Add(columnData);
+                    tableSchemaModel.MetaData.Add(columnData);
                 }
                 return tableSchemaModel;
             }
@@ -70,7 +70,7 @@ namespace O2V1DataAccess
                         DbType = colinfo.DbType,
                         Type = colinfo.Type
                     };
-                    tableSchemaModel.metaData.Add(columnData);
+                    tableSchemaModel.MetaData.Add(columnData);
                 }
                 tableSchemaModel.TableName = table.TableName;
                 mappedTables.TablesMapped.Add(tableSchemaModel);

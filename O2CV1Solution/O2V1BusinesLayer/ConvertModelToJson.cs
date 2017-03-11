@@ -40,7 +40,7 @@ namespace O2V1BusinesLayer
             {
 
 
-                TableSchemaModel columnData = schemaRepository.GetSchemaTableAndColumns(tableName);
+                TableSchemaModel columnData = schemaRepository.GetSchemaTableColumns(tableName);
                 var simpleQuery = new ComposedQuerySimple
                 {
                     root = new Root
@@ -54,7 +54,7 @@ namespace O2V1BusinesLayer
 
                 var columns = new List<Column>();
 
-                foreach (var item in columnData.metaData)
+                foreach (var item in columnData.MetaData)
                 {
                     var column = new Column
                     {

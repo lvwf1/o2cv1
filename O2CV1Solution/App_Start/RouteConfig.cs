@@ -14,10 +14,10 @@ namespace O2V1Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-            routes.MapRoute("GetStatesByCountryId",
-                           "address/getstatesbycountryid/",
-                           new { controller = "Address", action = "GetStatesByCountryId" },
-                           new[] { "CountryStateApplication.Controllers" });
+            routes.MapRoute("GetTableColumns",
+                           "home/gettablecolumns/",
+                           new { controller = "Home", action = "GetTableColumns" },
+                           new[] { "O2V1Web.Controllers" });
         }
     }
 }

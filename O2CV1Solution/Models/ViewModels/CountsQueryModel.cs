@@ -12,13 +12,13 @@ namespace O2V1Web.Models.ViewModels
     {
         public CountsQueryModel()
         {
-            _tables = new List<TableDropDownItem>();
-            _columns = new ListStack<ColumnDropDownItem>();
+            _tables = new List<DropDownItem>();
+            _columns = new ListStack<DropDownItem>();
             CriteriaModel = new CriteriaModel();
         }
 
-        public List<TableDropDownItem> _tables;
-        public List<ColumnDropDownItem> _columns;
+        public List<DropDownItem> _tables;
+        public List<DropDownItem> _columns;
         [Display(Name = "Datamart Tables")]
         [Required]
         public string SelectedTable { get; set; }
@@ -29,8 +29,8 @@ namespace O2V1Web.Models.ViewModels
             {
                 var allTables = _tables.Select(f => new SelectListItem
                 {
-                    Value = f.TableNameValue,
-                    Text = f.TableNameDisplay
+                    Value = f.DropDownValue,
+                    Text = f.DropDownDisplay
                 });
                 return allTables;
 
@@ -42,8 +42,8 @@ namespace O2V1Web.Models.ViewModels
             {
                 var allColumns = _columns.Select(f => new SelectListItem
                 {
-                    Value = f.ColumnNameValue,
-                    Text = f.ColumnNameDisplay
+                    Value = f.DropDownValue,
+                    Text = f.DropDownDisplay
                 });
                 return allColumns;
 

@@ -10,6 +10,7 @@ using Korzh.EasyQuery.Mvc;
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.Services.Db;
 using Korzh.Utils.Db;
+using O2.DataMart.Models.SchemaModels;
 using O2V1BusinesLayer;
 using O2V1DataAccess;
 using O2V1Web.Models.EFModels;
@@ -54,20 +55,20 @@ namespace O2V1Web.Controllers
             return new EmptyResult();
         }
 
-        private static List<TableDropDownItem> GetSelectListItems(IEnumerable<TableDropDownItem> elements)
+        private static List<DropDownItem> GetSelectListItems(IEnumerable<DropDownItem> elements)
         {
             // Create an empty list to hold result of the operation
-            var selectList = new List<TableDropDownItem>();
+            var selectList = new List<DropDownItem>();
 
             // For each string in the 'elements' variable, create a new SelectListItem object
             // that has both its Value and Text properties set to a particular value.
             // This will result in MVC rendering each item as:
             //     <option value="State Name">State Name</option>
             foreach (var element in elements)
-                selectList.Add(new TableDropDownItem
+                selectList.Add(new DropDownItem
                 {
-                    TableNameValue = element.TableNameValue,
-                    TableNameDisplay = element.TableNameDisplay
+                    DropDownDisplay = element.DropDownDisplay,
+                    DropDownValue = element.DropDownValue
                 });
 
             return selectList;
@@ -191,19 +192,31 @@ namespace O2V1Web.Controllers
             return View();
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult GetTableColumns(string tableName)
+        {
+            var columnsForTable = new List<DropDownItem>();
+            if (!ModelState.IsValid) return Json(columnsForTable, JsonRequestBehavior.AllowGet);
+            var tableSchemaModels = schemaRepository.GetSchemaTableColumns(tableName);
+            IEnumerable<DropDownItem> tempColumnList = tableSchemaModels.MetaData.Select(col =>  new DropDownItem
+            {
+                DropDownDisplay = col.Name,
+                DropDownValue = $"{col.DbType}|{tableName}"  
+            }).OrderBy(x => x.DropDownDisplay).ToList();
+
+            columnsForTable = GetSelectListItems(tempColumnList).ToList();
+            return Json(columnsForTable, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Criteria()
         {
             var tableNames = schemaRepository.GetSchemaTables();
-            
 
-            var tableDropDownItem = new TableDropDownItem();
-
-
-            IEnumerable<TableDropDownItem> temptablelist = tableNames.Select(name => new TableDropDownItem
+            IEnumerable<DropDownItem> temptablelist = tableNames.Select(name => new DropDownItem()
             {
-                TableNameDisplay = name,
-                TableNameValue = name
-            }).OrderBy(x => x.TableNameDisplay).ToList();
+                DropDownDisplay = name,
+                DropDownValue = name
+            }).OrderBy(x => x.DropDownDisplay).ToList();
 
             var model = new CountsQueryModel { _tables = GetSelectListItems(temptablelist) };
             model.CriteriaModel._criteria = BuildModelCriteria();
