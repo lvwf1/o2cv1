@@ -104,7 +104,7 @@ namespace O2V1BusinesLayer
        
             foreach (var clause in whereConditions)
             {
-                var myWhereClause = new WhereClause($"{clause.WhereLeftTable}.{clause.WhereLeftColumn}", clause.WhereOperator, $"{clause.WhereRightTable}.{clause.WhereRightColumn}");
+                var myWhereClause = new WhereClause($"{clause.WhereLeftTable}.{clause.WhereLeftColumn}", clause.WhereOperator, $"{clause.WhereRightTable}.{clause.WhereRightColumn}", clause.WhereAndOr);
 
                 if (clause.SubClauses?.Count > 0)
                 {
@@ -119,7 +119,7 @@ namespace O2V1BusinesLayer
                 else
                 {
                     query.AddWhere($"{clause.WhereLeftTable}.{clause.WhereLeftColumn}", clause.WhereOperator,
-                        clause.WhereLiteral ?? clause.WhereRightColumn);
+                        clause.WhereLiteral ?? clause.WhereRightColumn, clause.WhereAndOr);
                 }
 
             }

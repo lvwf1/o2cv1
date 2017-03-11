@@ -55,7 +55,15 @@
   <ItemGroup>
     <Compile Include="AdoRepository.cs" />
     <Compile Include="CitiesRepository.cs" />
-    <Compile Include="ISchemaRepository.cs" />
+    <Compile Include="Criteria\Criteria.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Criteria.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Criteria\CriteriaRepository.cs" />
+    <Compile Include="Interfaces\IDataContextFactory.cs" />
+    <Compile Include="Interfaces\ILinqToSqlRepository.cs" />
+    <Compile Include="Interfaces\ISchemaRepository.cs" />
     <Compile Include="O2DataMartLinqToSql.designer.cs" />
     <Compile Include="O2DataMartLinqToSql1.designer.cs">
       <AutoGen>True</AutoGen>
@@ -75,6 +83,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="Criteria\Criteria.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Criteria.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="O2DataMartLinqToSql.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>O2DataMartLinqToSql1.designer.cs</LastGenOutput>
@@ -97,6 +110,17 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Criteria\Criteria.dbml.layout">
+      <DependentUpon>Criteria.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\O2CV1EntityDtos\O2CV1EntityDtos.csproj">
+      <Project>{32bc9f5f-5330-4eb7-a732-9fe750d133fa}</Project>
+      <Name>O2CV1EntityDtos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,9 +21,6 @@ namespace CodeEngine.Framework.QueryBuilder.Clauses
     /// </summary>
     public struct WhereClause
     {
-        private string m_FieldName;
-        private Comparison m_ComparisonOperator;
-        private object m_Value;
         internal struct SubClause
         {
             public LogicOperator LogicOperator;
@@ -41,35 +38,26 @@ namespace CodeEngine.Framework.QueryBuilder.Clauses
         /// <summary>
         /// Gets/sets the name of the database column this WHERE clause should operate on
         /// </summary>
-        public string FieldName
-        {
-            get { return m_FieldName; }
-            set { m_FieldName = value; }
-        }
+        public string FieldName { get; set; }
 
         /// <summary>
         /// Gets/sets the comparison method
         /// </summary>
-        public Comparison ComparisonOperator
-        {
-            get { return m_ComparisonOperator; }
-            set { m_ComparisonOperator = value; }
-        }
+        public Comparison ComparisonOperator { get; set; }
+
+        public LogicOperator WhereConnectorOperator { get; set; }
 
         /// <summary>
         /// Gets/sets the value that was set for comparison
         /// </summary>
-        public object Value
-        {
-            get { return m_Value; }
-            set { m_Value = value; }
-        }
+        public object Value { get; set; }
 
-        public WhereClause(string field, Comparison firstCompareOperator, object firstCompareValue)
+        public WhereClause(string field, Comparison firstCompareOperator, object firstCompareValue, LogicOperator whereConnectorOperator)
         {
-            m_FieldName = field;
-            m_ComparisonOperator = firstCompareOperator;
-            m_Value = firstCompareValue;
+            FieldName = field;
+            ComparisonOperator = firstCompareOperator;
+            Value = firstCompareValue;
+            WhereConnectorOperator = whereConnectorOperator;
             SubClauses = new List<SubClause>();
         }
         public void AddClause(LogicOperator logic, Comparison compareOperator, object compareValue)

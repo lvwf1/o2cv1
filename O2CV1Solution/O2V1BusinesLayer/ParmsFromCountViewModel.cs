@@ -5,9 +5,9 @@ namespace O2V1BusinesLayer
 {
     public class ParmsFromCountViewModel
     {
-        public QueryBuilderParms GetQueryParmFromCountView(ICountsQueryModel countQuerModel)
+        public QueryBuilderParms GetQueryParmFromCountView(string selectedTable)
         {
-            var queryBuilderParms = new QueryBuilderParms {PrimaryTable = countQuerModel.SelectedTable};
+            var queryBuilderParms = new QueryBuilderParms {PrimaryTable = selectedTable};
             return queryBuilderParms;
         }
     }

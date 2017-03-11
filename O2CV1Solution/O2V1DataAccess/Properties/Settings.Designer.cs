@@ -34,5 +34,17 @@ namespace O2V1DataAccess.Properties {
                 return ((string)(this["DataMartConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=69.61.83.205;Initial Catalog=DataMart;User ID=admin;Password=!ewareat" +
+            "l7;MultipleActiveResultSets=True;Connect Timeout=60;Encrypt=True;TrustServerCert" +
+            "ificate=True;Application Name=EntityFramework")]
+        public string DataMartConnectionString1 {
+            get {
+                return ((string)(this["DataMartConnectionString1"]));
+            }
+        }
     }
 }

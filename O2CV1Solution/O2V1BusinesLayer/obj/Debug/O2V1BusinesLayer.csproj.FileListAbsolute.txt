@@ -24,3 +24,5 @@ C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\Ne
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1BusinesLayer\obj\Debug\O2V1BusinesLayer.csprojResolveAssemblyReference.cache
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1BusinesLayer\obj\Debug\O2V1BusinesLayer.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1BusinesLayer\obj\Debug\O2V1BusinesLayer.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\O2CV1EntityDtos.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1BusinesLayer\bin\Debug\O2CV1EntityDtos.pdb

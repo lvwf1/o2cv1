@@ -3,17 +3,23 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using O2.DataMart.Models.SchemaModels;
+using O2V1DataAccess.Interfaces;
 using O2V1DataAccess.SchemaModels;
 
 namespace O2V1DataAccess
 {
-    public class SchemaRepository
+    public class SchemaRepository : ISchemaRepository
     {
         private readonly int _colName = 3;
         private readonly int _colType = 7;
         private readonly string _connectionString;
         private readonly O2DataMartLinqToSqlDataContext _context;
         private readonly int _tblName = 2;
+
+        private readonly List<string> _backBoneTables = new List<string>
+        {
+            "Feee", "Property", "Person", "Mortgage"
+        };
 
         public SchemaRepository(string connectionString)
         {
@@ -87,6 +93,29 @@ namespace O2V1DataAccess
                 var schema = connection.GetSchema("Tables");
                 return (from DataRow row in schema.Rows select row[_tblName].ToString()).ToList();
             }
+        }
+
+        public TableSchemaModel GetSchemaTableAndColumns(string tableName)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<string> GetSchemaBackBoneRelatedTables()
+        {
+            var tableNames = new List<string>();
+
+            var backBoneColumns = GetSchemaTableColumns("BackBone");
+
+            if (!(backBoneColumns?.TableName.Length > 0)) return tableNames;
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                var schema = connection.GetSchema("Tables");
+
+                // return (from DataRow row in schema.Rows select row[_tblName].ToString()).ToList())
+                tableNames.AddRange(from DataRow row in schema.Rows where _backBoneTables.Contains(row[_tblName].ToString().Trim()) select row[_tblName].ToString());
+            }
+            return tableNames;
         }
     }
 }

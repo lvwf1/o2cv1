@@ -16,3 +16,5 @@ C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\obj\Debug\O2V1DataAccessTests.csprojResolveAssemblyReference.cache
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\obj\Debug\O2V1DataAccessTests.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\obj\Debug\O2V1DataAccessTests.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2CV1EntityDtos.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccessTests\bin\Debug\O2CV1EntityDtos.pdb

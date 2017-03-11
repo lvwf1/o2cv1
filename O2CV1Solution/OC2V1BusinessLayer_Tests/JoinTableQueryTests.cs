@@ -128,7 +128,7 @@ namespace OC2V1BusinessLayer_Tests
 
             var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
             var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
-            Assert.IsTrue(sqlFromQueryBuilder.Contains(@"SELECT  Mortgages.MortgageId,  Mortgages.LenderName,  Mortgages.MortgageId,  Property.State,  Persons.LastName  FROM Mortgages INNER JOIN BackBone ON BackBone.MortgageId = BackBone.MortgageId INNER JOIN Property ON BackBone.PropertyId = Property.PropertyId INNER JOIN Persons ON BackBone.PersonId = Persons.PersonId  WHERE  ((Persons.State = 'WA') AND (Property.State LIKE '%a%') AND (Mortgages.LoanToValueRange = '100% - 119.99%'))"));
+            Assert.IsTrue(sqlFromQueryBuilder.Trim().Contains(@"SELECT  Mortgages.MortgageId,  Mortgages.LenderName,  Mortgages.MortgageId,  Property.State,  Persons.LastName  FROM Mortgages INNER JOIN BackBone ON BackBone.MortgageId = BackBone.MortgageId INNER JOIN Property ON BackBone.PropertyId = Property.PropertyId INNER JOIN Persons ON BackBone.PersonId = Persons.PersonId  WHERE  ((Persons.State = 'WA') OR (Property.State LIKE '%a%') OR (Mortgages.LoanToValueRange = '100% - 119.99%'))"));
             Assert.IsTrue(ExecuteQuery(sqlFromQueryBuilder));
 
         }

@@ -43,11 +43,11 @@ namespace CodeEngine.Framework.QueryBuilder
         {
             this.AddWhereClauseToLevel(clause, level);
         }
-        public WhereClause Add(string field, Comparison @operator, object compareValue) { return this.Add(field, @operator, compareValue, 1); }
-        public WhereClause Add(Enum field, Comparison @operator, object compareValue) { return this.Add(field.ToString(), @operator, compareValue, 1); }
-        public WhereClause Add(string field, Comparison @operator, object compareValue, int level)
+        public WhereClause Add(string field, Comparison @operator, object compareValue, LogicOperator whereConnectorLogicalOperator) { return this.Add(field, @operator, compareValue, 1, whereConnectorLogicalOperator); }
+        public WhereClause Add(Enum field, Comparison @operator, object compareValue, LogicOperator whereConnectorLogicalOperator) { return this.Add(field.ToString(), @operator, compareValue, 1, whereConnectorLogicalOperator); }
+        public WhereClause Add(string field, Comparison @operator, object compareValue, int level, LogicOperator whereConnectorLogicalOperator)
         {
-            WhereClause newWhereClause = new WhereClause(field, @operator, compareValue);
+            WhereClause newWhereClause = new WhereClause(field, @operator, compareValue, whereConnectorLogicalOperator);
             this.AddWhereClauseToLevel(newWhereClause, level);
             return newWhereClause;
         }
@@ -134,7 +134,7 @@ namespace CodeEngine.Framework.QueryBuilder
                             WhereClause += CreateComparisonClause(Clause.FieldName, SubWhereClause.ComparisonOperator, SubWhereClause.Value);
                         }
                     }
-                    LevelWhere += "(" + WhereClause + ") AND ";
+                    LevelWhere += "(" + WhereClause + ") " + Clause.WhereConnectorOperator.ToString().ToUpper() + " ";
                 }
                 LevelWhere = LevelWhere.Substring(0, LevelWhere.Length - 5); // Trim de last AND inserted by foreach loop
                 if (WhereStatement.Count > 1)
@@ -265,7 +265,7 @@ namespace CodeEngine.Framework.QueryBuilder
                 result.Add(new List<WhereClause>());
                 foreach (WhereClause clause in statement[currentLevel - 1])
                 {
-                    WhereClause clauseCopy = new WhereClause(clause.FieldName, clause.ComparisonOperator, clause.Value);
+                    WhereClause clauseCopy = new WhereClause(clause.FieldName, clause.ComparisonOperator, clause.Value, clause.WhereConnectorOperator);
                     foreach (WhereClause.SubClause subClause in clause.SubClauses)
                     {
                         WhereClause.SubClause subClauseCopy = new WhereClause.SubClause(subClause.LogicOperator, subClause.ComparisonOperator, subClause.Value);

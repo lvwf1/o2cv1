@@ -137,13 +137,13 @@ namespace CodeEngine.Framework.QueryBuilder
         {
             _whereStatement.Add(clause, level);
         }
-        public WhereClause AddWhere(string field, Comparison @operator, object compareValue) { return AddWhere(field, @operator, compareValue, 1); }
-        public WhereClause AddWhere(Enum field, Comparison @operator, object compareValue) { return AddWhere(field.ToString(), @operator, compareValue, 1); }
-        public WhereClause AddWhere(string field, Comparison @operator, object compareValue, int level)
+        public WhereClause AddWhere(string field, Comparison @operator, object compareValue, LogicOperator whereLogicOperator) { return AddWhere(field, @operator, compareValue, 1, whereLogicOperator); }
+        public WhereClause AddWhere(Enum field, Comparison @operator, object compareValue, LogicOperator whereLogicOperator) { return AddWhere(field.ToString(), @operator, compareValue, 1, whereLogicOperator); }
+        public WhereClause AddWhere(string field, Comparison @operator, object compareValue, int level, LogicOperator whereLogicOperator)
         {
-            WhereClause NewWhereClause = new WhereClause(field, @operator, compareValue);
-            _whereStatement.Add(NewWhereClause, level);
-            return NewWhereClause;
+            WhereClause newWhereClause = new WhereClause(field, @operator, compareValue, whereLogicOperator);
+            _whereStatement.Add(newWhereClause, level);
+            return newWhereClause;
         }
 
         public void AddOrderBy(OrderByClause clause)
@@ -176,11 +176,11 @@ namespace CodeEngine.Framework.QueryBuilder
         {
             _havingStatement.Add(clause, level);
         }
-        public WhereClause AddHaving(string field, Comparison @operator, object compareValue) { return AddHaving(field, @operator, compareValue, 1); }
-        public WhereClause AddHaving(Enum field, Comparison @operator, object compareValue) { return AddHaving(field.ToString(), @operator, compareValue, 1); }
-        public WhereClause AddHaving(string field, Comparison @operator, object compareValue, int level)
+        public WhereClause AddHaving(string field, Comparison @operator, object compareValue, LogicOperator whereLogicOperator) { return AddHaving(field, @operator, compareValue, 1, whereLogicOperator); }
+        public WhereClause AddHaving(Enum field, Comparison @operator, object compareValue, LogicOperator whereLogicOperator) { return AddHaving(field.ToString(), @operator, compareValue, 1, whereLogicOperator); }
+        public WhereClause AddHaving(string field, Comparison @operator, object compareValue, int level, LogicOperator whereLogicOperator)
         {
-            WhereClause NewWhereClause = new WhereClause(field, @operator, compareValue);
+            WhereClause NewWhereClause = new WhereClause(field, @operator, compareValue, whereLogicOperator);
             _havingStatement.Add(NewWhereClause, level);
             return NewWhereClause;
         }

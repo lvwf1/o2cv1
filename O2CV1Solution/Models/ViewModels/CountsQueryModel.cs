@@ -8,7 +8,7 @@ using O2V1Web.Models.O2V1DataMartContext;
 
 namespace O2V1Web.Models.ViewModels
 {
-    public class CountsQueryModel : ICountsQueryModel
+    public class CountsQueryModel
     {
         public CountsQueryModel()
         {

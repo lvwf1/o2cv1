@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace O2DataAccess
+namespace O2V1DataAccess
 {
     public abstract class AdoRepository<T> where T : class
     {

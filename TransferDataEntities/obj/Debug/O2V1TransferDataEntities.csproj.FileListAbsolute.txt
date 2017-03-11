@@ -1,0 +1,6 @@
+C:\Cloud88Projects\Development\O2CV1\TransferDataEntities\bin\Debug\TransferDataEntities.dll
+C:\Cloud88Projects\Development\O2CV1\TransferDataEntities\bin\Debug\TransferDataEntities.pdb
+C:\Cloud88Projects\Development\O2CV1\TransferDataEntities\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Cloud88Projects\Development\O2CV1\TransferDataEntities\obj\Debug\O2V1TransferDataEntities.csprojResolveAssemblyReference.cache
+C:\Cloud88Projects\Development\O2CV1\TransferDataEntities\obj\Debug\TransferDataEntities.dll
+C:\Cloud88Projects\Development\O2CV1\TransferDataEntities\obj\Debug\TransferDataEntities.pdb

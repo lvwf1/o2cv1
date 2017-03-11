@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -11,8 +13,10 @@ using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.Services.Db;
 using Korzh.Utils.Db;
 using O2.DataMart.Models.SchemaModels;
+using O2CV1EntityDtos;
 using O2V1BusinesLayer;
 using O2V1DataAccess;
+using O2V1DataAccess.Criteria;
 using O2V1Web.Models.EFModels;
 using O2V1Web.Models.ViewModels;
 
@@ -22,6 +26,7 @@ namespace O2V1Web.Controllers
     {
         private readonly EqServiceProviderDb eqService;
         private readonly SchemaRepository schemaRepository;
+        private readonly string _dbConnectionString;
 
         public HomeController()
         {
@@ -35,9 +40,9 @@ namespace O2V1Web.Controllers
                 }
             };
 
-            var dbConnectionString = ConfigurationManager.ConnectionStrings[@"O2DataMart"].ConnectionString;
-            eqService.Connection = new SqlConnection(dbConnectionString);
-            eqService.Connection = new SqlConnection(dbConnectionString);
+            _dbConnectionString = ConfigurationManager.ConnectionStrings[@"O2DataMart"].ConnectionString;
+            eqService.Connection = new SqlConnection(_dbConnectionString);
+            eqService.Connection = new SqlConnection(_dbConnectionString);
 
             schemaRepository = new SchemaRepository(eqService.Connection.ConnectionString);
         }
@@ -283,8 +288,18 @@ namespace O2V1Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                QueryDto queryDto;
+                CriteriaDto criteriaDto;
+                CreateQueryAndFirstCriteria(model, out queryDto, out criteriaDto);
+
+                var criteriaRepository = new CriteriaRepository(_dbConnectionString);
+
+                criteriaRepository.AddQueryAndFirstCriteriaToQuery(queryDto, criteriaDto);
+
+
+
                 var parmsFromCountViewModel = new ParmsFromCountViewModel();
-                var queryBuilderParms = parmsFromCountViewModel.GetQueryParmFromCountView(model);
+                var queryBuilderParms = parmsFromCountViewModel.GetQueryParmFromCountView(model.SelectedTable);
                 var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
                 var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
 
@@ -311,6 +326,34 @@ namespace O2V1Web.Controllers
                 //return Json(dict);
             }
             return Redirect("Index");
+        }
+
+        private void CreateQueryAndFirstCriteria(CountsQueryModel model, out QueryDto queryDto, out CriteriaDto criteriaDto)
+        {
+            queryDto = new QueryDto
+            {
+                CreatedBy = User.Identity.Name,
+                Deleted = false,
+                Description = "Abcd 1",
+                QueryName = Guid.NewGuid().ToString()
+            };
+
+            criteriaDto = new CriteriaDto
+            {
+                CompareOperator = model.CriteriaModel.SelectedCriteria,
+                CompareValue = model.CriteriaModel.CriteriaCompareValue,
+                Createdby = User.Identity.Name,
+                Description =
+                    $"{model.SelectedTable} {model.SelectedColumn} {model.CriteriaModel.SelectedCriteria} {model.CriteriaModel.CriteriaCompareValue}",
+                Disabled = false,
+                Name =
+                    $"{model.SelectedTable} {model.SelectedColumn} {model.CriteriaModel.SelectedCriteria} {model.CriteriaModel.CriteriaCompareValue}",
+                QueryTable = model.SelectedTable,
+                Sequence = 1,
+                TableColumn = model.SelectedTable
+            };
+
+        Redirect("Index");
         }
 
         /// <summary>
