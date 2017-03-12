@@ -15,6 +15,7 @@ namespace O2V1Web.Models.ViewModels
             _tables = new List<DropDownItem>();
             _columns = new ListStack<DropDownItem>();
             CriteriaModel = new CriteriaModel();
+            QueryCriteria = new List<CriteriaGridViewModel>();
         }
 
         public List<DropDownItem> _tables;
@@ -26,6 +27,9 @@ namespace O2V1Web.Models.ViewModels
         [Display(Name = "Column")]
         [Required]
         public string SelectedColumn { get; set; }
+        [Required]
+        public string QueryName { get; set; }
+        public string QueryId { get; set; }
 
         public IEnumerable<SelectListItem> SelectTables
         {
@@ -55,6 +59,8 @@ namespace O2V1Web.Models.ViewModels
         }
 
         public CriteriaModel CriteriaModel { get; set; }
+        public List<CriteriaGridViewModel> QueryCriteria { get; set; }
+
 
     }
 }

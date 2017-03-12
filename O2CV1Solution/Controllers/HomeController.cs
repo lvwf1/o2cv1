@@ -223,12 +223,14 @@ namespace O2V1Web.Controllers
                 DropDownValue = name
             }).OrderBy(x => x.DropDownDisplay).ToList();
 
-            var model = new CountsQueryModel { _tables = GetSelectListItems(temptablelist) };
-            model.CriteriaModel._criteria = BuildModelCriteria();
+            var model = new CountsQueryModel
+            {
+                _tables = GetSelectListItems(temptablelist),
+                QueryId = "0",
+                QueryName = string.Empty,
+                CriteriaModel = {_criteria = BuildModelCriteria()}
+            };
             ViewBag.temptablelist = temptablelist;
-
-
-
             return View(model);
         }
 
@@ -292,19 +294,22 @@ namespace O2V1Web.Controllers
                 CriteriaDto criteriaDto;
                 BuildDtosForCriteriaAdd(model, out queryDto, out criteriaDto);
                 var criteriaBusiness = new CriteriaBusiness(_dbConnectionString);
-                var returnValue = criteriaBusiness.CreateNextCriteriaForQuery(queryDto, criteriaDto);
+                var queryId = criteriaBusiness.CreateNextCriteriaForQuery(queryDto, criteriaDto);
+                model.QueryId = queryId;
+                queryDto.QueryId = queryId;
 
-                var parmsFromCountViewModel = new ParmsFromCountViewModel();
-                var queryBuilderParms = parmsFromCountViewModel.GetQueryParmFromCountView(model.SelectedTable);
-                var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
-                var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
+                //var parmsFromCountViewModel = new ParmsFromCountViewModel();
+                //var queryBuilderParms = parmsFromCountViewModel.GetQueryParmFromCountView(model.SelectedTable);
+                //var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
+                //var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
 
+                ResetCountsQueryModel(criteriaDto, queryDto, model);
 
                 //string sqlReturned = queryBuilderWithJoin();
 
                 //Dictionary<string, object> dict = new Dictionary<string, object>();
                 //dict.Add("statement", sqlReturned);
-                return Content(sqlFromQueryBuilder);
+                return View("Criteria", model);
 
                 //var look = model.SelectedTable;
 
@@ -324,6 +329,39 @@ namespace O2V1Web.Controllers
             return Redirect("Index");
         }
 
+        private void ResetCountsQueryModel(CriteriaDto criteriaDto, QueryDto queryDto, CountsQueryModel model)
+        {
+            var tableNames = schemaRepository.GetSchemaTables();
+
+            IEnumerable<DropDownItem> temptablelist = tableNames.Select(name => new DropDownItem()
+            {
+                DropDownDisplay = name,
+                DropDownValue = name
+            }).OrderBy(x => x.DropDownDisplay).ToList();
+
+            model.SelectedTable = criteriaDto.TableName;
+            model.QueryId = queryDto.QueryId;
+
+            model._tables = GetSelectListItems(temptablelist);
+            model.QueryId = queryDto.QueryId;
+            model.QueryName = string.Empty;
+            model.CriteriaModel = new CriteriaModel();
+            model.CriteriaModel._criteria = BuildModelCriteria();
+            ViewBag.temptablelist = temptablelist;
+
+            var columnsForTable = new List<DropDownItem>();
+             var tableSchemaModels = schemaRepository.GetSchemaTableColumns(criteriaDto.TableName);
+            IEnumerable<DropDownItem> tempColumnList = tableSchemaModels.MetaData.Select(col => new DropDownItem
+            {
+                DropDownDisplay = col.Name,
+                DropDownValue = $"{criteriaDto.TableName}.{col.Name}"
+            }).OrderBy(x => x.DropDownDisplay).ToList();
+
+            model._columns = tempColumnList.ToList();
+
+
+        }
+
         private void BuildDtosForCriteriaAdd(CountsQueryModel model, out QueryDto queryDto, out CriteriaDto criteriaDto)
         {
             queryDto = new QueryDto
@@ -331,7 +369,8 @@ namespace O2V1Web.Controllers
                 CreatedBy = User.Identity.Name,
                 Deleted = false,
                 Description = "Abcd 1",
-                QueryName = Guid.NewGuid().ToString()
+                QueryName = model.QueryName
+                
             };
 
             criteriaDto = new CriteriaDto
@@ -339,17 +378,15 @@ namespace O2V1Web.Controllers
                 CompareOperator = model.CriteriaModel.SelectedCriteria,
                 CompareValue = model.CriteriaModel.CriteriaCompareValue,
                 Createdby = User.Identity.Name,
+                
                 TableName = model.SelectedTable,
                 Description =
                     $"{model.SelectedTable} {model.SelectedColumn} {model.CriteriaModel.SelectedCriteria} {model.CriteriaModel.CriteriaCompareValue}",
                 Disabled = false,
                 Name =
                     $"{model.SelectedTable} {model.SelectedColumn} {model.CriteriaModel.SelectedCriteria} {model.CriteriaModel.CriteriaCompareValue}",
-                QueryTable = model.SelectedTable,
                 TableColumn = model.SelectedColumn
             };
-
-        Redirect("Index");
         }
 
         /// <summary>

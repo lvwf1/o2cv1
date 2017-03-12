@@ -6,8 +6,6 @@
         public string CreatedBy { get; set; }
         public bool Deleted { get; set; }
         public string Description { get; set; }
-
-      
-
+        public string QueryId { get; set; }
     }
 }

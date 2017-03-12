@@ -18,7 +18,7 @@ namespace O2V1BusinesLayer
             _dbConnectionString = connectionString;
         }
 
-        public Int64 CreateNextCriteriaForQuery(QueryDto queryDto, CriteriaDto criteriaDto )
+        public string CreateNextCriteriaForQuery(QueryDto queryDto, CriteriaDto criteriaDto )
         {
 
             var criteriaRepository = new CriteriaRepository(_dbConnectionString);
@@ -34,7 +34,7 @@ namespace O2V1BusinesLayer
                 criteriaRepository.AddQueryAndFirstCriteriaToQuery(queryDto, criteriaDto);
             }
 
-            return 0;
+           return criteriaRepository.GetIdOfQuery(queryDto.QueryName);
         }
     }
 

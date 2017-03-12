@@ -82,34 +82,57 @@
                                         @Html.ValidationMessageFor(model => model.SelectedColumn)
                                         <div class="grid">
 
-                                            <div class="row">
-                                                <div class="col-sm-2">
-                                                    <div>
-
-                                                        <label class="control-label" for="basicinput">Select Table </label>
-
-                                                    </div>
-                                                </div>
-                                                    <div class="col-sm-2">
-                                                        
-                                                        <div>
-
-                                                            <label class="control-label" for="basicinput">Select Column </label>
-
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <div>
+                                                                <div>
+                                                                    <label class="control-label" for="basicinput">Query Name </label>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    @Html.TextBoxFor(model => model.QueryName)
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <div>
+                                                                <div>
+                                                                    <label class="control-label" for="basicinput">Query Id </label>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    @Html.TextBoxFor(model => model.QueryId, new { @readonly = "readonly" })
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                 
-                                                 
-                                            </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <div>
+
+                                                                <label class="control-label" for="basicinput">Select Table </label>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-2">
+
+                                                            <div>
+
+                                                                <label class="control-label" for="basicinput">Select Column </label>
+
+                                                            </div>
+                                                        </div>
 
 
-                                            <div class="row">
-                                                <div class="col-sm-2">
-                                                    <div>
+                                                    </div>
 
-                                                        @Html.DropDownListFor(model => model.SelectedTable, // 1. Store selected value in Model.SelectedTable;
-                                                                                                // when page is rendered after postback,
-                                                                                                // take selected value from Model.SelectedTable.
+
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <div>
+
+                                                                @Html.DropDownListFor(model => model.SelectedTable, // 1. Store selected value in Model.SelectedTable;
+                                                                                                            // when page is rendered after postback,
+                                                                                                            // take selected value from Model.SelectedTable.
 
                                                             // 2. Take list of values from Model.States
                                                             Model.SelectTables,
@@ -119,15 +142,15 @@
 
                                                             //4. A class name to assign to <select> tag
                                                             new { @class = "form-control" })
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <div>
 
 
-                                                        @Html.DropDownListFor(model => model.SelectedColumn, // 1. Store selected value in Model.SelectedTable;
-                                                                                                            // when page is rendered after postback,
-                                                                                                            // take selected value from Model.SelectedTable.
+                                                                @Html.DropDownListFor(model => model.SelectedColumn, // 1. Store selected value in Model.SelectedTable;
+                                                                                                             // when page is rendered after postback,
+                                                                                                             // take selected value from Model.SelectedTable.
 
                                                             // 2. Take list of values from Model.States
                                                             Model.SelectColumns,
@@ -137,18 +160,18 @@
 
                                                             //4. A class name to assign to <select> tag
                                                             new { @class = "form-control" })
-                                                    </div>
-                                                    <span id="columns-loading-progress" style="display: none;">Please wait..</span>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    @Html.TextAreaFor(m => m.CriteriaModel.SelectedCriteria, new { @readonly = "readonly", id = "txtCriteriaSelected" })
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <div>
+                                                            </div>
+                                                            <span id="columns-loading-progress" style="display: none;">Please wait..</span>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            @Html.TextAreaFor(m => m.CriteriaModel.SelectedCriteria, new { @readonly = "readonly", id = "txtCriteriaSelected" })
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <div>
 
-                                                        @Html.DropDownListFor(model => model.CriteriaModel.SelectedCriteria, // 1. Store selected value in Model.SelectedTable;
-                                                                                                                           // when page is rendered after postback,
-                                                                                                                           // take selected value from Model.SelectedTable.
+                                                                @Html.DropDownListFor(model => model.CriteriaModel.SelectedCriteria, // 1. Store selected value in Model.SelectedTable;
+                                                                                                                             // when page is rendered after postback,
+                                                                                                                             // take selected value from Model.SelectedTable.
 
                                                             // 2. Take list of values from Model.States
                                                             Model.CriteriaModel.SelectCriteria,
@@ -158,29 +181,31 @@
 
                                                             //4. A class name to assign to <select> tag
                                                             new { @class = "form-control" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            @Html.TextBoxFor(model => model.CriteriaModel.CriteriaCompareValue)
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    @Html.TextBoxFor(model => model.CriteriaModel.CriteriaCompareValue)
-                                                </div>
-                                            </div>
 
 
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <div class="col-md-3 form-group pull-left">
-                                                        <input type="submit" value="Add Criteria" class="btn btn-default" />
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <div class="col-md-3 form-group pull-left">
+                                                                <input type="submit" value="Add Criteria" class="btn btn-default" />
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
+
+                                                @Html.ValidationSummary(true)
+
                                             </div>
+
+                                            @Html.HiddenFor(model => model.QueryId)
+                                            @Html.HiddenFor(model => model.QueryName)
+
                                         </div>
-
-                                        @Html.ValidationSummary(true)
-
-                                    </div>
-
-
-                                </div>
                             }
                         </div>
                     </div>

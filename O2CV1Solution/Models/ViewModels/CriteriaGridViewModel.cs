@@ -1,13 +1,14 @@
 ﻿using System;
 
-namespace O2CV1EntityDtos
+namespace O2V1Web.Models.ViewModels
 {
-    public class CriteriaDto
+    public class CriteriaGridViewModel
     {
-        public CriteriaDto()
+        public CriteriaGridViewModel()
         {
 
         }
+        public Int64 QueryId { get; set; }
         public int Sequence { get; set; }
         public string TableColumn { get; set; }
         public string TableName { get; set; }
@@ -16,9 +17,7 @@ namespace O2CV1EntityDtos
         public string Description { get; set; }
         public string Name { get; set; }
         public bool Disabled { get; set; }
-        public string Createdby { get; set; }
-        public string Updatedby { get; set; }
-        public DateTime UpdatedDate { get; set; }
+
 
     }
 }
