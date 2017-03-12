@@ -290,13 +290,9 @@ namespace O2V1Web.Controllers
             {
                 QueryDto queryDto;
                 CriteriaDto criteriaDto;
-                CreateQueryAndFirstCriteria(model, out queryDto, out criteriaDto);
-
-                var criteriaRepository = new CriteriaRepository(_dbConnectionString);
-
-                criteriaRepository.AddQueryAndFirstCriteriaToQuery(queryDto, criteriaDto);
-
-
+                BuildDtosForCriteriaAdd(model, out queryDto, out criteriaDto);
+                var criteriaBusiness = new CriteriaBusiness(_dbConnectionString);
+                var returnValue = criteriaBusiness.CreateNextCriteriaForQuery(queryDto, criteriaDto);
 
                 var parmsFromCountViewModel = new ParmsFromCountViewModel();
                 var queryBuilderParms = parmsFromCountViewModel.GetQueryParmFromCountView(model.SelectedTable);
@@ -328,7 +324,7 @@ namespace O2V1Web.Controllers
             return Redirect("Index");
         }
 
-        private void CreateQueryAndFirstCriteria(CountsQueryModel model, out QueryDto queryDto, out CriteriaDto criteriaDto)
+        private void BuildDtosForCriteriaAdd(CountsQueryModel model, out QueryDto queryDto, out CriteriaDto criteriaDto)
         {
             queryDto = new QueryDto
             {
@@ -343,14 +339,14 @@ namespace O2V1Web.Controllers
                 CompareOperator = model.CriteriaModel.SelectedCriteria,
                 CompareValue = model.CriteriaModel.CriteriaCompareValue,
                 Createdby = User.Identity.Name,
+                TableName = model.SelectedTable,
                 Description =
                     $"{model.SelectedTable} {model.SelectedColumn} {model.CriteriaModel.SelectedCriteria} {model.CriteriaModel.CriteriaCompareValue}",
                 Disabled = false,
                 Name =
                     $"{model.SelectedTable} {model.SelectedColumn} {model.CriteriaModel.SelectedCriteria} {model.CriteriaModel.CriteriaCompareValue}",
                 QueryTable = model.SelectedTable,
-                Sequence = 1,
-                TableColumn = model.SelectedTable
+                TableColumn = model.SelectedColumn
             };
 
         Redirect("Index");

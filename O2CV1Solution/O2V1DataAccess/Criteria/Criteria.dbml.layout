@@ -2,23 +2,23 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Criteria">
   <DataContextMoniker Name="/CriteriaDataContext" />
   <nestedChildShapes>
-    <classShape Id="d7860259-5093-4637-a9ce-0e61a40f1034" absoluteBounds="3.5, 1, 2, 3.8862125651041666">
-      <DataClassMoniker Name="/CriteriaDataContext/O2CVQueryCriteria" />
-      <nestedChildShapes>
-        <elementListCompartment Id="b05776a5-a3be-4d4d-b201-b92f91cb6cb5" absoluteBounds="3.515, 1.46, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="6aafd674-9a40-49a3-8061-49181950aa3e" absoluteBounds="0.75, 1.75, 2, 2.347801106770834">
+    <classShape Id="c24e2b18-ae94-4e6a-b72a-985d3ad7ddea" absoluteBounds="2, 1.5, 2, 2.3478011067708335">
       <DataClassMoniker Name="/CriteriaDataContext/O2CVQuery" />
       <nestedChildShapes>
-        <elementListCompartment Id="59b4cdcf-ce82-4ba3-a51e-962959644574" absoluteBounds="0.765, 2.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="6debbd99-cbf0-4b75-8768-1fcd185ee39b" absoluteBounds="2.015, 1.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 2.92390055338542); (3.5 : 2.92390055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="5e0edec9-c5de-49af-80d6-636bfe608907" absoluteBounds="6.125, 1, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/CriteriaDataContext/O2CVQueryCriteria" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4ba70121-777c-4340-b511-77ce69437a0e" absoluteBounds="6.14, 1.46, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4 : 2.67390055338542); (6.125 : 2.67390055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CriteriaDataContext/O2CVQuery/O2CVQuery_O2CVQueryCriteria" />
       <nodes>
-        <classShapeMoniker Id="6aafd674-9a40-49a3-8061-49181950aa3e" />
-        <classShapeMoniker Id="d7860259-5093-4637-a9ce-0e61a40f1034" />
+        <classShapeMoniker Id="c24e2b18-ae94-4e6a-b72a-985d3ad7ddea" />
+        <classShapeMoniker Id="5e0edec9-c5de-49af-80d6-636bfe608907" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

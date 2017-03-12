@@ -21,6 +21,24 @@ namespace O2V1DataAccess.Criteria
             _context = new CriteriaDataContext();
         }
 
+        public bool DoesQueryExist(string queryName)
+        {
+            using (var dc = new CriteriaDataContext())
+            {
+                var query = dc.O2CVQueries.Where(q => q.QueryName == queryName);
+                return query.ToList().Count > 0;
+            }
+        }
+
+        public int GetCountOfCriteriaForQuery(string queryName)
+        {
+            using (var dc = new CriteriaDataContext())
+            {
+                var queryCriteria = dc.O2CVQueries.Where(q => q.QueryName == queryName).Select( x => x.O2CVQueryCriterias);
+                return queryCriteria.ToList().Count;
+            }
+        }
+
         public void CreateQuery(QueryDto queryDto)
         {
 
@@ -54,9 +72,8 @@ namespace O2V1DataAccess.Criteria
                     CreatedBy = queryDto.CreatedBy,
                     Deleted = queryDto.Deleted,
                     Description = queryDto.Description,
-                    CreatedDate = Now
-
-
+                    CreatedDate = System.DateTime.Now
+     
                 };
  
                 var criteria = new O2CVQueryCriteria
@@ -64,12 +81,14 @@ namespace O2V1DataAccess.Criteria
                     Sequence = criteriaDto.Sequence,
                     TableName = criteriaDto.TableName,
                     TableColumn = criteriaDto.TableColumn,
+                    Name = criteriaDto.Description,
                     CompareOperator = criteriaDto.CompareOperator,
                     CompareValue = criteriaDto.CompareValue,
                     Description = criteriaDto.Description,
                     DisableBy = criteriaDto.Disabled == true ? criteriaDto.Createdby : null,
                     CreatedBy = criteriaDto.Createdby,
-                    Disabled = criteriaDto.Disabled
+                    Disabled = criteriaDto.Disabled,
+                    CreatedDate = System.DateTime.Now
                 };
 
                 if (criteria.Disabled == true)

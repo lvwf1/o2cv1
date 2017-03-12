@@ -22,6 +22,7 @@ namespace O2V1Web.Models.ViewModels
 
         private string CurrentCriteriaColumn { get; set; }
         private string CurrentCriteriaTable { get; set; }
+        [Required]
         public string CriteriaCompareValue { get; set; }
  
 

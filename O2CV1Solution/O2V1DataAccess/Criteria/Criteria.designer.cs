@@ -30,12 +30,12 @@ namespace O2V1DataAccess.Criteria
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertO2CVQueryCriteria(O2CVQueryCriteria instance);
-    partial void UpdateO2CVQueryCriteria(O2CVQueryCriteria instance);
-    partial void DeleteO2CVQueryCriteria(O2CVQueryCriteria instance);
     partial void InsertO2CVQuery(O2CVQuery instance);
     partial void UpdateO2CVQuery(O2CVQuery instance);
     partial void DeleteO2CVQuery(O2CVQuery instance);
+    partial void InsertO2CVQueryCriteria(O2CVQueryCriteria instance);
+    partial void UpdateO2CVQueryCriteria(O2CVQueryCriteria instance);
+    partial void DeleteO2CVQueryCriteria(O2CVQueryCriteria instance);
     #endregion
 		
 		public CriteriaDataContext() : 
@@ -68,6 +68,14 @@ namespace O2V1DataAccess.Criteria
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<O2CVQuery> O2CVQueries
+		{
+			get
+			{
+				return this.GetTable<O2CVQuery>();
+			}
+		}
+		
 		public System.Data.Linq.Table<O2CVQueryCriteria> O2CVQueryCriterias
 		{
 			get
@@ -75,13 +83,263 @@ namespace O2V1DataAccess.Criteria
 				return this.GetTable<O2CVQueryCriteria>();
 			}
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.O2CVQueries")]
+	public partial class O2CVQuery : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		public System.Data.Linq.Table<O2CVQuery> O2CVQueries
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _QueryName;
+		
+		private long _Id;
+		
+		private System.DateTime _CreatedDate;
+		
+		private string _CreatedBy;
+		
+		private string _Description;
+		
+		private System.Nullable<bool> _Deleted;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private string _DeletedBy;
+		
+		private EntitySet<O2CVQueryCriteria> _O2CVQueryCriterias;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQueryNameChanging(string value);
+    partial void OnQueryNameChanged();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnCreatedDateChanging(System.DateTime value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedByChanging(string value);
+    partial void OnCreatedByChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnDeletedChanging(System.Nullable<bool> value);
+    partial void OnDeletedChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedByChanging(string value);
+    partial void OnDeletedByChanged();
+    #endregion
+		
+		public O2CVQuery()
+		{
+			this._O2CVQueryCriterias = new EntitySet<O2CVQueryCriteria>(new Action<O2CVQueryCriteria>(this.attach_O2CVQueryCriterias), new Action<O2CVQueryCriteria>(this.detach_O2CVQueryCriterias));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QueryName", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string QueryName
 		{
 			get
 			{
-				return this.GetTable<O2CVQuery>();
+				return this._QueryName;
 			}
+			set
+			{
+				if ((this._QueryName != value))
+				{
+					this.OnQueryNameChanging(value);
+					this.SendPropertyChanging();
+					this._QueryName = value;
+					this.SendPropertyChanged("QueryName");
+					this.OnQueryNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(500)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Bit")]
+		public System.Nullable<bool> Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this.OnDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._Deleted = value;
+					this.SendPropertyChanged("Deleted");
+					this.OnDeletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="NVarChar(50)")]
+		public string DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this.OnDeletedByChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedBy = value;
+					this.SendPropertyChanged("DeletedBy");
+					this.OnDeletedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="O2CVQuery_O2CVQueryCriteria", Storage="_O2CVQueryCriterias", ThisKey="Id", OtherKey="CriteriaParentQueryId")]
+		public EntitySet<O2CVQueryCriteria> O2CVQueryCriterias
+		{
+			get
+			{
+				return this._O2CVQueryCriterias;
+			}
+			set
+			{
+				this._O2CVQueryCriterias.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_O2CVQueryCriterias(O2CVQueryCriteria entity)
+		{
+			this.SendPropertyChanging();
+			entity.O2CVQuery = this;
+		}
+		
+		private void detach_O2CVQueryCriterias(O2CVQueryCriteria entity)
+		{
+			this.SendPropertyChanging();
+			entity.O2CVQuery = null;
 		}
 	}
 	
@@ -269,7 +527,7 @@ namespace O2V1DataAccess.Criteria
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompareOperator", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompareOperator", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string CompareOperator
 		{
 			get
@@ -545,264 +803,6 @@ namespace O2V1DataAccess.Criteria
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.O2CVQueries")]
-	public partial class O2CVQuery : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _QueryName;
-		
-		private long _Id;
-		
-		private System.DateTime _CreatedDate;
-		
-		private string _CreatedBy;
-		
-		private string _Description;
-		
-		private System.Nullable<bool> _Deleted;
-		
-		private System.DateTime _DeletedDate;
-		
-		private string _DeletedBy;
-		
-		private EntitySet<O2CVQueryCriteria> _O2CVQueryCriterias;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnQueryNameChanging(string value);
-    partial void OnQueryNameChanged();
-    partial void OnIdChanging(long value);
-    partial void OnIdChanged();
-    partial void OnCreatedDateChanging(System.DateTime value);
-    partial void OnCreatedDateChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnDeletedChanging(System.Nullable<bool> value);
-    partial void OnDeletedChanged();
-    partial void OnDeletedDateChanging(System.DateTime value);
-    partial void OnDeletedDateChanged();
-    partial void OnDeletedByChanging(string value);
-    partial void OnDeletedByChanged();
-    #endregion
-		
-		public O2CVQuery()
-		{
-			this._O2CVQueryCriterias = new EntitySet<O2CVQueryCriteria>(new Action<O2CVQueryCriteria>(this.attach_O2CVQueryCriterias), new Action<O2CVQueryCriteria>(this.detach_O2CVQueryCriterias));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QueryName", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
-		public string QueryName
-		{
-			get
-			{
-				return this._QueryName;
-			}
-			set
-			{
-				if ((this._QueryName != value))
-				{
-					this.OnQueryNameChanging(value);
-					this.SendPropertyChanging();
-					this._QueryName = value;
-					this.SendPropertyChanged("QueryName");
-					this.OnQueryNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this.OnCreatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDate = value;
-					this.SendPropertyChanged("CreatedDate");
-					this.OnCreatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(500)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Bit")]
-		public System.Nullable<bool> Deleted
-		{
-			get
-			{
-				return this._Deleted;
-			}
-			set
-			{
-				if ((this._Deleted != value))
-				{
-					this.OnDeletedChanging(value);
-					this.SendPropertyChanging();
-					this._Deleted = value;
-					this.SendPropertyChanged("Deleted");
-					this.OnDeletedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime DeletedDate
-		{
-			get
-			{
-				return this._DeletedDate;
-			}
-			set
-			{
-				if ((this._DeletedDate != value))
-				{
-					this.OnDeletedDateChanging(value);
-					this.SendPropertyChanging();
-					this._DeletedDate = value;
-					this.SendPropertyChanged("DeletedDate");
-					this.OnDeletedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string DeletedBy
-		{
-			get
-			{
-				return this._DeletedBy;
-			}
-			set
-			{
-				if ((this._DeletedBy != value))
-				{
-					this.OnDeletedByChanging(value);
-					this.SendPropertyChanging();
-					this._DeletedBy = value;
-					this.SendPropertyChanged("DeletedBy");
-					this.OnDeletedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="O2CVQuery_O2CVQueryCriteria", Storage="_O2CVQueryCriterias", ThisKey="Id", OtherKey="CriteriaParentQueryId")]
-		public EntitySet<O2CVQueryCriteria> O2CVQueryCriterias
-		{
-			get
-			{
-				return this._O2CVQueryCriterias;
-			}
-			set
-			{
-				this._O2CVQueryCriterias.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_O2CVQueryCriterias(O2CVQueryCriteria entity)
-		{
-			this.SendPropertyChanging();
-			entity.O2CVQuery = this;
-		}
-		
-		private void detach_O2CVQueryCriterias(O2CVQueryCriteria entity)
-		{
-			this.SendPropertyChanging();
-			entity.O2CVQuery = null;
 		}
 	}
 }
