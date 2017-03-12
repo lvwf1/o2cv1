@@ -303,6 +303,8 @@ namespace O2V1Web.Controllers
                 //var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
                 //var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
 
+                ModelState.Clear();
+
                 ResetCountsQueryModel(criteriaDto, queryDto, model);
 
                 //string sqlReturned = queryBuilderWithJoin();
@@ -341,15 +343,12 @@ namespace O2V1Web.Controllers
 
             model.SelectedTable = criteriaDto.TableName;
             model.QueryId = queryDto.QueryId;
-
+            model.QueryName = queryDto.QueryName;
             model._tables = GetSelectListItems(temptablelist);
             model.QueryId = queryDto.QueryId;
-            model.QueryName = string.Empty;
-            model.CriteriaModel = new CriteriaModel();
-            model.CriteriaModel._criteria = BuildModelCriteria();
+             model.CriteriaModel = new CriteriaModel {_criteria = BuildModelCriteria()};
             ViewBag.temptablelist = temptablelist;
 
-            var columnsForTable = new List<DropDownItem>();
              var tableSchemaModels = schemaRepository.GetSchemaTableColumns(criteriaDto.TableName);
             IEnumerable<DropDownItem> tempColumnList = tableSchemaModels.MetaData.Select(col => new DropDownItem
             {
