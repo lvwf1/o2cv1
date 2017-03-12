@@ -234,69 +234,49 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped tableborder ">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Criteria</th>
-                            <th>Change</th>
-                            <th>Add</th>
-                            <th>Remove</th>
-                            <th>Disable</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Criteria1</td>
-                            <td>
-                                <input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('change')">
-                            </td>
-                            <td>
-                                <input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="msg('add')">
-                            </td>
-                            <td>
-                                <input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('remove')">
-                            </td>
-                            <td>
-                                <input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('disable')">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Criteria2</td>
-                            <td>
-                                <input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('change')">
-                            </td>
-                            <td>
-                                <input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="msg('add')">
-                            </td>
-                            <td>
-                                <input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('remove')">
-                            </td>
-                            <td>
-                                <input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('disable')">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Criteria3</td>
-                            <td>
-                                <input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('change')">
-                            </td>
-                            <td>
-                                <input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="msg('add')">
-                            </td>
-                            <td>
-                                <input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('remove')">
-                            </td>
-                            <td>
-                                <input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('disable')">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    <div style="height: 200px; overflow: auto;">
+                        <table class="table table-striped tableborder ">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Criteria</th>
+                                    <th>Change</th>
+                                    <th>Add</th>
+                                    <th>Remove</th>
+                                    <th>Disable</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                            @foreach (var criteria in Model.QueryCriteria)
+                            {
+                                <tr>
+                                    <th scope="row">@criteria.Sequence</th>
+                                    <td>@criteria.Name</td>
+                                    <td>
+                                        <input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('change')">
+                                    </td>
+                                    <td>
+                                        <input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="msg('add')">
+                                    </td>
+                                    <td>
+                                        <input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('remove')">
+                                    </td>
+                                    <td>
+                                        <input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('disable')">
+                                    </td>
+                                </tr>
+                            }
+                            
+                           
+                            </tbody>
+
+                        </table>
+                        <!-- Your Table Here -->
+                    </div>
+
+
+            </div>
             </div>
             <div class="tabletopsection">
                 <div class="row">

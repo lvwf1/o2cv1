@@ -17,6 +17,7 @@ using O2CV1EntityDtos;
 using O2V1BusinesLayer;
 using O2V1DataAccess;
 using O2V1DataAccess.Criteria;
+using O2V1Web.Mappers;
 using O2V1Web.Models.EFModels;
 using O2V1Web.Models.ViewModels;
 
@@ -343,13 +344,13 @@ namespace O2V1Web.Controllers
 
             model.SelectedTable = criteriaDto.TableName;
             model.QueryId = queryDto.QueryId;
-            model.QueryName = queryDto.QueryName;
+            model.QueryName = queryDto.QueryName ;
             model._tables = GetSelectListItems(temptablelist);
             model.QueryId = queryDto.QueryId;
              model.CriteriaModel = new CriteriaModel {_criteria = BuildModelCriteria()};
             ViewBag.temptablelist = temptablelist;
 
-             var tableSchemaModels = schemaRepository.GetSchemaTableColumns(criteriaDto.TableName);
+            var tableSchemaModels = schemaRepository.GetSchemaTableColumns(criteriaDto.TableName);
             IEnumerable<DropDownItem> tempColumnList = tableSchemaModels.MetaData.Select(col => new DropDownItem
             {
                 DropDownDisplay = col.Name,
@@ -358,6 +359,8 @@ namespace O2V1Web.Controllers
 
             model._columns = tempColumnList.ToList();
 
+            var criteriaThisQuery  = CriteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryDto.QueryId));
+            model.QueryCriteria = CriteriaMapper.MapCriteriaDtoToCriteriaGridViewModel(criteriaThisQuery);
 
         }
 

@@ -50,10 +50,10 @@ namespace O2V1DataAccess.Criteria
             }
         }
 
-        public List<CriteriaDto> GetCriteriaForQuery(int queryId)
+        public static List<CriteriaDto> GetCriteriaForQuery(long queryId)
         {
 
-            List<CriteriaDto> criteriaDtoList = new List<CriteriaDto>();
+            var criteriaDtoList = new List<CriteriaDto>();
             using (var dc = new CriteriaDataContext())
             {
                 var result = (from c in dc.O2CVQueryCriterias where c.CriteriaParentQueryId == queryId
@@ -62,22 +62,10 @@ namespace O2V1DataAccess.Criteria
                         O2CVQueryCriteria = c
                     }).OrderBy( cr => cr.O2CVQueryCriteria.Sequence) ;
 
-                foreach (var criteria in result)
+                criteriaDtoList.AddRange(result.Select(criteria => new CriteriaDto
                 {
-                    criteriaDtoList.Add( new CriteriaDto
-                    {
-                        CompareOperator = criteria.O2CVQueryCriteria.CompareOperator,
-                        CompareValue = criteria.O2CVQueryCriteria.CompareValue,
-                        Createdby = criteria.O2CVQueryCriteria.CreatedBy,
-                        Description = criteria.O2CVQueryCriteria.Description,
-                        Disabled = criteria.O2CVQueryCriteria.Disabled ?? false,
-                        Name = criteria.O2CVQueryCriteria.Name,
-                        Sequence = criteria.O2CVQueryCriteria.Sequence,
-                        TableColumn = criteria.O2CVQueryCriteria.TableColumn,
-                        TableName = criteria.O2CVQueryCriteria.TableName
-
-                    });
-                }
+                    CompareOperator = criteria.O2CVQueryCriteria.CompareOperator, CompareValue = criteria.O2CVQueryCriteria.CompareValue, Createdby = criteria.O2CVQueryCriteria.CreatedBy, Description = criteria.O2CVQueryCriteria.Description, Disabled = criteria.O2CVQueryCriteria.Disabled ?? false, Name = criteria.O2CVQueryCriteria.Name, Sequence = criteria.O2CVQueryCriteria.Sequence, TableColumn = criteria.O2CVQueryCriteria.TableColumn, TableName = criteria.O2CVQueryCriteria.TableName
+                }));
 
                 return criteriaDtoList;
 
@@ -90,7 +78,7 @@ namespace O2V1DataAccess.Criteria
 
             using (var dc = new CriteriaDataContext())
             {
-                O2CVQuery q = new O2CVQuery
+                var q = new O2CVQuery
                 {
                     QueryName = queryDto.QueryName,
                     CreatedBy = queryDto.CreatedBy,
