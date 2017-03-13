@@ -36,16 +36,15 @@ namespace O2V1DataAccess.Criteria
             {
                 var result =
                     dc.O2CVQueries.Where(x => x.QueryName == queryName).Select(x => x.Id.ToString()).FirstOrDefault();
-
-                return result;
+                return result ?? "0";
             }
         }
 
-        public int GetCountOfCriteriaForQuery(string queryName)
+        public int GetCountOfCriteriaForQuery(long queryId)
         {
             using (var dc = new CriteriaDataContext())
             {
-                var queryCriteria = dc.O2CVQueries.Where(q => q.QueryName == queryName).Select( x => x.O2CVQueryCriterias);
+                var queryCriteria = dc.O2CVQueryCriterias.Where(q => q.CriteriaParentQueryId == queryId);
                 return queryCriteria.ToList().Count;
             }
         }
@@ -81,6 +80,7 @@ namespace O2V1DataAccess.Criteria
                 var q = new O2CVQuery
                 {
                     QueryName = queryDto.QueryName,
+                    QuerySql = queryDto.QuerySql,
                     CreatedBy = queryDto.CreatedBy,
                     Deleted = queryDto.Deleted,
                     Description = queryDto.Description,
@@ -103,6 +103,7 @@ namespace O2V1DataAccess.Criteria
                 var query = new O2CVQuery
                 {
                     QueryName = queryDto.QueryName,
+                    QuerySql = queryDto.QuerySql,
                     CreatedBy = queryDto.CreatedBy,
                     Deleted = queryDto.Deleted,
                     Description = queryDto.Description,
@@ -112,7 +113,7 @@ namespace O2V1DataAccess.Criteria
  
                 var criteria = new O2CVQueryCriteria
                 {
-                    Sequence = criteriaDto.Sequence,
+                    Sequence = 1,
                     TableName = criteriaDto.TableName,
                     TableColumn = criteriaDto.TableColumn,
                     Name = criteriaDto.Description,
@@ -153,7 +154,7 @@ namespace O2V1DataAccess.Criteria
                     CompareOperator = criteriaDto.CompareOperator,
                     CompareValue = criteriaDto.CompareValue,
                     Description = criteriaDto.Description,
-                    Name = criteriaDto.Description,
+                    Name = $"{criteriaDto.TableName} {criteriaDto.TableColumn} {criteriaDto.CompareOperator} {criteriaDto.CompareValue}",
                     DisableBy = criteriaDto.Disabled ? criteriaDto.Createdby : null,
                     CreatedBy = criteriaDto.Createdby,
                     Disabled = criteriaDto.Disabled,

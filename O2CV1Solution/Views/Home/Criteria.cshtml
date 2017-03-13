@@ -78,19 +78,20 @@
                                 @Html.AntiForgeryToken()
                                 <div class="form-horizontal">
                                     <div class="container">
-                                        @Html.ValidationMessageFor(model => model.SelectedTable)
-                                        @Html.ValidationMessageFor(model => model.SelectedColumn)
+                                        
                                         <div class="grid">
 
                                                     <div class="row">
-                                                        <div class="col-sm-2">
+                                                        <div class="col-sm-4">
                                                             <div>
                                                                 <div>
                                                                     <label class="control-label" for="basicinput">Query Name </label>
                                                                 </div>
-                                                                <div class="col-sm-2">
+                                                                <div>
                                                                     @Html.TextBoxFor(model => model.QueryName)
+                                                           
                                                                 </div>
+                                                                @Html.ValidationMessageFor(model => model.QueryName)
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-2">
@@ -98,8 +99,9 @@
                                                                 <div>
                                                                     <label class="control-label" for="basicinput">Query Id </label>
                                                                 </div>
-                                                                <div class="col-sm-2">
+                                                                <div>
                                                                     @Html.TextBoxFor(model => model.QueryId, new { @readonly = "readonly" })
+                                                               
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -118,6 +120,15 @@
                                                             <div>
 
                                                                 <label class="control-label" for="basicinput">Select Column </label>
+
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="offset-2 col-sm-2">
+
+                                                            <div>
+
+                                                                <label class="control-label" for="basicinput">Select Compare Criteria </label>
 
                                                             </div>
                                                         </div>
@@ -142,6 +153,7 @@
 
                                                             //4. A class name to assign to <select> tag
                                                             new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.SelectedTable)
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-2">
@@ -162,9 +174,12 @@
                                                             new { @class = "form-control" })
                                                             </div>
                                                             <span id="columns-loading-progress" style="display: none;">Please wait..</span>
+                                                            @Html.ValidationMessageFor(model => model.SelectedColumn)
+
+
                                                         </div>
                                                         <div class="col-sm-2">
-                                                            @Html.TextAreaFor(m => m.CriteriaModel.SelectedCriteria, new { @readonly = "readonly", id = "txtCriteriaSelected" })
+                                                            @Html.TextAreaFor(m => m.SelectedColumnDisplayed, new { @readonly = "readonly", id = "txtCriteriaSelected" })
                                                         </div>
                                                         <div class="col-sm-2">
                                                             <div>
@@ -173,7 +188,7 @@
                                                                                                                              // when page is rendered after postback,
                                                                                                                              // take selected value from Model.SelectedTable.
 
-                                                            // 2. Take list of values from Model.States
+                                                            // 2. Take list of values from Model.SelectCriteria
                                                             Model.CriteriaModel.SelectCriteria,
 
                                                             // 3. Text for the first 'default' option
@@ -181,18 +196,28 @@
 
                                                             //4. A class name to assign to <select> tag
                                                             new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.CriteriaModel.SelectedCriteria)
+
+
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-2">
                                                             @Html.TextBoxFor(model => model.CriteriaModel.CriteriaCompareValue)
+                                                            @Html.ValidationMessageFor(model => model.CriteriaModel.CriteriaCompareValue)
                                                         </div>
                                                     </div>
 
 
                                                     <div class="row">
+                                                        <div class="col-sm-3  ">
+                                                            <div class="col-md-3 form-group pull-left">
+                                                                <input class="btn btn-primary" type="submit" value="Add Criteria" class="btn btn-default" />
+                                                            </div>
+                                                        </div>
+                                                        
                                                         <div class="col-sm-3">
                                                             <div class="col-md-3 form-group pull-left">
-                                                                <input type="submit" value="Add Criteria" class="btn btn-default" />
+                                                                <input  class="btn btn-link" type="submit" value="Get Query Criteria" class="btn btn-default" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -252,7 +277,7 @@
                             {
                                 <tr>
                                     <th scope="row">@criteria.Sequence</th>
-                                    <td>@criteria.Name</td>
+                                    <td>@criteria.Description</td>
                                     <td>
                                         <input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('change')">
                                     </td>
@@ -477,12 +502,13 @@
 @section Scripts {
     <script type="text/javascript">
 
-        $(function() {
+        $(function () {
             $("#SelectedColumn").change(function () {
                 var selectedColumnName = $(this).val();
                 $("#txtCriteriaSelected").val(selectedColumnName);
             });
         });
+       
 
         $(function() {
             $("#SelectedTable").change(function() {
@@ -513,6 +539,7 @@
                     }
                 });
             });
+
         });
 
     </script>

@@ -214,7 +214,16 @@ namespace O2V1Web.Controllers
             return Json(columnsForTable, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Criteria()
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult GetQueryId(string queryName)
+        {
+            CriteriaRepository criteriaRepository = new CriteriaRepository(_dbConnectionString);
+            var idFound = criteriaRepository.GetIdOfQuery(queryName);
+            
+            return Content(idFound);
+        }
+
+        public ActionResult Criteria(string queryId)
         {
             var tableNames = schemaRepository.GetSchemaTables();
 
@@ -227,7 +236,7 @@ namespace O2V1Web.Controllers
             var model = new CountsQueryModel
             {
                 _tables = GetSelectListItems(temptablelist),
-                QueryId = "0",
+                QueryId = queryId,
                 QueryName = string.Empty,
                 CriteriaModel = {_criteria = BuildModelCriteria()}
             };
@@ -370,8 +379,9 @@ namespace O2V1Web.Controllers
             {
                 CreatedBy = User.Identity.Name,
                 Deleted = false,
-                Description = "Abcd 1",
-                QueryName = model.QueryName
+                Description = model.QueryName,
+                QueryName = model.QueryName,
+                QueryId = model.QueryId
                 
             };
 

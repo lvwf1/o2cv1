@@ -18,6 +18,11 @@ namespace O2V1Web
                            "home/gettablecolumns/",
                            new { controller = "Home", action = "GetTableColumns" },
                            new[] { "O2V1Web.Controllers" });
+
+            routes.MapRoute("GetQueryId",
+                         "home/getqueryid/",
+                         new { controller = "Home", action = "GetQueryId" },
+                         new[] { "O2V1Web.Controllers" });
         }
     }
 }

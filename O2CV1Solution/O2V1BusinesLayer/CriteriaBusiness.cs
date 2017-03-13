@@ -25,7 +25,7 @@ namespace O2V1BusinesLayer
 
             if (criteriaRepository.DoesQueryExist(queryDto.QueryName))
             {
-                var currentCountCriteria = criteriaRepository.GetCountOfCriteriaForQuery(queryDto.QueryName);
+                var currentCountCriteria = criteriaRepository.GetCountOfCriteriaForQuery(Convert.ToInt64(queryDto.QueryId));
                 criteriaDto.Sequence = currentCountCriteria += 1;
                 criteriaRepository.AddCriteriaToQuery(queryDto, criteriaDto);
             }

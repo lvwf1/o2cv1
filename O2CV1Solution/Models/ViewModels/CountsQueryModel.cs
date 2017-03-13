@@ -31,6 +31,8 @@ namespace O2V1Web.Models.ViewModels
         public string QueryName { get; set; }
         public string QueryId { get; set; }
 
+        public string SelectedColumnDisplayed { get; set; }
+
         public IEnumerable<SelectListItem> SelectTables
         {
             get
