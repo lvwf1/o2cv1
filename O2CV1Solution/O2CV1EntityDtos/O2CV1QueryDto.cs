@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace O2V1BusinesLayer.QueryModels
+namespace O2CV1EntityDtos
 {
-    public class QueryDto
+    public class O2CV1QueryDto
     {
+        
         public string QuerySql { get; set; }
 
         public string QueryName { get; set; }
 
-        public Int64 Id { get; set; }
+        public string QueryId { get; set; }
 
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
@@ -23,7 +20,5 @@ namespace O2V1BusinesLayer.QueryModels
 
         public DateTime? DeletedDate { get; set; }
         public string DeletedBy { get; set; }
-
-
     }
 }

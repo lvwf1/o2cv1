@@ -72,7 +72,7 @@ namespace O2V1DataAccess.Criteria
             
         }
 
-        public void CreateQuery(QueryDto queryDto)
+        public void CreateQuery(O2CV1QueryDto queryDto)
         {
 
             using (var dc = new CriteriaDataContext())
@@ -94,7 +94,7 @@ namespace O2V1DataAccess.Criteria
             }
         }
 
-        public void AddQueryAndFirstCriteriaToQuery(QueryDto queryDto, CriteriaDto criteriaDto)
+        public void AddQueryAndFirstCriteriaToQuery(O2CV1QueryDto queryDto, CriteriaDto criteriaDto)
         {
 
             using (var dc = new CriteriaDataContext())
@@ -137,7 +137,7 @@ namespace O2V1DataAccess.Criteria
 
             }
         }
-        public void AddCriteriaToQuery(QueryDto queryDto, CriteriaDto criteriaDto)
+        public void AddCriteriaToQuery(O2CV1QueryDto queryDto, CriteriaDto criteriaDto)
         {
 
             using (var dc = new CriteriaDataContext())

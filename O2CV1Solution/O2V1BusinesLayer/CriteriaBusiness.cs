@@ -18,7 +18,7 @@ namespace O2V1BusinesLayer
             _dbConnectionString = connectionString;
         }
 
-        public string CreateNextCriteriaForQuery(QueryDto queryDto, CriteriaDto criteriaDto )
+        public string CreateNextCriteriaForQuery(O2CV1QueryDto queryDto, CriteriaDto criteriaDto )
         {
 
             var criteriaRepository = new CriteriaRepository(_dbConnectionString);

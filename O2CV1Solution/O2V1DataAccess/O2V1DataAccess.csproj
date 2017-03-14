@@ -60,6 +60,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Criteria.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Criteria\QueryRepository.cs" />
     <Compile Include="Criteria\CriteriaRepository.cs" />
     <Compile Include="Interfaces\IDataContextFactory.cs" />
     <Compile Include="Interfaces\ILinqToSqlRepository.cs" />
@@ -90,7 +91,6 @@
     </None>
     <None Include="O2DataMartLinqToSql.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>O2DataMartLinqToSql1.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />

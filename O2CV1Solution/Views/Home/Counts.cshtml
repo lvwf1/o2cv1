@@ -1,4 +1,6 @@
-﻿@*@model O2V1Web.Models.ViewModels.CountsQueryModel*@
+﻿
+@using O2CV1EntityDtos;
+@model List<O2CV1QueryDto>
    
     @{
         ViewBag.Title = "Counts";
@@ -92,6 +94,7 @@
                                                 <div class="table-responsive">
                                                     <table class="table table-striped tableborder ">
                                                         <thead>
+                                                           
                                                             <tr>
                                                                 <th>#</th>
                                                                 <th>Query Name</th>
@@ -104,17 +107,23 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                          
+@{
+    var test = 1;
+}
+@foreach (O2CV1QueryDto QueryDto in Model)
+{
                                                             <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>Query1</td>
-                                                                <td>Description1</td>
-                                                                <td>22000</td>
+                                                                <th scope="row">@test</th>
+                                                                <td>@QueryDto.QueryName</td>
+                                                                <td>@QueryDto.Description</td>
+                                                                <td>0</td>
                                                                 <td><input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('copy')"  ></td>
-                                                                <td><input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="javascript:top.location='/Home/Criteria?queryId=8';"></td>
+                                                                <td><input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="javascript:top.location='/Home/Criteria?queryId='+'@QueryDto.QueryId.ToString()';"></td>
                                                                 <td><input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('edit')"></td>
                                                                 <td><input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('delete')"></td>
                                                             </tr>
-                                                            <tr>
+                                                            @*<tr>
                                                                 <th scope="row">2</th>
                                                                 <td>Query2</td>
                                                                 <td>Description2</td>
@@ -133,8 +142,12 @@
                                                                 <td><input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="javascript:top.location='/Home/Criteria';"></td>
                                                                 <td><input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('edit')"></td>
                                                                 <td><input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('delete')"></td>
-                                                            </tr>
+                                                            </tr>*@
+    test++;
+}
                                                         </tbody>
+
+                                                            
                                                     </table>
                                                 </div>
                                                 <div class="countnumberconatiner text-right"><a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>..... <a href="#">13</a></div>

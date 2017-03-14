@@ -48,12 +48,6 @@
     <Compile Include="SelectQueryBuilder.cs" />
     <Compile Include="SqlLiteral.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\O2V1DataAccess\O2V1DataAccess.csproj">
-      <Project>{9e05c9eb-26eb-478f-b9a6-da34e266ffa5}</Project>
-      <Name>O2V1DataAccess</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />

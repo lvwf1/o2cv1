@@ -15,6 +15,7 @@ using O2CV1EntityDtos;
 using O2V1BusinesLayer;
 using O2V1DataAccess;
 using O2V1DataAccess.Criteria;
+using O2V1DataAccess.O2CV1Query;
 using O2V1Web.Mappers;
 using O2V1Web.Models.EFModels;
 using O2V1Web.Models.ViewModels;
@@ -192,7 +193,10 @@ namespace O2V1Web.Controllers
 
         public ActionResult Counts()
         {
-            return View();
+            O2CV1QueryDto queryDto;
+            List<O2CV1QueryDto> listQuery = QueryRepository.GetQueries();
+           
+            return View(listQuery);
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -289,7 +293,7 @@ namespace O2V1Web.Controllers
         [HttpGet]
         public ActionResult GenerateSql(string queryId)
         {
-            QueryDto queryDto;
+            O2CV1QueryDto queryDto;
             CriteriaDto criteriaDto;
             var criteriaBusiness = new CriteriaBusiness(_dbConnectionString);
             var sqlFromQueryBuilder = criteriaBusiness.BuildSqlFromQuery(queryId);
@@ -328,7 +332,7 @@ namespace O2V1Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                QueryDto queryDto;
+                O2CV1QueryDto queryDto;
                 CriteriaDto criteriaDto;
                 BuildDtosForCriteriaAdd(model, out queryDto, out criteriaDto);
                 var criteriaBusiness = new CriteriaBusiness(_dbConnectionString);
@@ -376,7 +380,7 @@ namespace O2V1Web.Controllers
             model.QueryCriteria = CriteriaMapper.MapCriteriaDtoToCriteriaGridViewModel(criteriaThisQuery);
         }
 
-        private void ResetCountsQueryModel(CriteriaDto criteriaDto, QueryDto queryDto, CountsQueryModel model)
+        private void ResetCountsQueryModel(CriteriaDto criteriaDto, O2CV1QueryDto queryDto, CountsQueryModel model)
         {
             var tableNames = schemaRepository.GetSchemaTables();
 
@@ -407,9 +411,9 @@ namespace O2V1Web.Controllers
             model.QueryCriteria = CriteriaMapper.MapCriteriaDtoToCriteriaGridViewModel(criteriaThisQuery);
         }
 
-        private void BuildDtosForCriteriaAdd(CountsQueryModel model, out QueryDto queryDto, out CriteriaDto criteriaDto)
+        private void BuildDtosForCriteriaAdd(CountsQueryModel model, out O2CV1QueryDto queryDto, out CriteriaDto criteriaDto)
         {
-            queryDto = new QueryDto
+            queryDto = new O2CV1QueryDto
             {
                 CreatedBy = User.Identity.Name,
                 Deleted = false,
