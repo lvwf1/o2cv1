@@ -5,6 +5,7 @@ using System.Text;
 using CodeEngine.Framework.QueryBuilder;
 using CodeEngine.Framework.QueryBuilder.Clauses;
 using CodeEngine.Framework.QueryBuilder.Enums;
+using O2CV1EntityDtos;
 using O2V1BusinesLayer.QueryModels.QueryBuilderModels;
 using O2V1DataAccess;
 
@@ -123,6 +124,11 @@ namespace O2V1BusinesLayer
                 }
 
             }
+        }
+
+        public void ConvertCriteriaToQuery(List<CriteriaDto> criteriaForQuery)
+        {
+            throw new NotImplementedException();
         }
     }
 }
