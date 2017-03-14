@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -12,7 +11,6 @@ using Korzh.EasyQuery.Mvc;
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.Services.Db;
 using Korzh.Utils.Db;
-using O2.DataMart.Models.SchemaModels;
 using O2CV1EntityDtos;
 using O2V1BusinesLayer;
 using O2V1DataAccess;
@@ -25,9 +23,9 @@ namespace O2V1Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly string _dbConnectionString;
         private readonly EqServiceProviderDb eqService;
         private readonly SchemaRepository schemaRepository;
-        private readonly string _dbConnectionString;
 
         public HomeController()
         {
@@ -188,13 +186,12 @@ namespace O2V1Web.Controllers
 
             //return View("Home", model);
             //return View("EasyQuery");
-            var loginViewModel = new O2V1Web.Models.ViewModels.LoginViewModel();
+            var loginViewModel = new LoginViewModel();
             return View("Login", loginViewModel);
         }
 
         public ActionResult Counts()
         {
-
             return View();
         }
 
@@ -204,10 +201,10 @@ namespace O2V1Web.Controllers
             var columnsForTable = new List<DropDownItem>();
             if (!ModelState.IsValid) return Json(columnsForTable, JsonRequestBehavior.AllowGet);
             var tableSchemaModels = schemaRepository.GetSchemaTableColumns(tableName);
-            IEnumerable<DropDownItem> tempColumnList = tableSchemaModels.MetaData.Select(col =>  new DropDownItem
+            IEnumerable<DropDownItem> tempColumnList = tableSchemaModels.MetaData.Select(col => new DropDownItem
             {
                 DropDownDisplay = col.Name,
-                DropDownValue = $"{tableName}.{col.Name}"  
+                DropDownValue = $"{tableName}.{col.Name}"
             }).OrderBy(x => x.DropDownDisplay).ToList();
 
             columnsForTable = GetSelectListItems(tempColumnList).ToList();
@@ -217,17 +214,17 @@ namespace O2V1Web.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult GetQueryId(string queryName)
         {
-            CriteriaRepository criteriaRepository = new CriteriaRepository(_dbConnectionString);
+            var criteriaRepository = new CriteriaRepository(_dbConnectionString);
             var idFound = criteriaRepository.GetIdOfQuery(queryName);
-            
+
             return Content(idFound);
         }
 
         public ActionResult Criteria(string queryId)
         {
-            var tableNames = schemaRepository.GetSchemaTables();
+            var tableNames = schemaRepository.GetSchemaBackBoneRelatedTables();
 
-            IEnumerable<DropDownItem> temptablelist = tableNames.Select(name => new DropDownItem()
+            IEnumerable<DropDownItem> temptablelist = tableNames.Select(name => new DropDownItem
             {
                 DropDownDisplay = name,
                 DropDownValue = name
@@ -241,12 +238,13 @@ namespace O2V1Web.Controllers
                 CriteriaModel = {_criteria = BuildModelCriteria()}
             };
             ViewBag.temptablelist = temptablelist;
+            GetQueryCriteriaIntoModel(queryId, model);
             return View(model);
         }
 
         private List<CriteraDropDownItem> BuildModelCriteria()
         {
-            List<CriteraDropDownItem> criteraDropDownItems = new List<CriteraDropDownItem>
+            var criteraDropDownItems = new List<CriteraDropDownItem>
             {
                 new CriteraDropDownItem
                 {
@@ -267,8 +265,7 @@ namespace O2V1Web.Controllers
                 {
                     CriteraNameDisplay = "Not In List",
                     CriteraNameValue = " not in "
-                },
-
+                }
             };
             return criteraDropDownItems;
         }
@@ -287,6 +284,37 @@ namespace O2V1Web.Controllers
             var dict = new Dictionary<string, object>();
             dict.Add("result", "OK");
             return Json(dict);
+        }
+
+        [HttpGet]
+        public ActionResult GenerateSql(string queryId)
+        {
+            QueryDto queryDto;
+            CriteriaDto criteriaDto;
+            var criteriaBusiness = new CriteriaBusiness(_dbConnectionString);
+            var sqlFromQueryBuilder = criteriaBusiness.BuildSqlFromQuery(queryId);
+
+            //string sqlReturned = queryBuilderWithJoin();
+
+            //Dictionary<string, object> dict = new Dictionary<string, object>();
+            //dict.Add("statement", sqlReturned);
+
+            //var look = model.SelectedTable;
+
+            //ConvertModelToJson modelConverter = new ConvertModelToJson();
+            //string queryJson = modelConverter.ConvertSimpleTableQuery(model.SelectedTable.ToString());
+
+            //string optionsJson = modelConverter.ConvertOptionsToJson();
+
+            //var query = eqService.SyncQueryDict(queryJson.ToDictionary());
+
+
+            //var statement = eqService.BuildQuery(query, optionsJson.ToDictionary());
+            //Dictionary<string, object> dict = new Dictionary<string, object>();
+            //dict.Add("statement", statement);
+            //return Json(dict);
+
+            return Content(sqlFromQueryBuilder);
         }
 
         /// <summary>
@@ -341,11 +369,18 @@ namespace O2V1Web.Controllers
             return Redirect("Index");
         }
 
+        private void GetQueryCriteriaIntoModel(string queryId, CountsQueryModel model)
+        {
+            var tableNames = schemaRepository.GetSchemaTables();
+            var criteriaThisQuery = CriteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryId));
+            model.QueryCriteria = CriteriaMapper.MapCriteriaDtoToCriteriaGridViewModel(criteriaThisQuery);
+        }
+
         private void ResetCountsQueryModel(CriteriaDto criteriaDto, QueryDto queryDto, CountsQueryModel model)
         {
             var tableNames = schemaRepository.GetSchemaTables();
 
-            IEnumerable<DropDownItem> temptablelist = tableNames.Select(name => new DropDownItem()
+            IEnumerable<DropDownItem> temptablelist = tableNames.Select(name => new DropDownItem
             {
                 DropDownDisplay = name,
                 DropDownValue = name
@@ -353,10 +388,10 @@ namespace O2V1Web.Controllers
 
             model.SelectedTable = criteriaDto.TableName;
             model.QueryId = queryDto.QueryId;
-            model.QueryName = queryDto.QueryName ;
+            model.QueryName = queryDto.QueryName;
             model._tables = GetSelectListItems(temptablelist);
             model.QueryId = queryDto.QueryId;
-             model.CriteriaModel = new CriteriaModel {_criteria = BuildModelCriteria()};
+            model.CriteriaModel = new CriteriaModel {_criteria = BuildModelCriteria()};
             ViewBag.temptablelist = temptablelist;
 
             var tableSchemaModels = schemaRepository.GetSchemaTableColumns(criteriaDto.TableName);
@@ -368,9 +403,8 @@ namespace O2V1Web.Controllers
 
             model._columns = tempColumnList.ToList();
 
-            var criteriaThisQuery  = CriteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryDto.QueryId));
+            var criteriaThisQuery = CriteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryDto.QueryId));
             model.QueryCriteria = CriteriaMapper.MapCriteriaDtoToCriteriaGridViewModel(criteriaThisQuery);
-
         }
 
         private void BuildDtosForCriteriaAdd(CountsQueryModel model, out QueryDto queryDto, out CriteriaDto criteriaDto)
@@ -382,7 +416,6 @@ namespace O2V1Web.Controllers
                 Description = model.QueryName,
                 QueryName = model.QueryName,
                 QueryId = model.QueryId
-                
             };
 
             criteriaDto = new CriteriaDto
@@ -390,7 +423,6 @@ namespace O2V1Web.Controllers
                 CompareOperator = model.CriteriaModel.SelectedCriteria,
                 CompareValue = model.CriteriaModel.CriteriaCompareValue,
                 Createdby = User.Identity.Name,
-                
                 TableName = model.SelectedTable,
                 Description =
                     $"{model.SelectedTable} {model.SelectedColumn} {model.CriteriaModel.SelectedCriteria} {model.CriteriaModel.CriteriaCompareValue}",

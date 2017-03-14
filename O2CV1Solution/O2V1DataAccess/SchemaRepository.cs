@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace O2V1DataAccess
 
         private readonly List<string> _backBoneTables = new List<string>
         {
-            "Feee", "Property", "Person", "Mortgage"
+            "Feeds", "Property", "Persons", "Mortgages"
         };
 
         public SchemaRepository(string connectionString)
@@ -102,20 +103,17 @@ namespace O2V1DataAccess
 
         public List<string> GetSchemaBackBoneRelatedTables()
         {
-            var tableNames = new List<string>();
+            var backBoneMetaData = GetSchemaTableColumns("BackBone");
+            var tableNames = GetSchemaTables().ToList();
+            var tableNamesReturned = new List<string>();
 
-            var backBoneColumns = GetSchemaTableColumns("BackBone");
+            if (!(backBoneMetaData.MetaData.Count > 0)) return tableNames;
 
-            if (!(backBoneColumns?.TableName.Length > 0)) return tableNames;
             using (var connection = new SqlConnection(_connectionString))
             {
-                connection.Open();
-                var schema = connection.GetSchema("Tables");
-
-                // return (from DataRow row in schema.Rows select row[_tblName].ToString()).ToList())
-                tableNames.AddRange(from DataRow row in schema.Rows where _backBoneTables.Contains(row[_tblName].ToString().Trim()) select row[_tblName].ToString());
+                tableNamesReturned.AddRange(from tableName in tableNames from backboneName in _backBoneTables where backboneName == tableName select tableName);
             }
-            return tableNames;
+            return tableNamesReturned;
         }
     }
 }

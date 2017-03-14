@@ -217,7 +217,7 @@
                                                         
                                                         <div class="col-sm-3">
                                                             <div class="col-md-3 form-group pull-left">
-                                                                <input  class="btn btn-link" type="submit" value="Get Query Criteria" class="btn btn-default" />
+                                                                @Html.ActionLink("Generate SQL", "GenerateSql", new {queryId = @Model.QueryId.ToString()})
                                                             </div>
                                                         </div>
                                                     </div>

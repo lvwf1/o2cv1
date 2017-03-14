@@ -36,6 +36,19 @@ namespace O2V1BusinesLayer
 
            return criteriaRepository.GetIdOfQuery(queryDto.QueryName);
         }
+
+        public string BuildSqlFromQuery(string queryId)
+        {
+            var criteriaRepository = new CriteriaRepository(_dbConnectionString);
+            var criteriaForQuery = CriteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryId));
+
+            var parmsFromCountViewModel = new ParmsFromCountViewModel();
+            var queryBuilderParms = parmsFromCountViewModel.GetQueryParmFromCountView(queryId);
+            var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
+            var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
+            return string.Empty;
+
+        }
     }
 
 }

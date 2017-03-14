@@ -35,7 +35,14 @@ namespace O2DataAccessTests
         public void SchemaRepositoryReturnTableNames()
         {
             var result = schemaRepository.GetSchemaTables();
-            Assert.AreEqual(24, result.Count);
+            Assert.AreEqual(27, result.Count);
+            Assert.IsTrue(result.Contains("Mortgages"));
+        }
+        [TestMethod]
+        public void SchemaRepositoryReturnTableNamesThatAreBackBoneRelated()
+        {
+            var result = schemaRepository.GetSchemaBackBoneRelatedTables();
+            Assert.AreEqual(4, result.Count);
             Assert.IsTrue(result.Contains("Mortgages"));
         }
 
