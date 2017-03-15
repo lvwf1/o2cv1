@@ -572,6 +572,10 @@ namespace O2V1DataAccess.Criteria
 		
 		private string _DeletedBy;
 		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
+		private string _ModifiedBy;
+		
 		private EntitySet<O2CVQueryCriteria> _O2CVQueryCriterias;
 		
     #region Extensibility Method Definitions
@@ -596,6 +600,10 @@ namespace O2V1DataAccess.Criteria
     partial void OnDeletedDateChanged();
     partial void OnDeletedByChanging(string value);
     partial void OnDeletedByChanged();
+    partial void OnModifiedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifiedDateChanged();
+    partial void OnModifiedByChanging(string value);
+    partial void OnModifiedByChanged();
     #endregion
 		
 		public O2CVQuery()
@@ -780,6 +788,46 @@ namespace O2V1DataAccess.Criteria
 					this._DeletedBy = value;
 					this.SendPropertyChanged("DeletedBy");
 					this.OnDeletedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="NVarChar(50)")]
+		public string ModifiedBy
+		{
+			get
+			{
+				return this._ModifiedBy;
+			}
+			set
+			{
+				if ((this._ModifiedBy != value))
+				{
+					this.OnModifiedByChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedBy = value;
+					this.SendPropertyChanged("ModifiedBy");
+					this.OnModifiedByChanged();
 				}
 			}
 		}

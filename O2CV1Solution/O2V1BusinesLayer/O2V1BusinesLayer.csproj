@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CriteriaBusiness.cs" />
+    <Compile Include="O2CV1Business.cs" />
     <Compile Include="ParmsFromCountViewModel.cs" />
     <Compile Include="QueryBuilderConvertModelToSql.cs" />
     <Compile Include="ConvertModelToJson.cs" />

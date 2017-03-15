@@ -11,15 +11,16 @@ using O2CV1EntityDtos;
 using O2V1BusinesLayer.QueryModels.QueryBuilderModels;
 using O2V1DataAccess;
 using O2V1DataAccess.Criteria;
+using O2V1DataAccess.O2CV1Query;
 using static System.String;
 
 namespace O2V1BusinesLayer
 {
-    public class CriteriaBusiness
+    public class O2CV1Business
     {
         private readonly string _dbConnectionString;
 
-        public CriteriaBusiness(string connectionString)
+        public O2CV1Business(string connectionString)
         {
             _dbConnectionString = connectionString;
         }
@@ -42,6 +43,13 @@ namespace O2V1BusinesLayer
             }
 
             return criteriaRepository.GetIdOfQuery(queryDto.QueryName);
+        }
+
+        public void SaveQuery(O2CV1QueryDto queryDto)
+        {
+            var queryRepository = new QueryRepository(_dbConnectionString);
+            queryRepository.SaveQuery(queryDto);
+
         }
 
         public string BuildSqlFromQuery(string queryId)

@@ -309,10 +309,7 @@ namespace O2V1Web.Controllers
         [HttpGet]
         public ActionResult GenerateSql(string queryId)
         {
-            O2CV1QueryDto queryDto;
-            CriteriaDto criteriaDto;
-            var criteriaBusiness = new CriteriaBusiness(_dbConnectionString);
-            var sqlFromQueryBuilder = criteriaBusiness.BuildSqlFromQuery(queryId);
+            var sqlFromQueryBuilder = SqlFromQueryBuilder(queryId);
 
             //string sqlReturned = queryBuilderWithJoin();
 
@@ -337,6 +334,13 @@ namespace O2V1Web.Controllers
             return Content(sqlFromQueryBuilder);
         }
 
+        private string SqlFromQueryBuilder(string queryId)
+        {
+            var o2Cv1Business = new O2CV1Business(_dbConnectionString);
+            var sqlFromQueryBuilder = o2Cv1Business.BuildSqlFromQuery(queryId);
+            return sqlFromQueryBuilder;
+        }
+
         /// <summary>
         ///     It's called when it's necessary to synchronize query on client side with its server-side copy.
         ///     Additionally this action can be used to return a generated SQL statement (or several statements) as JSON string
@@ -351,42 +355,29 @@ namespace O2V1Web.Controllers
                 O2CV1QueryDto queryDto;
                 CriteriaDto criteriaDto;
                 BuildDtosForCriteriaAdd(model, out queryDto, out criteriaDto);
-                var criteriaBusiness = new CriteriaBusiness(_dbConnectionString);
+                var criteriaBusiness = new O2CV1Business(_dbConnectionString);
                 var queryId = criteriaBusiness.CreateNextCriteriaForQuery(queryDto, criteriaDto);
                 model.QueryId = queryId;
                 queryDto.QueryId = queryId;
 
-                //var parmsFromCountViewModel = new ParmsFromCountViewModel();
-                //var queryBuilderParms = parmsFromCountViewModel.GetQueryParmFromCountView(model.SelectedTable);
-                //var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
-                //var sqlFromQueryBuilder = queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
+               
 
+                SaveQuerySqlChanges(queryId, queryDto);
                 ModelState.Clear();
 
                 ResetCountsQueryModel(criteriaDto, queryDto, model);
 
-                //string sqlReturned = queryBuilderWithJoin();
-
-                //Dictionary<string, object> dict = new Dictionary<string, object>();
-                //dict.Add("statement", sqlReturned);
                 return View("Criteria", model);
-
-                //var look = model.SelectedTable;
-
-                //ConvertModelToJson modelConverter = new ConvertModelToJson();
-                //string queryJson = modelConverter.ConvertSimpleTableQuery(model.SelectedTable.ToString());
-
-                //string optionsJson = modelConverter.ConvertOptionsToJson();
-
-                //var query = eqService.SyncQueryDict(queryJson.ToDictionary());
-
-
-                //var statement = eqService.BuildQuery(query, optionsJson.ToDictionary());
-                //Dictionary<string, object> dict = new Dictionary<string, object>();
-                //dict.Add("statement", statement);
-                //return Json(dict);
-            }
+           }
             return Redirect("Index");
+        }
+
+        private void SaveQuerySqlChanges(string queryId, O2CV1QueryDto queryDto)
+        {
+            var sqlFromQueryBuilder = SqlFromQueryBuilder(queryId);
+            O2CV1Business o2Cv1Business = new O2CV1Business(_dbConnectionString);
+            queryDto.QuerySql = sqlFromQueryBuilder;
+            o2Cv1Business.SaveQuery(queryDto);
         }
 
         private void GetQueryCriteriaIntoModel(string queryId, CountsQueryModel model)

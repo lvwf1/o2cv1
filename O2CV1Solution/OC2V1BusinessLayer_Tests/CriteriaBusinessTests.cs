@@ -26,7 +26,7 @@ namespace OC2V1BusinessLayer_Tests
         [TestMethod]
         public void TestSimpleOneTableFromOneCriteriFromDaBase()
         {
-            var criteriaBusiness = new CriteriaBusiness(_sqlConnectionString);
+            var criteriaBusiness = new O2CV1Business(_sqlConnectionString);
 
             var sqlFromQueryBuilder =  criteriaBusiness.BuildSqlFromQuery("12");
 

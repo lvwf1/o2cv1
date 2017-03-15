@@ -2,4 +2,3 @@ C:\Cloud88Projects\Development\o2cv1\O2CV1Solution\O2CV1EntityDtos\bin\Debug\O2C
 C:\Cloud88Projects\Development\o2cv1\O2CV1Solution\O2CV1EntityDtos\bin\Debug\O2CV1EntityDtos.pdb
 C:\Cloud88Projects\Development\o2cv1\O2CV1Solution\O2CV1EntityDtos\obj\Debug\O2CV1EntityDtos.dll
 C:\Cloud88Projects\Development\o2cv1\O2CV1Solution\O2CV1EntityDtos\obj\Debug\O2CV1EntityDtos.pdb
-C:\Cloud88Projects\Development\o2cv1\O2CV1Solution\O2CV1EntityDtos\obj\Debug\O2CV1EntityDtos.csprojResolveAssemblyReference.cache
