@@ -61,34 +61,70 @@ namespace O2V1BusinesLayer
             var criteriaForQuery =
                 criteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryId)).OrderBy(x => x.TableName).ToList();
 
+          
+
+
             if (!criteriaForQuery.Any()) return string.Empty;
             {
-                var queryBuilderParms = new QueryBuilderParms();
+                var currentTableName = criteriaForQuery[0].TableName;
+                var queryBuilderParms = QueryBuilderParmsForThisCritera(criteriaForQuery, schemaRepository);
 
-                var criteriaDto = criteriaForQuery.First();
-
-                queryBuilderParms.PrimaryTable = criteriaForQuery.First().TableName;
-                if (!IsNullOrEmpty(criteriaDto.CompareOperator))
+                foreach (var criteriaItem in criteriaForQuery)
                 {
-                    var colDataType =
-                        schemaRepository.GetSchemaTableColumns(criteriaDto.TableColumn).MetaData.Select(x => x.DbType).ToString();
-
-                    queryBuilderParms.WhereConditionsList = new List<WhereCondition>
+                    if (criteriaItem.TableName == currentTableName)
                     {
-                        new WhereCondition
-                        {
-                            WhereLeftColumn = criteriaDto.TableColumn.Replace($"{criteriaDto.TableName}.",""),
-                            WhereLeftTable = $"dbo.{criteriaDto.TableName}",
-                            WhereOperator = GetComparison(criteriaDto.CompareOperator), // Comparison.Equals,
-                            WhereRightColumn = FixQuotes(colDataType, criteriaDto.CompareValue)
-
-                        }
-
-                    };
+                        AddWhereClauseToCurrentQuery(criteriaItem, queryBuilderParms, schemaRepository);
+                    }
                 }
+
+
                 var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
                 return queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
             }
+        }
+
+        private void AddWhereClauseToCurrentQuery(CriteriaDto criteriaDto, QueryBuilderParms queryBuilderParms, SchemaRepository schemaRepository)
+        {
+
+            var colDataType =
+                 schemaRepository.GetSchemaTableColumns(criteriaDto.TableColumn).MetaData.Select(x => x.DbType).ToString();
+
+            queryBuilderParms.WhereConditionsList = new List<WhereCondition>
+                {
+                    new WhereCondition
+                    {
+                        WhereLeftColumn = criteriaDto.TableColumn.Replace($"{criteriaDto.TableName}.", ""),
+                        WhereLeftTable = $"dbo.{criteriaDto.TableName}",
+                        WhereOperator = GetComparison(criteriaDto.CompareOperator), // Comparison.Equals,
+                        WhereRightColumn = FixQuotes(colDataType, criteriaDto.CompareValue)
+                    }
+                };
+        }
+
+        private QueryBuilderParms QueryBuilderParmsForThisCritera(List<CriteriaDto> criteriaForQuery, SchemaRepository schemaRepository)
+        {
+            var queryBuilderParms = new QueryBuilderParms();
+
+            var criteriaDto = criteriaForQuery.First();
+
+            queryBuilderParms.PrimaryTable = criteriaForQuery.First().TableName;
+            if (!IsNullOrEmpty(criteriaDto.CompareOperator))
+            {
+                var colDataType =
+                    schemaRepository.GetSchemaTableColumns(criteriaDto.TableColumn).MetaData.Select(x => x.DbType).ToString();
+
+                queryBuilderParms.WhereConditionsList = new List<WhereCondition>
+                {
+                    new WhereCondition
+                    {
+                        WhereLeftColumn = criteriaDto.TableColumn.Replace($"{criteriaDto.TableName}.", ""),
+                        WhereLeftTable = $"dbo.{criteriaDto.TableName}",
+                        WhereOperator = GetComparison(criteriaDto.CompareOperator), // Comparison.Equals,
+                        WhereRightColumn = FixQuotes(colDataType, criteriaDto.CompareValue)
+                    }
+                };
+            }
+            return queryBuilderParms;
         }
 
         private string FixQuotes(string colDataType, string criteriaDtoCompareValue)

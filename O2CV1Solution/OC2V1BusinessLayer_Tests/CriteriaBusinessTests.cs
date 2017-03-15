@@ -28,7 +28,7 @@ namespace OC2V1BusinessLayer_Tests
         {
             var criteriaBusiness = new O2CV1Business(_sqlConnectionString);
 
-            var sqlFromQueryBuilder =  criteriaBusiness.BuildSqlFromQuery("12");
+            var sqlFromQueryBuilder =  criteriaBusiness.BuildSqlFromQuery("17");
 
             Assert.IsTrue(sqlFromQueryBuilder.Trim().Contains(@"SELECT Mortgages.* FROM Mortgages  WHERE  (dbo.Mortgages.LoanType = 'TR')"));
             Assert.IsTrue(ExecuteQuery(sqlFromQueryBuilder));
