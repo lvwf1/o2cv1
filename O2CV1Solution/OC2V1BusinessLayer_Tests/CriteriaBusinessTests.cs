@@ -19,7 +19,7 @@ namespace OC2V1BusinessLayer_Tests
         [TestInitialize]
         public void TestInitialize()
         {
-            var _sqlConnectionString = ConfigurationManager.ConnectionStrings["O2DataMart"].ConnectionString;
+             _sqlConnectionString = ConfigurationManager.ConnectionStrings["O2DataMart"].ConnectionString;
             _sqlConnection = new SqlConnection(_sqlConnectionString);
         }
 

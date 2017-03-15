@@ -392,7 +392,8 @@ namespace O2V1Web.Controllers
         private void GetQueryCriteriaIntoModel(string queryId, CountsQueryModel model)
         {
             var tableNames = schemaRepository.GetSchemaTables();
-            var criteriaThisQuery = CriteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryId));
+            CriteriaRepository criteriaRepository = new CriteriaRepository(_dbConnectionString);
+            var criteriaThisQuery = criteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryId));
             model.QueryCriteria = CriteriaMapper.MapCriteriaDtoToCriteriaGridViewModel(criteriaThisQuery);
         }
 
@@ -422,8 +423,8 @@ namespace O2V1Web.Controllers
             }).OrderBy(x => x.DropDownDisplay).ToList();
 
             model._columns = tempColumnList.ToList();
-
-            var criteriaThisQuery = CriteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryDto.QueryId));
+            CriteriaRepository criteriaRepository = new CriteriaRepository(_dbConnectionString);
+            var criteriaThisQuery = criteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryDto.QueryId));
             model.QueryCriteria = CriteriaMapper.MapCriteriaDtoToCriteriaGridViewModel(criteriaThisQuery);
         }
 
