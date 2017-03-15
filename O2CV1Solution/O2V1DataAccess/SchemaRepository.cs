@@ -115,5 +115,50 @@ namespace O2V1DataAccess
             }
             return tableNamesReturned;
         }
+
+        public TableSchemaModel GetSchemaTableColumnMetaData(string tableColumnName)
+        {
+            string[] tableColumnNameParts = tableColumnName.Split('.');
+            if (tableColumnNameParts.Length > 1)
+            {
+                return GetSchemaTableColumnsForSpecifiedColumnTable(tableColumnNameParts[0].ToString(),
+                    tableColumnNameParts[1].ToString());
+            }
+            return null;
+        }
+
+        public TableSchemaModel GetSchemaTableColumnsForSpecifiedColumnTable(string tableName, string column)
+        {
+            var tableSchemaModel = new TableSchemaModel();
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var restrictions = new string[4] { null, null, tableName, null };
+                connection.Open();
+
+                var columnList =
+                    connection.GetSchema("Columns", restrictions)
+                        .AsEnumerable()
+                        .ToList();
+
+                foreach (var colinfo in columnList)
+                {
+                    if (colinfo.ItemArray[_colName].ToString() == column)
+                    {
+                        var columnData = new TableMetaData
+                        {
+                            Name = colinfo.ItemArray[_colName].ToString(),
+                            IsPrimeKey = false,
+                            DbType = colinfo[_colType].ToString()
+                        };
+                        tableSchemaModel.MetaData.Add(columnData);
+                        break;
+                    }
+                   
+                }
+                return tableSchemaModel;
+            }
+        }
+
     }
 }

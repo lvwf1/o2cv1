@@ -49,7 +49,7 @@ namespace O2V1DataAccess.Criteria
             }
         }
 
-        public static List<CriteriaDto> GetCriteriaForQuery(long queryId)
+        public List<CriteriaDto> GetCriteriaForQuery(long queryId)
         {
 
             var criteriaDtoList = new List<CriteriaDto>();

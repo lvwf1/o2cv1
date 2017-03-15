@@ -257,21 +257,37 @@ namespace O2V1Web.Controllers
                 },
                 new CriteraDropDownItem
                 {
+                    CriteraNameDisplay = "LessThan",
+                    CriteraNameValue = " < "
+                },
+                new CriteraDropDownItem
+                {
+                    CriteraNameDisplay = "GreaterThan",
+                    CriteraNameValue = " > "
+                },
+                new CriteraDropDownItem
+                {
                     CriteraNameDisplay = "NotEqualTo",
                     CriteraNameValue = " != "
                 },
                 new CriteraDropDownItem
                 {
-                    CriteraNameDisplay = "In List",
+                    CriteraNameDisplay = "InList",
                     CriteraNameValue = " in "
+                },
+                 new CriteraDropDownItem
+                {
+                    CriteraNameDisplay = "NotLike",
+                    CriteraNameValue = " not like "
                 },
                 new CriteraDropDownItem
                 {
-                    CriteraNameDisplay = "Not In List",
-                    CriteraNameValue = " not in "
+                    CriteraNameDisplay = "Like",
+                    CriteraNameValue = " like "
                 }
+
             };
-            return criteraDropDownItems;
+            return criteraDropDownItems.OrderBy(x => x.CriteraNameDisplay).ToList();
         }
 
         /// <summary>

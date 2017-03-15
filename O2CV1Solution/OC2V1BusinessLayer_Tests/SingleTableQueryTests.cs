@@ -64,9 +64,9 @@ namespace OC2V1BusinessLayer_Tests
             var queryBuilderParms = new QueryBuilderParms
             {
                 PrimaryTable = "Mortgages",
-                WhereConditionsList = new List<WhereConditions>
+                WhereConditionsList = new List<WhereCondition>
                 {
-                    new WhereConditions
+                    new WhereCondition
                     {
                         WhereLeftColumn = "LenderName",
                         WhereLeftTable = "Mortgages",
@@ -75,7 +75,7 @@ namespace OC2V1BusinessLayer_Tests
                         SubClauses = new List<WhereSubConditions>()
 
                     },
-                                        new WhereConditions
+                                        new WhereCondition
                     {
                         WhereLeftColumn = "LoanType",
                         WhereLeftTable = "Mortgages",
@@ -99,9 +99,9 @@ namespace OC2V1BusinessLayer_Tests
             var queryBuilderParms = new QueryBuilderParms
             {
                 PrimaryTable = "Mortgages",
-                WhereConditionsList = new List<WhereConditions>
+                WhereConditionsList = new List<WhereCondition>
                 {
-                    new WhereConditions
+                    new WhereCondition
                     {
                         WhereLeftColumn = "LenderName",
                         WhereLeftTable = "Mortgages",
@@ -125,9 +125,9 @@ namespace OC2V1BusinessLayer_Tests
             var queryBuilderParms = new QueryBuilderParms
             {
                 PrimaryTable = "Mortgages",
-                WhereConditionsList = new List<WhereConditions>
+                WhereConditionsList = new List<WhereCondition>
                 {
-                    new WhereConditions
+                    new WhereCondition
                     {
                         WhereLeftColumn = "LenderName",
                         WhereLeftTable = "Mortgages",
@@ -161,9 +161,9 @@ namespace OC2V1BusinessLayer_Tests
             var queryBuilderParms = new QueryBuilderParms
             {
                 PrimaryTable = "Mortgages",
-                WhereConditionsList = new List<WhereConditions>
+                WhereConditionsList = new List<WhereCondition>
                 {
-                    new WhereConditions
+                    new WhereCondition
                     {
                         WhereLeftColumn = "LenderName",
                         WhereLeftTable = "Mortgages",

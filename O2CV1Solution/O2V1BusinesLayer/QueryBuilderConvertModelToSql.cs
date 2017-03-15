@@ -100,7 +100,7 @@ namespace O2V1BusinesLayer
             }
         }
 
-        private static void AddWhereClauses(IEnumerable<WhereConditions> whereConditions, SelectQueryBuilder query)
+        private static void AddWhereClauses(IEnumerable<WhereCondition> whereConditions, SelectQueryBuilder query)
         {
        
             foreach (var clause in whereConditions)

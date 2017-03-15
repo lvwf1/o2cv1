@@ -95,9 +95,9 @@ namespace OC2V1BusinessLayer_Tests
                         ColumnName = "LastName"
                     }
                 },
-                WhereConditionsList = new List<WhereConditions>
+                WhereConditionsList = new List<WhereCondition>
                 {
-                    new WhereConditions
+                    new WhereCondition
                     {
                         WhereLeftColumn = "State",
                         WhereLeftTable = "Persons",
@@ -107,7 +107,7 @@ namespace OC2V1BusinessLayer_Tests
                         
 
                     },
-                    new WhereConditions
+                    new WhereCondition
                     {
                         WhereLeftColumn = "State",
                         WhereLeftTable = "Property",
@@ -115,7 +115,7 @@ namespace OC2V1BusinessLayer_Tests
                         WhereRightColumn = "%a%",
                         WhereAndOr = LogicOperator.Or
                     },
-                      new WhereConditions
+                      new WhereCondition
                     {
                         WhereLeftColumn = "LoanToValueRange",
                         WhereLeftTable = "Mortgages",
@@ -205,24 +205,24 @@ namespace OC2V1BusinessLayer_Tests
                         ColumnName = "LastName"
                     }
                 },
-                WhereConditionsList = new List<WhereConditions>
+                WhereConditionsList = new List<WhereCondition>
                 {
-                    new WhereConditions
+                    new WhereCondition
                     {
-                        WhereLeftColumn = "State",
+                       WhereLeftColumn = "State",
                         WhereLeftTable = "Persons",
                         WhereOperator = Comparison.Equals,
                         WhereRightColumn = "WA",
          
                     },
-                    new WhereConditions
+                    new WhereCondition
                     {
                         WhereLeftColumn = "State",
                         WhereLeftTable = "Property",
                         WhereOperator = Comparison.Like,
                         WhereRightColumn = "%a%",
                     },
-                      new WhereConditions
+                      new WhereCondition
                     {
                         WhereLeftColumn = "LoanToValueRange",
                         WhereLeftTable = "Mortgages",
@@ -326,9 +326,9 @@ namespace OC2V1BusinessLayer_Tests
 
                     }
                 },
-                WhereConditionsList = new List<WhereConditions>
+                WhereConditionsList = new List<WhereCondition>
                 {
-                    new WhereConditions
+                    new WhereCondition
                     {
                         WhereLeftColumn = "LenderName",
                         WhereLeftTable = "Mortgages",
@@ -365,9 +365,9 @@ namespace OC2V1BusinessLayer_Tests
 
                     }
                 },
-                WhereConditionsList = new List<WhereConditions>
+                WhereConditionsList = new List<WhereCondition>
                 {
-                    new WhereConditions
+                    new WhereCondition
                     {
                         WhereLeftColumn = "LenderName",
                         WhereLeftTable = "Mortgages",
@@ -376,7 +376,7 @@ namespace OC2V1BusinessLayer_Tests
                         SubClauses = new List<WhereSubConditions>()
 
                     },
-                                        new WhereConditions
+                                        new WhereCondition
                     {
                         WhereLeftColumn = "LoanType",
                         WhereLeftTable = "Mortgages",
@@ -411,9 +411,9 @@ namespace OC2V1BusinessLayer_Tests
 
                     }
                 },
-                WhereConditionsList = new List<WhereConditions>
+                WhereConditionsList = new List<WhereCondition>
                 {
-                    new WhereConditions
+                    new WhereCondition
                     {
                         WhereLeftColumn = "LenderName",
                         WhereLeftTable = "Mortgages",

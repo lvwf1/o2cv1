@@ -25,6 +25,23 @@ namespace O2DataAccessTests
         }
 
         [TestMethod]
+        public void SchemaRepositoryReturnSpecificeTableColumnMetaDataNvarchar()
+        {
+            var result = schemaRepository.GetSchemaTableColumnMetaData("Cities.County");
+            Assert.AreEqual(1, result.MetaData.Count);
+            Assert.IsTrue("nvarchar" == result.MetaData[0].DbType);
+        }
+
+        [TestMethod]
+        public void SchemaRepositoryReturnSpecificeTableColumnMetaDataInt()
+        {
+            var result = schemaRepository.GetSchemaTableColumnMetaData("Mortgages.MortgageTerm");
+            Assert.AreEqual(1, result.MetaData.Count);
+            Assert.IsTrue("int" == result.MetaData[0].DbType);
+        }
+
+
+        [TestMethod]
         public void SchemaRepositoryReturnTableColumnInformationMortgages()
         {
             var result = schemaRepository.GetSchemaTableColumns("Mortgages");

@@ -9,14 +9,14 @@ namespace O2V1BusinesLayer.QueryModels.QueryBuilderModels
         public List<QueryBuilderOrderByClause> ColumnSortAscDesc;
         public List<QueryBuilderColumnsToInclude> IncludeColumns;
         public List<JoinCondition> JoinConditionsList;
-        public List<WhereConditions> WhereConditionsList;
+        public List<WhereCondition> WhereConditionsList;
  
 
 
         public QueryBuilderParms()
         {
             ColumnSortAscDesc = new List<QueryBuilderOrderByClause>();
-            WhereConditionsList = new List<WhereConditions>();
+            WhereConditionsList = new List<WhereCondition>();
             JoinConditionsList = new List<JoinCondition>();
             IncludeColumns = new List<QueryBuilderColumnsToInclude>();
             
@@ -60,7 +60,7 @@ namespace O2V1BusinesLayer.QueryModels.QueryBuilderModels
 
 
     }
-    public struct WhereConditions
+    public struct WhereCondition
     {
         public string WhereLeftTable { get; set; }
         public Comparison WhereOperator { get; set; }
