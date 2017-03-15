@@ -224,7 +224,7 @@ namespace O2V1Web.Controllers
             return Content(idFound);
         }
 
-        public ActionResult Criteria(string queryId)
+        public ActionResult Criteria(string queryId, string queryName)
         {
             var tableNames = schemaRepository.GetSchemaBackBoneRelatedTables();
 
@@ -238,7 +238,7 @@ namespace O2V1Web.Controllers
             {
                 _tables = GetSelectListItems(temptablelist),
                 QueryId = queryId,
-                QueryName = string.Empty,
+                QueryName = queryName,
                 CriteriaModel = {_criteria = BuildModelCriteria()}
             };
             ViewBag.temptablelist = temptablelist;
