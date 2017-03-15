@@ -7,6 +7,69 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$(".u-vmenu").vmenuModule({
+        //    Speed: 200,
+        //    autostart: false,
+        //    autohide: true
+        //});
+    });
+
+    function clickCountsGridRow(queryId, queryName) {
+        console.log("queryId, queryName: " + queryId + ":" + queryName);
+        $.ajax({
+            type: "GET",
+            url: "/Home/Criteria?queryId=" + queryId + "&queryName=" + queryName,
+            success: function (html) {
+                //alert("html:" + html);
+
+                //$("#DeleteQuery-dialog-confirm").html(html);
+                //alert(html);
+                //if (html.Redirect) {
+                //    window.location = html.Redirect;
+                //}
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //alert(XMLHttpRequest.status);
+                //alert(responseText);//请求返回的内容 
+                //alert(textStatus);//请求状态：success，error 
+                //alert(XMLHttpRequest);//XMLHttpRequest对象 
+
+                //$("#DeleteQuery-dialog-confirm").dialog("close");
+                if (XMLHttpRequest.status == '403' || XMLHttpRequest.status == '500') {
+                    //session过期处理代码 
+                    //alert("session expire");
+                    //window.location.href = "O2Home/Index"
+                } else {
+                    //alert("Throw exception");
+                    //alert(XMLHttpRequest);
+                }
+
+
+            }
+        });
+    }
+
+    //$("#TopN").blur(function () {
+
+    //    var value = $("#TopN").val();
+    //    if ((/^(\+|-)?\d+$/.test(value)) && value > 0) {
+    //        txtTopNRandom = value;
+    //    }
+    //    else {
+    //        alert("Please enter a positive integer value.");
+    //        $("#TopN").focus();
+    //    }
+    //});
+
+    //$("a[name='ExportToNetDown']").click(function () {
+    //    //alert("ExportToFileCsv");
+    //    ExportToNetDown();
+    //});
+
+</script>
+
     <div class="wrapper">
         <!-- Header Section Starts -->
         <div class="headercontainer">
@@ -118,8 +181,8 @@
                                                                 <td>@QueryDto.QueryName</td>
                                                                 <td>@QueryDto.Description</td>
                                                                 <td>0</td>
-                                                                <td><input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('copy')"  ></td>
-                                                                <td><input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="javascript:top.location='/Home/Criteria?queryId='+'@QueryDto.QueryId.ToString()';"></td>
+                                                                <td><input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('copy')"  ></td>@*"window.location='<%:Url.Action("Index", new {id=item.user_id}) %>'"*@
+                                                                <td><input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="window.location='@Url.Action("Criteria", new {queryId=QueryDto.QueryId.ToString(),queryName=QueryDto.QueryName.ToString()})'"></td>
                                                                 <td><input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('edit')"></td>
                                                                 <td><input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('delete')"></td>
                                                             </tr>
