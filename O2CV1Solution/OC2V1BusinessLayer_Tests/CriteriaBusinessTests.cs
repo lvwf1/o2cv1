@@ -30,7 +30,7 @@ namespace OC2V1BusinessLayer_Tests
 
             var sqlFromQueryBuilder =  criteriaBusiness.BuildSqlFromQuery("17");
 
-            Assert.IsTrue(sqlFromQueryBuilder.Trim().Contains(@"SELECT Mortgages.* FROM Mortgages  WHERE  (dbo.Mortgages.LoanType = 'TR')"));
+            Assert.IsTrue(sqlFromQueryBuilder.Trim().Contains(@"SELECT Mortgages.* FROM Mortgages  WHERE  ((dbo.Mortgages.LenderName LIKE '%lend%') AND (dbo.Mortgages.LoanAmountRange = '$175K - $209K'))"));
             Assert.IsTrue(ExecuteQuery(sqlFromQueryBuilder));
 
         }
