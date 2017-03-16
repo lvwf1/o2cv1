@@ -132,7 +132,13 @@
             alert(str);
         }
     </script>
-
+    <script>
+    $(function(){
+    $('legend').click(function(){
+    $(this).parent().find('.content').slideToggle("slow");
+    });
+    });
+    </script>
     <script src="~/Content/js/jquery.nice-select.js"></script>
     
     @RenderSection("Scripts", false)

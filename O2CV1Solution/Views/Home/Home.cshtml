@@ -17,7 +17,7 @@
                             <ul>
                                 <li>
                                     @*<a href="#">John Doe<b class="caret"></b></a>*@
-                                    <a href="#">@Session["LogedCosUserFullname"]<b class="caret"></b></a>
+                                    <a href="#">@System.Web.HttpContext.Current.Session["LogedUserFullname"] <b class="caret"></b></a>
                                     <ul>
                                         @*<li><a href="index01.html">Signout</a></li>*@
                                         <li><a href="@Url.Action("SignOut", "Access")">Signout </a></li>

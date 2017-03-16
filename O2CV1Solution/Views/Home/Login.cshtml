@@ -42,7 +42,7 @@
         <label for="inputPassword" class="sr-only">Password</label>
         @*<input type="password" id="inputPassword" class="form-control" placeholder="Password" required onclick="stophighlight()">*@
 
-    @Html.TextBoxFor(a => a.Password, new { @id = "inputPassword", @class = "form-control", @placeholder = "Password" })
+    @Html.TextBoxFor(a => a.Password, new { @type="password", @id = "inputPassword", @class = "form-control", @placeholder = "Password" })
     @Html.ValidationMessageFor(a => a.Password, "", new { @class = "ValidationMessageFor" })
         <div class="checkbox">
             <label>

@@ -25,8 +25,8 @@
                             <li>
                                 @*<a href="#">John Doe<b class="caret"></b></a>*@
                                 <a href="#">
-                                    @Session["LogedCosUserFullname"]<b class="caret"></b>
-                                </a>
+                                    @System.Web.HttpContext.Current.Session["LogedUserFullname"] <b class="caret"></b>
+</a>
                                 <ul>
                                     @*<li><a href="index01.html">Signout</a></li>*@
                                     <li>
@@ -78,72 +78,27 @@
                                 @Html.AntiForgeryToken()
                                 <div class="form-horizontal">
                                     <div class="container">
-                                        
                                         <div class="grid">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <div>
-                                                                <div>
-                                                                    <label class="control-label" for="basicinput">Query Name </label>
-                                                                </div>
-                                                                <div>
-                                                                    @Html.TextBoxFor(model => model.QueryName)
-                                                           
-                                                                </div>
-                                                                @Html.ValidationMessageFor(model => model.QueryName)
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <div>
-                                                                <div>
-                                                                    <label class="control-label" for="basicinput">Query Id </label>
-                                                                </div>
-                                                                <div>
-                                                                    @Html.TextBoxFor(model => model.QueryId, new { @readonly = "readonly" })
-                                                               
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
                                                     <div class="row">
                                                         <div class="col-sm-2">
-                                                            <div>
-
-                                                                <label class="control-label" for="basicinput">Select Table </label>
-
-                                                            </div>
+                                                              <label class="control-label" for="basicinput">Query Name </label>
+                                                              @Html.TextBoxFor(model => model.QueryName,new {@class= "form-control" })
+                                                              @Html.ValidationMessageFor(model => model.QueryName)
                                                         </div>
                                                         <div class="col-sm-2">
-
-                                                            <div>
-
-                                                                <label class="control-label" for="basicinput">Select Column </label>
-
-                                                            </div>
+                                                              <label class="control-label" for="basicinput">Query Id </label>
+                                                              @Html.TextBoxFor(model => model.QueryId, new { @readonly = "readonly", @class = "form-control" })
                                                         </div>
-                                                        
-                                                        <div class="offset-2 col-sm-2">
-
-                                                            <div>
-
-                                                                <label class="control-label" for="basicinput">Select Compare Criteria </label>
-
-                                                            </div>
-                                                        </div>
-
-
                                                     </div>
 
 
                                                     <div class="row">
-                                                        <div class="col-sm-2">
-                                                            <div>
-
+                                                        <fieldset class="col-sm-2 fsStyle">             
+                                                            <legend class="legendStyle"> Select Table </legend>
+                                                            <div class="content">
                                                                 @Html.DropDownListFor(model => model.SelectedTable, // 1. Store selected value in Model.SelectedTable;
-                                                                                                            // when page is rendered after postback,
-                                                                                                            // take selected value from Model.SelectedTable.
+                                                                                                                    // when page is rendered after postback,
+                                                                                                                    // take selected value from Model.SelectedTable.
 
                                                             // 2. Take list of values from Model.States
                                                             Model.SelectTables,
@@ -155,11 +110,10 @@
                                                             new { @class = "form-control" })
                                                                 @Html.ValidationMessageFor(model => model.SelectedTable)
                                                             </div>
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <div>
-
-
+                                                        </fieldset>
+                                                        <fieldset class="col-sm-2 fsStyle">
+                                                            <legend class="legendStyle"> Select Column </legend>
+                                                            <div class="content">
                                                                 @Html.DropDownListFor(model => model.SelectedColumn, // 1. Store selected value in Model.SelectedTable;
                                                                                                              // when page is rendered after postback,
                                                                                                              // take selected value from Model.SelectedTable.
@@ -172,21 +126,20 @@
 
                                                             //4. A class name to assign to <select> tag
                                                             new { @class = "form-control" })
-                                                            </div>
                                                             <span id="columns-loading-progress" style="display: none;">Please wait..</span>
                                                             @Html.ValidationMessageFor(model => model.SelectedColumn)
-
-
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            @Html.TextAreaFor(m => m.SelectedColumnDisplayed, new { @readonly = "readonly", id = "txtCriteriaSelected" })
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <div>
-
-                                                                @Html.DropDownListFor(model => model.CriteriaModel.SelectedCriteria, // 1. Store selected value in Model.SelectedTable;
-                                                                                                                             // when page is rendered after postback,
-                                                                                                                             // take selected value from Model.SelectedTable.
+                                                            </div>
+                                                        </fieldset>
+                                                        <fieldset class="col-xs-12 col-sm-7 fsStyle">
+                                                            <legend class="legendStyle"> Enter Criteria </legend>
+                                                            <div class="content">
+                                                                <div class="col-sm-2">
+                                                                    @Html.TextAreaFor(m => m.SelectedColumnDisplayed, new { @readonly = "readonly", id = "txtCriteriaSelected" })
+                                                                </div>
+                                                                <div class="col-sm-offset-2 col-sm-4">
+                                                                    @Html.DropDownListFor(model => model.CriteriaModel.SelectedCriteria, // 1. Store selected value in Model.SelectedTable;
+                                                                                                                                     // when page is rendered after postback,
+                                                                                                                                     // take selected value from Model.SelectedTable.
 
                                                             // 2. Take list of values from Model.SelectCriteria
                                                             Model.CriteriaModel.SelectCriteria,
@@ -196,18 +149,15 @@
 
                                                             //4. A class name to assign to <select> tag
                                                             new { @class = "form-control" })
-                                                                @Html.ValidationMessageFor(model => model.CriteriaModel.SelectedCriteria)
-
-
+                                                                    @Html.ValidationMessageFor(model => model.CriteriaModel.SelectedCriteria)
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    @Html.TextBoxFor(model => model.CriteriaModel.CriteriaCompareValue)
+                                                                    @Html.ValidationMessageFor(model => model.CriteriaModel.CriteriaCompareValue)
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            @Html.TextBoxFor(model => model.CriteriaModel.CriteriaCompareValue)
-                                                            @Html.ValidationMessageFor(model => model.CriteriaModel.CriteriaCompareValue)
-                                                        </div>
+                                                        </fieldset>
                                                     </div>
-
-
                                                     <div class="row">
                                                         <div class="col-sm-3  ">
                                                             <div class="col-md-3 form-group pull-left">
@@ -217,7 +167,7 @@
                                                         
                                                         <div class="col-sm-3">
                                                             <div class="col-md-3 form-group pull-left">
-                                                                @Html.ActionLink("Generate SQL", "GenerateSql", new {queryId = @Model.QueryId.ToString()})
+                                                                <input  class="btn btn-link" type="submit" value="Get Query Criteria" class="btn btn-default" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -279,16 +229,16 @@
                                     <th scope="row">@criteria.Sequence</th>
                                     <td>@criteria.Description</td>
                                     <td>
-                                        <input type="image" src="~/Content/images/icon01.png" width="22" height="22" alt="" onclick="msg('change')">
+                                        <input type="image" src="~/Content/images/icon02.png" width="20" height="20" alt="" onclick="msg('change')">
                                     </td>
                                     <td>
-                                        <input type="image" src="~/Content/images/icon03.png" width="20" height="20" alt="" onclick="msg('add')">
+                                        <input type="image" src="~/Content/images/icon-add.png" width="20" height="20" alt="" onclick="msg('add')">
                                     </td>
                                     <td>
-                                        <input type="image" src="~/Content/images/icon02.png" width="17" height="17" alt="" onclick="msg('remove')">
+                                        <input type="image" src="~/Content/images/icon04.png" width="20" height="20" alt="" onclick="msg('remove')">
                                     </td>
                                     <td>
-                                        <input type="image" src="~/Content/images/icon04.png" width="19" height="19" alt="" onclick="msg('disable')">
+                                        <input type="image" src="~/Content/images/icon-disable.png" width="20" height="20" alt="" onclick="msg('disable')">
                                     </td>
                                 </tr>
                             }

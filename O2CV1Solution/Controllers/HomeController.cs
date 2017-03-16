@@ -22,7 +22,7 @@ using O2V1Web.Models.ViewModels;
 
 namespace O2V1Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly string _dbConnectionString;
         private readonly EqServiceProviderDb eqService;
@@ -423,7 +423,7 @@ namespace O2V1Web.Controllers
         {
             queryDto = new O2CV1QueryDto
             {
-                CreatedBy = User.Identity.Name,
+                CreatedBy = Session.GetDataFromSession<string>("LogedUserFullname"),//User.Identity.Name,
                 Deleted = false,
                 Description = model.QueryName,
                 QueryName = model.QueryName,
@@ -434,7 +434,7 @@ namespace O2V1Web.Controllers
             {
                 CompareOperator = model.CriteriaModel.SelectedCriteria,
                 CompareValue = model.CriteriaModel.CriteriaCompareValue,
-                Createdby = User.Identity.Name,
+                Createdby = Session.GetDataFromSession<string>("LogedUserFullname"),//User.Identity.Name,
                 TableName = model.SelectedTable,
                 Description =
                     $"{model.SelectedTable} {model.SelectedColumn} {model.CriteriaModel.SelectedCriteria} {model.CriteriaModel.CriteriaCompareValue}",

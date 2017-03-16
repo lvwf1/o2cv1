@@ -84,7 +84,7 @@
                                 <ul>
                                     <li>
                                         @*<a href="#">John Doe<b class="caret"></b></a>*@
-                                        <a href="#">@Session["LogedCosUserFullname"]<b class="caret"></b></a>
+                                        <a href="#">@System.Web.HttpContext.Current.Session["LogedUserFullname"] <b class="caret"></b></a>
                                         <ul>
                                             @*<li><a href="index01.html">Signout</a></li>*@
                                             <li><a href="@Url.Action("SignOut", "Access")">Signout </a></li>
@@ -151,7 +151,7 @@
                                                 <div class="tabletopsection">
                                                     <div class="row">
                                                         <div class="col-md-6 text-left"><span class="tableheadtext">Count List</span></div>
-                                                        <div class="col-md-6 text-right buttonmargintop"><a href="#" class="tableinbutton">Create a New Query</a></div>
+                                                        <div class="col-md-6 text-right buttonmargintop"><a href="@Url.Action("Criteria", new {queryId="0",queryName=""})" class="tableinbutton">Create a New Query</a></div>
                                                     </div>
                                                 </div>
                                                 <div class="table-responsive">
