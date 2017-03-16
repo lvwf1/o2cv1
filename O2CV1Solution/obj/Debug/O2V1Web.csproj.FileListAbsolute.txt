@@ -95,7 +95,6 @@ C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\O2V1Web.pdb
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\Antlr3.Runtime.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\EntityFramework.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\EntityFramework.SqlServer.dll
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\EntityFramework.SqlServerCompact.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\Korzh.EasyQuery.DataGates.NET45.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\Korzh.EasyQuery.Db.NET45.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\Korzh.EasyQuery.EF5.NET45.dll
@@ -140,7 +139,6 @@ C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\O2V1DataAccess.pdb
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\Antlr3.Runtime.pdb
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\EntityFramework.xml
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\EntityFramework.SqlServer.xml
-C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\EntityFramework.SqlServerCompact.xml
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\Microsoft.AI.DependencyCollector.xml
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\Microsoft.AI.Web.xml
@@ -182,3 +180,5 @@ C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\amd64\Microsoft.VC90.CRT\
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\O2CV1EntityDtos.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\O2CV1EntityDtos.pdb
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\EntityFramework.SqlServerCompact.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\bin\EntityFramework.SqlServerCompact.xml

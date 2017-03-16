@@ -154,7 +154,7 @@
         <member name="M:System.Data.Entity.SqlServerCompact.SqlCeMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.SqlOperation)">
             <summary>
             Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.SqlOperation"/>.
-            Generated SQL should be added using the Statement method.
+            Generated SQL should be added using the Statement or StatementBatch methods.
             </summary>
             <param name="sqlOperation"> The operation to produce SQL for. </param>
         </member>
@@ -336,6 +336,13 @@
             Adds a new Statement to be executed against the database.
             </summary>
             <param name="writer"> The writer containing the SQL to be executed. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServerCompact.SqlCeMigrationSqlGenerator.StatementBatch(System.String,System.Boolean)">
+            <summary>
+            Breaks string into one or more statements, handling T-SQL utility statements as necessary.
+            </summary>
+            <param name="sqlBatch">The SQL to split into one ore more statements to be executed.</param>
+            <param name="suppressTransaction"> Gets or sets a value indicating whether this statement should be performed outside of the transaction scope that is used to make the migration process transactional. If set to true, this operation will not be rolled back if the migration process fails. </param>
         </member>
         <member name="P:System.Data.Entity.SqlServerCompact.SqlCeMigrationSqlGenerator.GuidColumnDefault">
             <summary>

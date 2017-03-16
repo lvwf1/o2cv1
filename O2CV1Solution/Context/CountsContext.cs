@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data.Entity;
-using System.Security.Cryptography;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using O2V1Web.Models;
 
-namespace O2.Web.Context
+namespace O2V1Web.Context
 {
     public class CountsContext : DbContext
     {
@@ -24,9 +21,9 @@ namespace O2.Web.Context
         public virtual DbSet<CosUser> CosUsers { get; set; }
 
 
-        public virtual DbSet<TableFileModel> tableFiles { get; set; }
+        public virtual DbSet<TableFileModel> TableFiles { get; set; }
 
-        public virtual DbSet<CountTemplateModel> countemplate { get; set; }
+        public virtual DbSet<CountTemplateModel> Countemplate { get; set; }
 
 
         public string Encrypt(string clearText)
@@ -80,11 +77,11 @@ namespace O2.Web.Context
         protected override void Seed(CountsContext context)
         {
             var tablefilemodel1 = new TableFileModel { ID = new Guid(), FileName = "Automobile File" };
-            context.tableFiles.Add(tablefilemodel1);
+            context.TableFiles.Add(tablefilemodel1);
             var tablefilemodel2 = new TableFileModel { ID = new Guid(), FileName = "Business Phone File" };
-            context.tableFiles.Add(tablefilemodel2);
+            context.TableFiles.Add(tablefilemodel2);
             var tablefilemodel3 = new TableFileModel { ID = new Guid(), FileName = "True New Movers" };
-            context.tableFiles.Add(tablefilemodel3);
+            context.TableFiles.Add(tablefilemodel3);
             base.Seed(context);
         }
     }
