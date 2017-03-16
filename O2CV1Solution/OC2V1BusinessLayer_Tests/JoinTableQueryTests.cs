@@ -9,17 +9,30 @@ using O2V1BusinesLayer.QueryModels.QueryBuilderModels;
 
 namespace OC2V1BusinessLayer_Tests
 {
-
+ 
 
     [TestClass]
     public class JoinTableQueryTests
     {
         private SqlConnection _sqlConnection;
+        private string _sqlConnectionString;
         [TestInitialize]
         public void TestInitialize()
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["O2DataMart"].ConnectionString;
-            _sqlConnection = new SqlConnection(connectionString);
+            _sqlConnectionString = ConfigurationManager.ConnectionStrings["O2DataMart"].ConnectionString;
+            _sqlConnection = new SqlConnection(_sqlConnectionString);
+        }
+
+        [TestMethod]
+        public void TestJoinMortgateToPersonTableFromOneCriteriFromDaBase()
+        {
+            var criteriaBusiness = new O2CV1Business(_sqlConnectionString);
+
+            var sqlFromQueryBuilder = criteriaBusiness.BuildSqlFromQuery("19");
+
+            Assert.IsTrue(sqlFromQueryBuilder.Trim().Contains(@"SELECT Mortgages.* FROM Mortgages  WHERE  ((dbo.Mortgages.LenderName LIKE '%lend%') AND (dbo.Mortgages.LoanAmountRange = '$175K - $209K'))"));
+            Assert.IsTrue(ExecuteQuery(sqlFromQueryBuilder));
+
         }
 
         [TestMethod]

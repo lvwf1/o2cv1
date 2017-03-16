@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CodeEngine.Framework.QueryBuilder.Enums;
-using O2.Common.Interfaces;
 using O2CV1EntityDtos;
 using O2V1BusinesLayer.QueryModels.QueryBuilderModels;
 using O2V1DataAccess;
@@ -27,7 +23,6 @@ namespace O2V1BusinesLayer
 
         public string CreateNextCriteriaForQuery(O2CV1QueryDto queryDto, CriteriaDto criteriaDto)
         {
-
             var criteriaRepository = new CriteriaRepository(_dbConnectionString);
 
             if (criteriaRepository.DoesQueryExist(queryDto.QueryName))
@@ -49,46 +44,129 @@ namespace O2V1BusinesLayer
         {
             var queryRepository = new QueryRepository(_dbConnectionString);
             queryRepository.SaveQuery(queryDto);
-
         }
 
         public string BuildSqlFromQuery(string queryId)
         {
             var connection = ConfigurationManager.ConnectionStrings["O2DataMart"].ConnectionString;
-            SchemaRepository schemaRepository = new SchemaRepository(connection);
+            var schemaRepository = new SchemaRepository(connection);
 
             var criteriaRepository = new CriteriaRepository(_dbConnectionString);
             var criteriaForQuery =
-                criteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryId)).OrderBy(x => x.TableName).ToList();
+                criteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryId))
+                    .OrderBy(x => x.TableName)
+                    .ThenBy(x => x.Sequence)
+                    .ToList();
+            var primaryTable = criteriaForQuery[0].TableName;
+            var queryBuilderParms = new QueryBuilderParms();
+            queryBuilderParms.PrimaryTable = primaryTable;
 
-            if (!criteriaForQuery.Any()) return string.Empty;
+            var groupByTable = criteriaForQuery.GroupBy(b => b.TableName);
+
+            if (groupByTable.Count() > 1)
+                BuildJoinsForQuery(queryBuilderParms, criteriaForQuery, schemaRepository, groupByTable);
+
+
+            var criteriaSeqLastProcessed = 1;
+
+            if (!criteriaForQuery.Any()) return Empty;
             {
-                var queryBuilderParms = new QueryBuilderParms();
+                var currentTableName = criteriaForQuery[0].TableName;
 
-                var criteriaDto = criteriaForQuery.First();
+                QueryBuilderParmsForThisCritera(criteriaForQuery[0], schemaRepository, queryBuilderParms);
 
-                queryBuilderParms.PrimaryTable = criteriaForQuery.First().TableName;
-                if (!IsNullOrEmpty(criteriaDto.CompareOperator))
+                criteriaForQuery.RemoveAll(x => x.Sequence == criteriaSeqLastProcessed);
+
+                foreach (var criteriaItem in criteriaForQuery)
                 {
-                    var colDataType =
-                        schemaRepository.GetSchemaTableColumns(criteriaDto.TableColumn).MetaData.Select(x => x.DbType).ToString();
-
-                    queryBuilderParms.WhereConditionsList = new List<WhereCondition>
-                    {
-                        new WhereCondition
-                        {
-                            WhereLeftColumn = criteriaDto.TableColumn.Replace($"{criteriaDto.TableName}.",""),
-                            WhereLeftTable = $"dbo.{criteriaDto.TableName}",
-                            WhereOperator = GetComparison(criteriaDto.CompareOperator), // Comparison.Equals,
-                            WhereRightColumn = FixQuotes(colDataType, criteriaDto.CompareValue)
-
-                        }
-
-                    };
+                    AddWhereClauseToCurrentQuery(criteriaItem, queryBuilderParms, schemaRepository);
+                    criteriaSeqLastProcessed = criteriaItem.Sequence;
                 }
+
+
                 var queryBuilderConvertModelToSql = new QueryBuilderConvertModelToSql();
                 return queryBuilderConvertModelToSql.ConvertSimpleTableQuery(queryBuilderParms);
             }
+        }
+
+        private void BuildJoinsForQuery(QueryBuilderParms queryBuilderParms, List<CriteriaDto> criteriaForQuery,
+            SchemaRepository schemaRepository, IEnumerable<IGrouping<string, CriteriaDto>> groupedTables)
+        {
+            if (queryBuilderParms.PrimaryTable.ToLower().Contains("mortgage"))
+                queryBuilderParms.JoinConditionsList.Add(
+                    new JoinCondition
+                    {
+                        JoinLeftTable = "BackBone",
+                        JoinCompareType = Comparison.Equals,
+                        JoinRightTable = "BackBone",
+                        JoinOnLeftColumn = "MortgageId",
+                        JoinOnRightColumn = "MortgageId",
+                        TypeOfJoin = JoinType.InnerJoin
+                    });
+
+
+            if (queryBuilderParms.PrimaryTable.ToLower().Contains("persons"))
+                queryBuilderParms.JoinConditionsList.Add(
+                    new JoinCondition
+                    {
+                        JoinLeftTable = "BackBone",
+                        JoinCompareType = Comparison.Equals,
+                        JoinRightTable = "BackBone",
+                        JoinOnLeftColumn = "PersonId",
+                        JoinOnRightColumn = "PersonId",
+                        TypeOfJoin = JoinType.InnerJoin
+                    });
+            if (queryBuilderParms.PrimaryTable.ToLower().Contains("persons"))
+                queryBuilderParms.JoinConditionsList.Add(
+                    new JoinCondition
+                    {
+                        JoinLeftTable = "BackBone",
+                        JoinCompareType = Comparison.Equals,
+                        JoinRightTable = "BackBone",
+                        JoinOnLeftColumn = "PropertyId",
+                        JoinOnRightColumn = "PropertyId",
+                        TypeOfJoin = JoinType.InnerJoin
+                    });
+        }
+
+        private void AddWhereClauseToCurrentQuery(CriteriaDto criteriaDto, QueryBuilderParms queryBuilderParms,
+            SchemaRepository schemaRepository)
+        {
+            var colDataType =
+                schemaRepository.GetSchemaTableColumns(criteriaDto.TableColumn)
+                    .MetaData.Select(x => x.DbType)
+                    .ToString();
+
+            queryBuilderParms.WhereConditionsList.Add(new WhereCondition
+            {
+                WhereLeftColumn = criteriaDto.TableColumn.Replace($"{criteriaDto.TableName}.", ""),
+                WhereLeftTable = $"dbo.{criteriaDto.TableName}",
+                WhereOperator = GetComparison(criteriaDto.CompareOperator),
+                WhereRightColumn = FixQuotes(colDataType, criteriaDto.CompareValue)
+            });
+        }
+
+        private QueryBuilderParms QueryBuilderParmsForThisCritera(CriteriaDto criteriaDto,
+            SchemaRepository schemaRepository, QueryBuilderParms queryBuilderParms)
+        {
+            queryBuilderParms.PrimaryTable = criteriaDto.TableName;
+            if (IsNullOrEmpty(criteriaDto.CompareOperator)) return queryBuilderParms;
+            var colDataType =
+                schemaRepository.GetSchemaTableColumns(criteriaDto.TableColumn)
+                    .MetaData.Select(x => x.DbType)
+                    .ToString();
+
+            queryBuilderParms.WhereConditionsList = new List<WhereCondition>
+            {
+                new WhereCondition
+                {
+                    WhereLeftColumn = criteriaDto.TableColumn.Replace($"{criteriaDto.TableName}.", ""),
+                    WhereLeftTable = $"dbo.{criteriaDto.TableName}",
+                    WhereOperator = GetComparison(criteriaDto.CompareOperator), // Comparison.Equals,
+                    WhereRightColumn = FixQuotes(colDataType, criteriaDto.CompareValue)
+                }
+            };
+            return queryBuilderParms;
         }
 
         private string FixQuotes(string colDataType, string criteriaDtoCompareValue)
