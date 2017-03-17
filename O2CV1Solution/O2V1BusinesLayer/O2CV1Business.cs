@@ -63,8 +63,9 @@ namespace O2V1BusinesLayer
 
             var groupByTable = criteriaForQuery.GroupBy(b => b.TableName);
 
-            if (groupByTable.Count() > 1)
-                BuildJoinsForQuery(queryBuilderParms, criteriaForQuery, schemaRepository, groupByTable);
+            var groupedTables = groupByTable as IGrouping<string, CriteriaDto>[] ?? groupByTable.ToArray();
+            if (groupedTables.Count() > 1)
+                BuildJoinsForQuery(queryBuilderParms, criteriaForQuery, schemaRepository, groupedTables);
 
 
             var criteriaSeqLastProcessed = 1;
@@ -92,7 +93,12 @@ namespace O2V1BusinesLayer
         private void BuildJoinsForQuery(QueryBuilderParms queryBuilderParms, List<CriteriaDto> criteriaForQuery,
             SchemaRepository schemaRepository, IEnumerable<IGrouping<string, CriteriaDto>> groupedTables)
         {
-            if (queryBuilderParms.PrimaryTable.ToLower().Contains("mortgage"))
+            var criteriaArray = criteriaForQuery.ToArray();
+            int currentCriteria = 0;
+            int totalCriter = criteriaForQuery.Count;
+
+
+            if (criteriaArray[currentCriteria].TableName.ToLower().Contains("mortgage"))
                 queryBuilderParms.JoinConditionsList.Add(
                     new JoinCondition
                     {
@@ -105,7 +111,7 @@ namespace O2V1BusinesLayer
                     });
 
 
-            if (queryBuilderParms.PrimaryTable.ToLower().Contains("persons"))
+            if (criteriaArray[currentCriteria].TableName.ToLower().Contains("persons"))
                 queryBuilderParms.JoinConditionsList.Add(
                     new JoinCondition
                     {
@@ -116,7 +122,8 @@ namespace O2V1BusinesLayer
                         JoinOnRightColumn = "PersonId",
                         TypeOfJoin = JoinType.InnerJoin
                     });
-            if (queryBuilderParms.PrimaryTable.ToLower().Contains("persons"))
+
+            if (criteriaArray[currentCriteria].TableName.ToLower().Contains("persons"))
                 queryBuilderParms.JoinConditionsList.Add(
                     new JoinCondition
                     {
@@ -127,7 +134,40 @@ namespace O2V1BusinesLayer
                         JoinOnRightColumn = "PropertyId",
                         TypeOfJoin = JoinType.InnerJoin
                     });
+
+
+            currentCriteria += 1;
+
+            for (var i = currentCriteria; i <= totalCriter - 1; i++)
+            {
+                if (criteriaArray[i].TableName.ToLower().Contains("persons"))
+                    queryBuilderParms.JoinConditionsList.Add(
+                        new JoinCondition
+                        {
+                            JoinLeftTable = "BackBone",
+                            JoinCompareType = Comparison.Equals,
+                            JoinRightTable = criteriaArray[i].TableName,
+                            JoinOnLeftColumn = "PersonId",
+                            JoinOnRightColumn = "PersonId",
+                            TypeOfJoin = JoinType.InnerJoin
+                        });
+
+                if (criteriaArray[i].TableName.ToLower().Contains("property"))
+                    queryBuilderParms.JoinConditionsList.Add(
+                        new JoinCondition
+                        {
+                            JoinLeftTable = "BackBone",
+                            JoinCompareType = Comparison.Equals,
+                            JoinRightTable = criteriaArray[i].TableName,
+                            JoinOnLeftColumn = "PropertyId",
+                            JoinOnRightColumn = "PropertyId",
+                            TypeOfJoin = JoinType.InnerJoin
+                        });
+             
+        
         }
+
+    }
 
         private void AddWhereClauseToCurrentQuery(CriteriaDto criteriaDto, QueryBuilderParms queryBuilderParms,
             SchemaRepository schemaRepository)

@@ -30,7 +30,7 @@ namespace OC2V1BusinessLayer_Tests
 
             var sqlFromQueryBuilder = criteriaBusiness.BuildSqlFromQuery("19");
 
-            Assert.IsTrue(sqlFromQueryBuilder.Trim().Contains(@"SELECT Mortgages.* FROM Mortgages  WHERE  ((dbo.Mortgages.LenderName LIKE '%lend%') AND (dbo.Mortgages.LoanAmountRange = '$175K - $209K'))"));
+            Assert.IsTrue(sqlFromQueryBuilder.Trim().Contains(@"SELECT Mortgages.* FROM Mortgages INNER JOIN BackBone ON BackBone.MortgageId = BackBone.MortgageId INNER JOIN Persons ON BackBone.PersonId = Persons.PersonId  WHERE  ((dbo.Mortgages.LenderName LIKE '%lend%') AND (dbo.Persons.State = 'AK'))"));
             Assert.IsTrue(ExecuteQuery(sqlFromQueryBuilder));
 
         }
