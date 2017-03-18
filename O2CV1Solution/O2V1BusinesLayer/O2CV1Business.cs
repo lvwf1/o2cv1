@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using CodeEngine.Framework.QueryBuilder.Enums;
 using O2CV1EntityDtos;
@@ -44,6 +45,11 @@ namespace O2V1BusinesLayer
         {
             var queryRepository = new QueryRepository(_dbConnectionString);
             queryRepository.SaveQuery(queryDto);
+        }
+
+        public void ExecuteQueryCommand(string sqlText)
+        {
+           
         }
 
         public string BuildSqlFromQuery(string queryId)

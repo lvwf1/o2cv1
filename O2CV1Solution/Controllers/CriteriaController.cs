@@ -22,15 +22,15 @@ using O2V1Web.Models.ViewModels;
 
 namespace O2V1Web.Controllers
 {
-    public class HomeController : BaseController
+    public class CriteriaController : BaseController
     {
         private readonly string _dbConnectionString;
-        private readonly EqServiceProviderDb eqService;
-        private readonly SchemaRepository schemaRepository;
+        private readonly EqServiceProviderDb _eqService;
+        private readonly SchemaRepository _schemaRepository;
 
-        public HomeController()
+        public CriteriaController()
         {
-            eqService = new EqServiceProviderDb
+            _eqService = new EqServiceProviderDb
             {
                 ModelLoader = (model, modelName) =>
                 {
@@ -41,10 +41,10 @@ namespace O2V1Web.Controllers
             };
 
             _dbConnectionString = ConfigurationManager.ConnectionStrings[@"O2DataMart"].ConnectionString;
-            eqService.Connection = new SqlConnection(_dbConnectionString);
-            eqService.Connection = new SqlConnection(_dbConnectionString);
+            _eqService.Connection = new SqlConnection(_dbConnectionString);
+            _eqService.Connection = new SqlConnection(_dbConnectionString);
 
-            schemaRepository = new SchemaRepository(eqService.Connection.ConnectionString);
+            _schemaRepository = new SchemaRepository(_eqService.Connection.ConnectionString);
         }
 
 
@@ -82,8 +82,8 @@ namespace O2V1Web.Controllers
 
         private string AddColumnsConditionsByCode()
         {
-            var dataModel1 = eqService.GetModel("County");
-            var query1 = eqService.GetQuery();
+            var dataModel1 = _eqService.GetModel("County");
+            var query1 = _eqService.GetQuery();
             query1.Clear();
             //create simple column
             var col = query1.CreateColumn("County.County1", "County1", SortDirection.Ascending);
@@ -142,7 +142,7 @@ namespace O2V1Web.Controllers
         [HttpPost]
         public ActionResult GetModel(string modelName)
         {
-            var result = eqService.GetModel(modelName);
+            var result = _eqService.GetModel(modelName);
             return Json(result.SaveToDictionary());
         }
 
@@ -154,7 +154,7 @@ namespace O2V1Web.Controllers
         [HttpPost]
         public ActionResult GetList(ListRequestOptions options)
         {
-            return Json(eqService.GetList(options));
+            return Json(_eqService.GetList(options));
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace O2V1Web.Controllers
         [HttpPost]
         public ActionResult GetQuery(string queryId)
         {
-            var query = eqService.GetQuery(queryId);
+            var query = _eqService.GetQuery(queryId);
             return Json(query.SaveToDictionary());
         }
 
@@ -204,7 +204,7 @@ namespace O2V1Web.Controllers
         {
             var columnsForTable = new List<DropDownItem>();
             if (!ModelState.IsValid) return Json(columnsForTable, JsonRequestBehavior.AllowGet);
-            var tableSchemaModels = schemaRepository.GetSchemaTableColumns(tableName);
+            var tableSchemaModels = _schemaRepository.GetSchemaTableColumns(tableName);
             IEnumerable<DropDownItem> tempColumnList = tableSchemaModels.MetaData.Select(col => new DropDownItem
             {
                 DropDownDisplay = col.Name,
@@ -226,7 +226,7 @@ namespace O2V1Web.Controllers
 
         public ActionResult Criteria(string queryId, string queryName)
         {
-            var tableNames = schemaRepository.GetSchemaBackBoneRelatedTables();
+            var tableNames = _schemaRepository.GetSchemaBackBoneRelatedTables();
 
             IEnumerable<DropDownItem> temptablelist = tableNames.Select(name => new DropDownItem
             {
@@ -299,7 +299,7 @@ namespace O2V1Web.Controllers
         [HttpPost]
         public ActionResult SaveQuery(string queryJson, string queryName)
         {
-            eqService.SaveQueryDict(queryJson.ToDictionary(), queryName);
+            _eqService.SaveQueryDict(queryJson.ToDictionary(), queryName);
 
             var dict = new Dictionary<string, object>();
             dict.Add("result", "OK");
@@ -382,7 +382,7 @@ namespace O2V1Web.Controllers
 
         private void GetQueryCriteriaIntoModel(string queryId, CountsQueryModel model)
         {
-            var tableNames = schemaRepository.GetSchemaTables();
+            var tableNames = _schemaRepository.GetSchemaTables();
             CriteriaRepository criteriaRepository = new CriteriaRepository(_dbConnectionString);
             var criteriaThisQuery = criteriaRepository.GetCriteriaForQuery(Convert.ToInt64(queryId));
             model.QueryCriteria = CriteriaMapper.MapCriteriaDtoToCriteriaGridViewModel(criteriaThisQuery);
@@ -390,7 +390,7 @@ namespace O2V1Web.Controllers
 
         private void ResetCountsQueryModel(CriteriaDto criteriaDto, O2CV1QueryDto queryDto, CountsQueryModel model)
         {
-            var tableNames = schemaRepository.GetSchemaTables();
+            var tableNames = _schemaRepository.GetSchemaTables();
 
             IEnumerable<DropDownItem> temptablelist = tableNames.Select(name => new DropDownItem
             {
@@ -406,7 +406,7 @@ namespace O2V1Web.Controllers
             model.CriteriaModel = new CriteriaModel {_criteria = BuildModelCriteria()};
             ViewBag.temptablelist = temptablelist;
 
-            var tableSchemaModels = schemaRepository.GetSchemaTableColumns(criteriaDto.TableName);
+            var tableSchemaModels = _schemaRepository.GetSchemaTableColumns(criteriaDto.TableName);
             IEnumerable<DropDownItem> tempColumnList = tableSchemaModels.MetaData.Select(col => new DropDownItem
             {
                 DropDownDisplay = col.Name,
@@ -454,21 +454,21 @@ namespace O2V1Web.Controllers
         [HttpPost]
         public ActionResult ExecuteQuery(string queryJson, string optionsJson)
         {
-            var query = eqService.LoadQueryDict(queryJson.ToDictionary());
+            var query = _eqService.LoadQueryDict(queryJson.ToDictionary());
 
             var optionsDict = optionsJson.ToDictionary();
 
-            eqService.LoadOptionsDict(optionsDict);
+            _eqService.LoadOptionsDict(optionsDict);
 
-            var statement = eqService.BuildQuery(query, optionsDict);
+            var statement = _eqService.BuildQuery(query, optionsDict);
 
-            var resultSet = eqService.GetDataSetBySql(statement);
+            var resultSet = _eqService.GetDataSetBySql(statement);
 
-            var resultSetDict = eqService.DataSetToDictionary(resultSet, optionsDict);
+            var resultSetDict = _eqService.DataSetToDictionary(resultSet, optionsDict);
             var dict = new Dictionary<string, object>();
             dict.Add("statement", statement);
             dict.Add("resultSet", resultSetDict);
-            dict.Add("paging", eqService.Paging.SaveToDictionary());
+            dict.Add("paging", _eqService.Paging.SaveToDictionary());
             return Json(dict);
         }
 
@@ -479,16 +479,19 @@ namespace O2V1Web.Controllers
         /// <param name="sql">The SQL statement.</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult ExecuteSql(string sql, string optionsJson)
+        public ActionResult GetOrderCount(string queryId)
         {
-            return Json(eqService.ExecuteSql(sql, optionsJson.ToDictionary()));
+            var o2Cv1Business = new O2CV1Business(_dbConnectionString);
+            var SqlQueryBuilder = o2Cv1Business.BuildSqlFromQuery(queryId);
+            return null;
+
         }
 
 
         [HttpGet]
         public JsonResult GetQueryList(string modelName)
         {
-            var queries = eqService.GetQueryList(modelName);
+            var queries = _eqService.GetQueryList(modelName);
 
             return Json(queries, JsonRequestBehavior.AllowGet);
         }
@@ -504,13 +507,13 @@ namespace O2V1Web.Controllers
         public void ExportToFileExcel()
         {
             Response.Clear();
-            var query = eqService.GetQuery();
+            var query = _eqService.GetQuery();
 
             if (!query.IsEmpty)
             {
-                var sql = eqService.BuildQuery(query);
-                eqService.Paging.Enabled = false;
-                var dataset = eqService.GetDataSetBySql(sql);
+                var sql = _eqService.BuildQuery(query);
+                _eqService.Paging.Enabled = false;
+                var dataset = _eqService.GetDataSetBySql(sql);
                 if (dataset != null)
                 {
                     Response.ContentType = "application/vnd.ms-excel";
@@ -533,13 +536,13 @@ namespace O2V1Web.Controllers
         public void ExportToFileCsv()
         {
             Response.Clear();
-            var query = eqService.GetQuery();
+            var query = _eqService.GetQuery();
 
             if (!query.IsEmpty)
             {
-                var sql = eqService.BuildQuery(query);
-                eqService.Paging.Enabled = false;
-                var dataset = eqService.GetDataSetBySql(sql);
+                var sql = _eqService.BuildQuery(query);
+                _eqService.Paging.Enabled = false;
+                var dataset = _eqService.GetDataSetBySql(sql);
                 if (dataset != null)
                 {
                     Response.ContentType = "text/csv";

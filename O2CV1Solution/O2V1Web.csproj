@@ -597,7 +597,7 @@
     <Compile Include="Controllers\AccessController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\OldHomeController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\CriteriaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

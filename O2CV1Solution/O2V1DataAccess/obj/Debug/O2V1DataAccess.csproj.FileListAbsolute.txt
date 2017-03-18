@@ -20,3 +20,5 @@ C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\bin\Debug\Enti
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\bin\Debug\EntityFramework.SqlServer.dll
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\bin\Debug\EntityFramework.xml
 C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\obj\Debug\Interop.ADODB.dll
+C:\Cloud88Projects\Development\O2CV1\O2CV1Solution\O2V1DataAccess\obj\Debug\O2V1DataAccess.csproj.ResolveComReference.cache

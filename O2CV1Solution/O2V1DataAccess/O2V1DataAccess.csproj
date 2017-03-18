@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="models\AdoQueryFieldsModel.cs" />
     <Compile Include="AdoRepository.cs" />
     <Compile Include="CitiesRepository.cs" />
     <Compile Include="Criteria\Criteria.designer.cs">
@@ -71,6 +72,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>O2DataMartLinqToSql.dbml</DependentUpon>
     </Compile>
+    <Compile Include="O2V1AdoDataAccess.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -121,6 +123,17 @@
       <Project>{32bc9f5f-5330-4eb7-a732-9fe750d133fa}</Project>
       <Name>O2CV1EntityDtos</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ADODB">
+      <Guid>{B691E011-1797-432E-907A-4D8C69339129}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
