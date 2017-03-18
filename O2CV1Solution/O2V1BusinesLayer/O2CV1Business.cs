@@ -49,6 +49,11 @@ namespace O2V1BusinesLayer
             queryRepository.SaveQuery(queryDto);
         }
 
+        public void SaveQuery(string queryId, string sql)
+        {
+            var queryRepository = new QueryRepository(_dbConnectionString);
+            queryRepository.SaveQuery(queryId, sql);
+        }
         public AdoQueryFieldsModel CreateOrderModel(string queryId)
         {
             var o2V1AdoDataAccess = new O2V1AdoDataAccess(_dbConnectionString);

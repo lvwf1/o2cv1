@@ -449,10 +449,12 @@ namespace O2V1Web.Controllers
         public ActionResult ExecuteOrder(string queryId)
         {
            var o2V1Business = new O2CV1Business(_dbConnectionString);
+           var sql = o2V1Business.BuildSqlFromQuery(queryId);
+           o2V1Business.SaveQuery(queryId, sql);
            var queryFieldsDto = o2V1Business.CreateOrderModel(queryId);
-            var queryFieldsViewModel = CriteriaMapper.MapCriteriaDtoToCriteriaGridViewModel(queryFieldsDto);
-            ViewBag.Message = "This is a partial view.";
-            return PartialView("_PlaceOrder", queryFieldsViewModel);
+           var queryFieldsViewModel = CriteriaMapper.MapCriteriaDtoToCriteriaGridViewModel(queryFieldsDto);
+           ViewBag.Message = "This is a partial view.";
+           return PartialView("_PlaceOrder", queryFieldsViewModel);
         }
         /// <summary>
         ///     Executes the query passed as JSON string and returns the result record set (again as JSON).

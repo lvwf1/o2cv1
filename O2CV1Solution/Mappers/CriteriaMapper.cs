@@ -31,7 +31,7 @@ namespace O2V1Web.Mappers
             {
                 ColumnHeaders = queryFieldsViewModel.ColumnHeaders,
                 QueryRows = queryFieldsViewModel.QueryRows,
-                TotalRowsCount = queryFieldsViewModel.TotalRowsCount
+                TotalRowsCount = queryFieldsViewModel.TotalRowsCount.ToString("#,##0")
             };
 
             if (queryFieldsViewModel.ColumnHeaders.Count > 10)

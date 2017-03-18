@@ -266,15 +266,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6">
+                    <div id="PlaceOrderBtnDiv" class="col-xs-12 col-sm-6">
                         <div class="buttonsspace01">
                             @*<input id="btnPlaceOrder" class="btn btn-primary" type="button" value="Place Order" class="btn btn-default" />*@
                             <a id="btnPlaceOrder" data-toggle="collapse" data-target="#collapse2" class="topbutton01">Order Data</a>
                         </div>
                     </div>
-                    <div id="OrderDiv" class="col-md-12">
+                    <div id="OrderDiv"></div>
+                    <span id="order-loading-progress" style="display: none;">Please wait loading sample order..</span>
 
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -471,8 +472,13 @@
             }
 
             $("#btnPlaceOrder").click(function () {
+                $(".buttonsspace01").hide();
+                var orderLoadProgress = $("#order-loading-progress");
+                orderLoadProgress.show();
                 var hdnqueryId = $('#QueryId').val();
                 $('#OrderDiv').load('/home/executeorder?queryId=' + hdnqueryId);
+                $(".buttonsspace01").show();
+                orderLoadProgress.hide();
             });
   
         });

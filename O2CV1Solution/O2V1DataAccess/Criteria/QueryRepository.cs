@@ -137,5 +137,22 @@ namespace O2V1DataAccess.O2CV1Query
 
             }
         }
+
+        public void SaveQuery(string queryId, string sql)
+        {
+            using (var dc = new CriteriaDataContext())
+            {
+                var cq = dc.O2CVQueries.FirstOrDefault(x => x.Id == Convert.ToInt64(queryId));
+                if (cq == null)
+                {
+                    throw new Exception(
+                        $"Could not find query to save - query id {queryId} ");
+                }
+                 cq.QuerySql = sql;
+                 cq.ModifiedDate = Now;
+                dc.SubmitChanges();
+ 
+            }
+        }
     }
 }

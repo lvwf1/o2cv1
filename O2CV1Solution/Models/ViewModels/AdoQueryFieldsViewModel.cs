@@ -14,7 +14,7 @@ namespace O2V1Web.Models.ViewModels
 
        public List<string> ColumnHeaders {get; set; }
        public List<AdoQueryRow> QueryRows { get; set; }
-       public long TotalRowsCount { get; set; }
+       public string TotalRowsCount { get; set; }
        public int FieldsToShow { get; set; }
     }
 
