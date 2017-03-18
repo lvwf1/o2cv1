@@ -14,6 +14,7 @@ namespace O2V1DataAccess.models
 
        public List<string> ColumnHeaders {get; set; }
        public List<AdoQueryRow> QueryRows { get; set; }
+       public long TotalRowsCount { get; set; }
        
     }
 

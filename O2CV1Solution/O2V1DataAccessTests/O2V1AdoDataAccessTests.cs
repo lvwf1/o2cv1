@@ -9,7 +9,7 @@ namespace O2DataAccessTests
     {
         private string connection;
         private O2V1AdoDataAccess _o2V1AdoRepository;
-        private string Query1Test = @" SELECT top 10 Mortgages.* FROM Mortgages 
+        private string Query1Test = @" SELECT Mortgages.* FROM Mortgages 
   INNER JOIN BackBone ON BackBone.MortgageId = BackBone.MortgageId 
   INNER JOIN Persons ON BackBone.PersonId = Persons.PersonId 
   INNER JOIN Property ON BackBone.PropertyId = Property.PropertyId
@@ -31,6 +31,12 @@ namespace O2DataAccessTests
             Assert.IsTrue(result.QueryRows.Count > 1);
         }
 
+        [TestMethod]
+        public void GetCountTest()
+        {
+            var result = _o2V1AdoRepository.GetCountOfAllRows(Query1Test);
+            Assert.IsTrue(result > 1);
+        }
 
     }
 }
