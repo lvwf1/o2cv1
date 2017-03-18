@@ -411,6 +411,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Counts.cshtml" />
     <Content Include="Views\Home\Criteria.cshtml" />
+    <Content Include="Views\Shared\_PlaceOrder.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -597,7 +598,7 @@
     <Compile Include="Controllers\AccessController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\OldHomeController.cs" />
-    <Compile Include="Controllers\CriteriaController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -641,6 +642,7 @@
     <Compile Include="Models\QueryModels\Rootobject.cs" />
     <Compile Include="Models\QueryModels\Root.cs" />
     <Compile Include="Models\TableFileModel.cs" />
+    <Compile Include="Models\ViewModels\AdoQueryFieldsViewModel.cs" />
     <Compile Include="Models\ViewModels\ColumnDropDownItem.cs" />
     <Compile Include="Models\ViewModels\CountsQueryModel.cs" />
     <Compile Include="Models\ViewModels\CriteraDropDownItem.cs" />
@@ -693,6 +695,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="Views\Access\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Criteria\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

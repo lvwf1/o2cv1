@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using CodeEngine.Framework.QueryBuilder.Enums;
 using O2CV1EntityDtos;
+using O2V1BusinesLayer.QueryModels;
 using O2V1BusinesLayer.QueryModels.QueryBuilderModels;
 using O2V1DataAccess;
 using O2V1DataAccess.Criteria;
+using O2V1DataAccess.models;
 using O2V1DataAccess.O2CV1Query;
 using static System.String;
+using CriteriaDto = O2CV1EntityDtos.CriteriaDto;
 
 namespace O2V1BusinesLayer
 {
@@ -47,9 +49,12 @@ namespace O2V1BusinesLayer
             queryRepository.SaveQuery(queryDto);
         }
 
-        public void ExecuteQueryCommand(string sqlText)
+        public AdoQueryFieldsModel CreateOrderModel(string queryId)
         {
-           
+            var o2V1AdoDataAccess = new O2V1AdoDataAccess(_dbConnectionString);
+            var criteriaRepository = new CriteriaRepository(_dbConnectionString);
+            var sql = criteriaRepository.GetSqlForQuery(queryId);
+            return o2V1AdoDataAccess.ExecuteQueryCommand(sql);
         }
 
         public string BuildSqlFromQuery(string queryId)
@@ -100,8 +105,8 @@ namespace O2V1BusinesLayer
             SchemaRepository schemaRepository, IEnumerable<IGrouping<string, CriteriaDto>> groupedTables)
         {
             var criteriaArray = criteriaForQuery.ToArray();
-            int currentCriteria = 0;
-            int totalCriter = criteriaForQuery.Count;
+            var currentCriteria = 0;
+            var totalCriter = criteriaForQuery.Count;
 
 
             if (criteriaArray[currentCriteria].TableName.ToLower().Contains("mortgage"))
@@ -169,11 +174,8 @@ namespace O2V1BusinesLayer
                             JoinOnRightColumn = "PropertyId",
                             TypeOfJoin = JoinType.InnerJoin
                         });
-             
-        
+            }
         }
-
-    }
 
         private void AddWhereClauseToCurrentQuery(CriteriaDto criteriaDto, QueryBuilderParms queryBuilderParms,
             SchemaRepository schemaRepository)

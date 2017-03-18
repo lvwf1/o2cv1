@@ -268,8 +268,12 @@
                     </div>
                     <div class="col-xs-12 col-sm-6">
                         <div class="buttonsspace01">
-                            <a data-toggle="collapse" data-target="#collapse2" class="topbutton01">Order Data</a>
+                            @*<input id="btnPlaceOrder" class="btn btn-primary" type="button" value="Place Order" class="btn btn-default" />*@
+                            <a id="btnPlaceOrder" data-toggle="collapse" data-target="#collapse2" class="topbutton01">Order Data</a>
                         </div>
+                    </div>
+                    <div id="OrderDiv" class="col-md-12">
+
                     </div>
                 </div>
             </div>
@@ -391,17 +395,13 @@
                         <!-- Button Section Strats -->
                         <div class="col-md-12">
                             <div class="buttonsspace01">
-                                <a id="PlaceOrder" data-toggle="collapse" data-target="#collapse3" class="topbutton01">PLACE ORDER</a>
+                                <a  data-toggle="collapse" data-target="#collapse3" class="topbutton01">PLACE ORDER</a>
                                
                                 @Html.ActionLink("Register", "Register" ,null,  new { @class = "btn" })
                             </div>
                         </div>
-                        <div id="OrderCount" class="col-md-12">
-
-                        </div>
-                        <table id="OrderTable">
-                            
-                        </table>
+                    
+                         
                         <!-- Button Section Ends -->
                     </div>
                     <!-- Right Section Ends -->
@@ -455,49 +455,54 @@
 @section Scripts {
     <script type="text/javascript">
 
+
         $(function() {
             $("#SelectedColumn").change(function() {
                 var selectedColumnName = $(this).val();
                 $("#txtCriteriaSelected").val(selectedColumnName);
             });
 
-            var queryId = $('#QueryId').val(value);
-            if (queryId === "0") 
-            {
-                $("#PlaceOrder").prop("disabled", true);
-            } 
-            else 
-            {
-                $("#PlaceOrder").prop("disabled", false);
+
+            var queryId = $('#QueryId').val();
+            if (queryId === "0") {
+                $("#btnPlaceOrder").prop("disabled", true);
+            } else {
+                $("#btnPlaceOrder").prop("disabled", false);
             }
 
-            
-            $('a[name="PlaceOrder"]').click(function(event) {
-                var countDiv = $("#OrderCount");
-                var queryId = $('#QueryId').val(value);
-                $.ajax({
+            $("#btnPlaceOrder").click(function () {
+                var hdnqueryId = $('#QueryId').val();
+                $('#OrderDiv').load('/home/executeorder?queryId=' + hdnqueryId);
+            });
+  
+        });
+
+
+ 
+
+        @*$.ajax({
                     cache: false,
                     type: "GET",
                     url: "@(Url.RouteUrl("GetOrderCount"))",
                     data: { "queryId": queryId },
                     success: function(data) {
-                    countDiv.html('');
-                    countDiv.append(data);
+                        countDiv.html('');
+                        countDiv.append(data);
 
-                    $.each(data,
-                        function(id, option) {
+                        $.each(data,
+                            function(id, option) {
 
-                            countDiv.append($('<option></option>').val(option.DropDownValue)
-                                .html(option.DropDownDisplay));
-                        });
-                 },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert('Failed to run query and get count.');
-                 }
+                                countDiv.append($('<option></option>').val(option.DropDownValue)
+                                    .html(option.DropDownDisplay));
+                            });
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert('Failed to run query and get count.');
+                    }
+                });*@
 
-            });
+ 
 
-        });
 
 
         $(function() {

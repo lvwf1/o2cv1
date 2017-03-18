@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Data.Entity;
-using System.Data.SqlClient;
-using O2.DataMart.Models.SchemaModels;
 using O2CV1EntityDtos;
 using static System.DateTime;
 
@@ -12,8 +8,8 @@ namespace O2V1DataAccess.Criteria
 {
     public class CriteriaRepository
     {
-        private string _conn;
         private readonly CriteriaDataContext _context;
+        private string _conn;
 
         public CriteriaRepository(string connection)
         {
@@ -51,30 +47,35 @@ namespace O2V1DataAccess.Criteria
 
         public List<CriteriaDto> GetCriteriaForQuery(long queryId)
         {
-
             var criteriaDtoList = new List<CriteriaDto>();
             using (var dc = new CriteriaDataContext())
             {
-                var result = (from c in dc.O2CVQueryCriterias where c.CriteriaParentQueryId == queryId
-                              select new
+                var result = (from c in dc.O2CVQueryCriterias
+                    where c.CriteriaParentQueryId == queryId
+                    select new
                     {
                         O2CVQueryCriteria = c
-                    }).OrderBy( cr => cr.O2CVQueryCriteria.Sequence) ;
+                    }).OrderBy(cr => cr.O2CVQueryCriteria.Sequence);
 
                 criteriaDtoList.AddRange(result.Select(criteria => new CriteriaDto
                 {
-                    CompareOperator = criteria.O2CVQueryCriteria.CompareOperator, CompareValue = criteria.O2CVQueryCriteria.CompareValue, Createdby = criteria.O2CVQueryCriteria.CreatedBy, Description = criteria.O2CVQueryCriteria.Description, Disabled = criteria.O2CVQueryCriteria.Disabled ?? false, Name = criteria.O2CVQueryCriteria.Name, Sequence = criteria.O2CVQueryCriteria.Sequence, TableColumn = criteria.O2CVQueryCriteria.TableColumn, TableName = criteria.O2CVQueryCriteria.TableName
+                    CompareOperator = criteria.O2CVQueryCriteria.CompareOperator,
+                    CompareValue = criteria.O2CVQueryCriteria.CompareValue,
+                    Createdby = criteria.O2CVQueryCriteria.CreatedBy,
+                    Description = criteria.O2CVQueryCriteria.Description,
+                    Disabled = criteria.O2CVQueryCriteria.Disabled ?? false,
+                    Name = criteria.O2CVQueryCriteria.Name,
+                    Sequence = criteria.O2CVQueryCriteria.Sequence,
+                    TableColumn = criteria.O2CVQueryCriteria.TableColumn,
+                    TableName = criteria.O2CVQueryCriteria.TableName
                 }));
 
                 return criteriaDtoList;
-
             }
-            
         }
 
         public void CreateQuery(O2CV1QueryDto queryDto)
         {
-
             using (var dc = new CriteriaDataContext())
             {
                 var q = new O2CVQuery
@@ -85,21 +86,16 @@ namespace O2V1DataAccess.Criteria
                     Deleted = queryDto.Deleted,
                     Description = queryDto.Description,
                     CreatedDate = Now
-                  
-     
-               };
+                };
                 dc.O2CVQueries.InsertOnSubmit(q);
                 dc.SubmitChanges();
-
             }
         }
 
         public void AddQueryAndFirstCriteriaToQuery(O2CV1QueryDto queryDto, CriteriaDto criteriaDto)
         {
-
             using (var dc = new CriteriaDataContext())
             {
-
                 var query = new O2CVQuery
                 {
                     QueryName = queryDto.QueryName,
@@ -107,10 +103,9 @@ namespace O2V1DataAccess.Criteria
                     CreatedBy = queryDto.CreatedBy,
                     Deleted = queryDto.Deleted,
                     Description = queryDto.Description,
-                    CreatedDate = System.DateTime.Now
-     
+                    CreatedDate = Now
                 };
- 
+
                 var criteria = new O2CVQueryCriteria
                 {
                     Sequence = 1,
@@ -120,30 +115,24 @@ namespace O2V1DataAccess.Criteria
                     CompareOperator = criteriaDto.CompareOperator,
                     CompareValue = criteriaDto.CompareValue,
                     Description = criteriaDto.Description,
-                    DisableBy = criteriaDto.Disabled == true ? criteriaDto.Createdby : null,
+                    DisableBy = criteriaDto.Disabled ? criteriaDto.Createdby : null,
                     CreatedBy = criteriaDto.Createdby,
                     Disabled = criteriaDto.Disabled,
-                    CreatedDate = System.DateTime.Now
+                    CreatedDate = Now
                 };
 
                 if (criteria.Disabled == true)
-                {
-                    criteria.DisabledDate = System.DateTime.Now;
-
-                }
+                    criteria.DisabledDate = Now;
                 query.O2CVQueryCriterias.Add(criteria);
                 dc.O2CVQueries.InsertOnSubmit(query);
                 dc.SubmitChanges();
-
             }
         }
+
         public void AddCriteriaToQuery(O2CV1QueryDto queryDto, CriteriaDto criteriaDto)
         {
-
             using (var dc = new CriteriaDataContext())
             {
-
-
                 var query = dc.O2CVQueries.Single(q => q.QueryName == queryDto.QueryName);
 
                 var criteria = new O2CVQueryCriteria
@@ -154,22 +143,31 @@ namespace O2V1DataAccess.Criteria
                     CompareOperator = criteriaDto.CompareOperator,
                     CompareValue = criteriaDto.CompareValue,
                     Description = criteriaDto.Description,
-                    Name = $"{criteriaDto.TableName} {criteriaDto.TableColumn} {criteriaDto.CompareOperator} {criteriaDto.CompareValue}",
+                    Name =
+                        $"{criteriaDto.TableName} {criteriaDto.TableColumn} {criteriaDto.CompareOperator} {criteriaDto.CompareValue}",
                     DisableBy = criteriaDto.Disabled ? criteriaDto.Createdby : null,
                     CreatedBy = criteriaDto.Createdby,
                     Disabled = criteriaDto.Disabled,
-                    CreatedDate = System.DateTime.Now,
-                    
+                    CreatedDate = Now
                 };
 
                 if (criteria.Disabled == true)
-                {
-                    criteria.DisabledDate = System.DateTime.Now;
-
-                }
+                    criteria.DisabledDate = Now;
                 query.O2CVQueryCriterias.Add(criteria);
                 dc.SubmitChanges();
+            }
+        }
 
+        public string GetSqlForQuery(string queryId)
+        {
+
+            long queryIdLong = Convert.ToInt64(queryId);
+
+            using (var dc = new CriteriaDataContext())
+            {
+                var query = dc.O2CVQueries.Single(q => q.Id == queryIdLong);
+
+                return query.QuerySql;
             }
         }
     }

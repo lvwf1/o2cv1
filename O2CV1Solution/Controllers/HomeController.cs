@@ -22,13 +22,13 @@ using O2V1Web.Models.ViewModels;
 
 namespace O2V1Web.Controllers
 {
-    public class CriteriaController : BaseController
+    public class HomeController : BaseController
     {
         private readonly string _dbConnectionString;
         private readonly EqServiceProviderDb _eqService;
         private readonly SchemaRepository _schemaRepository;
 
-        public CriteriaController()
+        public HomeController()
         {
             _eqService = new EqServiceProviderDb
             {
@@ -445,6 +445,15 @@ namespace O2V1Web.Controllers
             };
         }
 
+        [HttpGet]
+        public ActionResult ExecuteOrder(string queryId)
+        {
+           var o2V1Business = new O2CV1Business(_dbConnectionString);
+           var queryFieldsDto = o2V1Business.CreateOrderModel(queryId);
+            var queryFieldsViewModel = CriteriaMapper.MapCriteriaDtoToCriteriaGridViewModel(queryFieldsDto);
+            ViewBag.Message = "This is a partial view.";
+            return PartialView("_PlaceOrder", queryFieldsViewModel);
+        }
         /// <summary>
         ///     Executes the query passed as JSON string and returns the result record set (again as JSON).
         /// </summary>

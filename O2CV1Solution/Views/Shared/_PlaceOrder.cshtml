@@ -1,0 +1,59 @@
+﻿@model O2V1Web.Models.ViewModels.AdoQueryFieldsViewModel
+
+@{
+    ViewBag.Title = "Place Order";
+}
+<div class="accoinnerconatiner">
+<!-- Count Section Starts -->
+<div class="row">
+<div class="col-sm-12">
+    <!-- Section 1 Starts -->
+    <div class="tabletopsection">
+        <div class="row">
+            <div class="col-sm-6 text-left">
+                <span class="tableheadtext">Order Sample</span>
+            </div>
+        </div>
+    </div>
+    <div class="newordercontainer">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-xs-12 col-sm-4">
+                    <label>Show Sample Order</label>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <div style="height: 200px; overflow: auto;">
+                <table class="table table-striped tableborder ">
+                    <thead>
+                    <tr>
+                        @foreach (var headerCol in Model.ColumnHeaders)
+
+                        {
+                            <th>@headerCol.ToUpper()</th>
+                        }
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @for (var rowIndex = 0; rowIndex < Model.QueryRows.Count; rowIndex++)
+                    {
+                        <tr>
+                            @for (var fieldIndex = 0; fieldIndex < Model.FieldsToShow; fieldIndex++)
+                            {
+                                <td>@Model.QueryRows[rowIndex].QueryRowFields[fieldIndex].Value</td>
+                            }
+
+                        </tr>
+                    }
+
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

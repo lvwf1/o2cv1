@@ -27,7 +27,7 @@ namespace O2DataAccessTests
         [TestMethod]
         public void SchemaRepositoryReturnTableColumnInformationCities()
         {
-            var result = _o2V1AdoRepository.ExecuteQueryCommand(Query1Test);
+            var result =   _o2V1AdoRepository.ExecuteQueryCommand(Query1Test);
             Assert.IsTrue(result.QueryRows.Count > 1);
         }
 

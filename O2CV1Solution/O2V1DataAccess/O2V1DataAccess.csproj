@@ -53,7 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="models\AdoQueryFieldsModel.cs" />
     <Compile Include="AdoRepository.cs" />
     <Compile Include="CitiesRepository.cs" />
     <Compile Include="Criteria\Criteria.designer.cs">
@@ -66,6 +65,7 @@
     <Compile Include="Interfaces\IDataContextFactory.cs" />
     <Compile Include="Interfaces\ILinqToSqlRepository.cs" />
     <Compile Include="Interfaces\ISchemaRepository.cs" />
+    <Compile Include="models\AdoQueryFieldsModel.cs" />
     <Compile Include="O2DataMartLinqToSql.designer.cs" />
     <Compile Include="O2DataMartLinqToSql1.designer.cs">
       <AutoGen>True</AutoGen>
